@@ -1,66 +1,124 @@
+// Active Navbar Item
+
+const navItems = document.querySelectorAll(".nav-item");
+
+navItems.forEach((navItem, i) => {
+  navItem.addEventListener("click", () => {
+    navItems.forEach((item, j) => {
+      item.className = "nav-item";
+    });
+    navItem.className = "nav-item active";
+  });
+});
+
+// Horizontal Scroll
+
+const containers = document.querySelectorAll(".containers");
+
+containers.forEach((container) => {
+  let isDragging = false;
+  let startX;
+  let scrollLeft;
+
+  container.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    startX = e.pageX - container.offsetLeft;
+    scrollLeft = container.scrollLeft;
+  });
+
+  container.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+
+    const x = e.pageX - container.offsetLeft;
+    const step = (x - startX) * 0.6;
+    container.scrollLeft = scrollLeft - step;
+  });
+
+  container.addEventListener("mouseup", () => {
+    isDragging = false;
+  });
+
+  container.addEventListener("mouseleave", () => {
+    isDragging = false;
+  });
+});
+
+// Music Player
+
 const progress = document.getElementById("progress");
 const song = document.getElementById("song");
 const controlIcon = document.getElementById("controlIcon");
 const playPauseButton = document.querySelector(".play-pause-btn");
 const forwardButton = document.querySelector(".controls button.forward");
 const backwardButton = document.querySelector(".controls button.backward");
-const songName = document.querySelector(".music-player h1");
+const rotatingImage = document.getElementById("rotatingImage");
+const songName = document.querySelector(".music-player h2");
 const artistName = document.querySelector(".music-player p");
+
+let rotating = false;
+let currentRotation = 0;
+let rotationInterval;
 
 const songs = [
   {
-    title: "Symphony",
-    name: "Clean Bandit ft. Zara Larsson",
-    source: "song-list/Clean-Bandit-Symphony.mp3",
+    title: "Redemption",
+    name: "Besomorph & Coopex",
+    source: "song-list/Besomorph-Coopex-Redemption.mp3",
+    cover: "images/redemption.png",
   },
   {
-    title: "Pawn It All",
-    name: "Alicia Keys",
-    source: "song-list/Pawn-It-All.mp3",
+    title: "What's The Problem?",
+    name: "OSKI",
+    source: "song-list/OSKI-Whats-The-Problem.mp3",
+    cover: "images/problem.png",
   },
   {
-    title: "Seni Dert Etmeler",
-    name: "Madrigal",
-    source: "song-list/Madrigal-Seni-Dert-Etmeler.mp3",
-  },
-  {
-    title: "Instant Crush",
-    name: "Daft Punk ft. Julian Casablancas",
-    source: "song-list/Daft-Punk-Instant-Crush.mp3",
-  },
-  {
-    title: "As It Was",
-    name: "Harry Styles",
-    source: "song-list/Harry-Styles-As-It-Was.mp3",
-  },
-
-  {
-    title: "Physical",
-    name: "Dua Lipa",
-    source: "song-list/Dua-Lipa-Physical.mp3",
-  },
-  {
-    title: "Delicate",
-    name: "Taylor Swift",
-    source: "song-list/Taylor-Swift-Delicate.mp3",
+    title: "Control",
+    name: "Unknown Brain x Rival",
+    source: "song-list/Unknown-BrainxRival-Control.mp3",
+    cover: "images/control.png",
   },
 ];
 
-//! Updating song info
+let currentSongIndex = 0;
 
-let currentSongIndex = 3;
+function startRotation() {
+  if (!rotating) {
+    rotating = true;
+    rotationInterval = setInterval(rotateImage, 50);
+  }
+}
+
+function pauseRotation() {
+  clearInterval(rotationInterval);
+  rotating = false;
+}
+
+function rotateImage() {
+  currentRotation += 1;
+  rotatingImage.style.transform = `rotate(${currentRotation}deg)`;
+}
 
 function updateSongInfo() {
   songName.textContent = songs[currentSongIndex].title;
   artistName.textContent = songs[currentSongIndex].name;
   song.src = songs[currentSongIndex].source;
+  rotatingImage.src = songs[currentSongIndex].cover;
 
-  song.addEventListener("loadeddata", function () {
-    //! Don't need to do anything here, the purpose is to ensure the event listener is added once
-  });
+  song.addEventListener("loadeddata", function () {});
 }
 
-//! Showing the current time and updating the progress bar more frequently
+song.addEventListener("loadedmetadata", function () {
+  progress.max = song.duration;
+  progress.value = song.currentTime;
+});
+
+song.addEventListener("ended", function () {
+  currentSongIndex = (currentSongIndex + 1) % songs.length;
+  updateSongInfo();
+  playPause();
+});
 
 song.addEventListener("timeupdate", function () {
   if (!song.paused) {
@@ -68,62 +126,38 @@ song.addEventListener("timeupdate", function () {
   }
 });
 
-//! Duration and current time of the song for the progress bar
-
-song.addEventListener("loadedmetadata", function () {
-  progress.max = song.duration;
-  progress.value = song.currentTime;
-});
-
-//! Function to pause the music and updating icons
-
-function pauseSong() {
-  song.pause();
-  controlIcon.classList.remove("fa-pause");
-  controlIcon.classList.add("fa-play");
-}
-
-//! Function to play the music and updating icons
-
-function playSong() {
-  song.play();
-  controlIcon.classList.add("fa-pause");
-  controlIcon.classList.remove("fa-play");
-}
-
-//! Function to play or pause the music
-
 function playPause() {
   if (song.paused) {
-    playSong();
+    song.play();
+    controlIcon.classList.add("fa-pause");
+    controlIcon.classList.remove("fa-play");
+    startRotation();
   } else {
-    pauseSong();
+    song.pause();
+    controlIcon.classList.remove("fa-pause");
+    controlIcon.classList.add("fa-play");
+    pauseRotation();
   }
 }
 
 playPauseButton.addEventListener("click", playPause);
 
-//! Jumping to the desired time of the song by clicking the progress bar
-
 progress.addEventListener("input", function () {
   song.currentTime = progress.value;
 });
 
-//! When the song is still paused, if you click the progress bar, the song keeps playing
-
 progress.addEventListener("change", function () {
-  playSong();
+  song.play();
+  controlIcon.classList.add("fa-pause");
+  controlIcon.classList.remove("fa-play");
+  startRotation();
 });
-
-//! Next song
 
 forwardButton.addEventListener("click", function () {
   currentSongIndex = (currentSongIndex + 1) % songs.length;
   updateSongInfo();
   playPause();
 });
-
-//! Previous song
 
 backwardButton.addEventListener("click", function () {
   currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
@@ -133,24 +167,45 @@ backwardButton.addEventListener("click", function () {
 
 updateSongInfo();
 
+// Slider
+
 var swiper = new Swiper(".swiper", {
   effect: "coverflow",
+  grabCursor: true,
   centeredSlides: true,
-  initialSlide: 3,
+  loop: true,
+  speed: 600,
   slidesPerView: "auto",
-  allowTouchMove: false,
-  spaceBetween: 40,
   coverflowEffect: {
-    rotate: 25,
-    stretch: 0,
-    depth: 50,
+    rotate: 10,
+    stretch: 120,
+    depth: 200,
     modifier: 1,
     slideShadows: false,
   },
-  navigation: {
-    nextEl: ".forward",
-    prevEl: ".backward",
+  on: {
+    click(event) {
+      swiper.slideTo(this.clickedIndex);
+    },
+  },
+  pagination: {
+    el: ".swiper-pagination",
   },
 });
 
-// Inspiration: https://dribbble.com/shots/5455156-Car-HMI-assistant-Album-switching
+// Music Credits:
+
+// Song: Besomorph & Coopex - Redemption (ft. Riell) [NCS Release]
+// Music provided by NoCopyrightSounds
+// Free Download/Stream: http://ncs.io/Redemption
+// Watch: http://youtu.be/ZGrWry_4Q8s
+
+// Song: OSKI - What's The Problem? [NCS Release]
+// Music provided by NoCopyrightSounds
+// Free Download/Stream: http://ncs.io/WTP
+// Watch: http://ncs.lnk.to/WTPAT/youtube
+
+// Song: Unknown Brain x Rival - Control (feat. Jex) [NCS Release]
+// Music provided by NoCopyrightSounds
+// Free Download/Stream: http://ncs.io/Control
+// Watch: http://youtu.be/bLZHcnuqscU
