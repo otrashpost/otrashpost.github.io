@@ -1,3 +1,204 @@
+</footer>
+    </section>
+    <script>
+        function openTrailerPopup(id) {
+            var trailerIframe = document.getElementById('trailerIframe');
+            trailerIframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1';
+            document.getElementById('trailerModal').style.display = 'block';
+        }
+
+
+        var span = document.getElementsByClassName("close-trailer-modal")[0];
+        span.onclick = function() {
+            var trailerModal = document.getElementById('trailerModal');
+            trailerModal.style.display = "none";
+            trailerModal.querySelector('iframe').src = '';
+        }
+
+
+        window.onclick = function(event) {
+            var trailerModal = document.getElementById('trailerModal');
+            if (event.target == trailerModal) {
+                trailerModal.style.display = "none";
+                trailerModal.querySelector('iframe').src = '';
+            }
+        }
+    </script>
+
+
+    <script>
+        function toggleFavorite(movieId, isFavorite) {
+            const url = isFavorite ? '/movie/removefromfav/' + movieId : '/movie/addtofav/' + movieId;
+            const method = 'POST';
+            const icon = document.getElementById('fav-icon');
+
+            fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '5iBO7ewA2DgkjLkuAQCd5On6Luw0S8vcmLPgRlOj'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Atualiza o ícone e o estado do botão com base na resposta do servidor
+                    const newFavoriteState = data.isFavorite;
+                    updateFavoriteIcon(newFavoriteState);
+                    document.getElementById('fav-btn').onclick = () => toggleFavorite(movieId, newFavoriteState);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function updateFavoriteIcon(isFavorite) {
+            const icon = document.getElementById('fav-icon');
+            if (isFavorite) {
+                icon.classList.remove('far', 'fa-heart');
+                icon.classList.add('fas', 'fa-heart');
+            } else {
+                icon.classList.remove('fas', 'fa-heart');
+                icon.classList.add('far', 'fa-heart');
+            }
+        }
+
+        function initializeFavoriteButton(movieId) {
+            fetch('/movie/isMovieFavorite/' + movieId, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '5iBO7ewA2DgkjLkuAQCd5On6Luw0S8vcmLPgRlOj'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    updateFavoriteIcon(data.isFavorite);
+                    document.getElementById('fav-btn').onclick = () => toggleFavorite(movieId, data.isFavorite);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Inicialização
+        window.onload = () => {
+            const movieId = parseInt('1215', 10);
+            initializeFavoriteButton(movieId);
+        };
+    </script>
+
+    <script type="text/javascript">
+        var subtitles = [];
+    </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const playerOptions = document.querySelectorAll('.option');
+            const videoElementId = 'my-video';
+            const movieId = '1215'; // Substitua pelo identificador único do filme.
+            const localStorageKey = 'videoPosition-' + movieId;
+
+            function loadPlayer(link) {
+    const tracks = subtitles.map(subtitle => ({
+        file: subtitle.link,
+        label: subtitle.lang,
+        kind: 'captions'
+    }));
+
+    jwplayer(videoElementId).setup({
+        file: link,
+        image: 'http://image.tmdb.org/t/p/w500/3Kzc6V4MWs3RXCmE5DhAYnfWL8F.jpg',
+        width: "100%",
+        aspectratio: "16:9",
+        primary: "html5",
+        controls: true,
+        pipIcon: true,
+        playbackRateControls: true,
+        "cast": {},
+        renderCaptionsNatively: true,
+        tracks: tracks
+    });
+
+                const savedTime = parseFloat(localStorage.getItem(localStorageKey)) || 0;
+                if (savedTime > 0) {
+                    jwplayer(videoElementId).on('ready', function() {
+                        this.seek(savedTime);
+                    });
+                }
+            }
+
+            jwplayer(videoElementId).on('time', function(event) {
+                localStorage.setItem(localStorageKey, event.position);
+            });
+
+            jwplayer(videoElementId).on('complete', function() {
+                localStorage.removeItem(localStorageKey);
+            });
+            const firstOption = document.querySelector('.option[data-link]');
+            if (firstOption) {
+                loadPlayer(firstOption.getAttribute('data-link'));
+            }
+            playerOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const link = this.getAttribute('data-link');
+                    loadPlayer(link);
+                });
+            });
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var mySwiper = new Swiper('.swiper-container', {
+                freeMode: true,
+                breakpoints: {
+                    // when window width is >= 320px
+                    320: {
+                        slidesPerView: 3,
+                        spaceBetween: 30
+                    },
+                    // when window width is >= 480px
+                    480: {
+                        slidesPerView: 3,
+                        spaceBetween: 30
+                    },
+
+                    800: {
+                        slidesPerView: 4,
+                        spaceBetween: 30
+                    },
+
+                    980: {
+                        slidesPerView: 5,
+                        spaceBetween: 30
+                    },
+
+                    1200: {
+                        slidesPerView: 6,
+                        spaceBetween: 30
+                    },
+
+                    1300: {
+                        slidesPerView: 7,
+                        spaceBetween: 30
+                    },
+                    // when window width is >= 640px
+                    1700: {
+                        slidesPerView: 10,
+                        spaceBetween: 40
+                    }
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+
+            });
+        });
+    </script>
+</body>
+
+</html>
 
 <!DOCTYPE html>
 <html lang="en">
