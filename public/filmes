@@ -1,0 +1,523 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmes</title>
+    <link rel="stylesheet" href="/public/css/web.css">
+    <link rel="icon" href="/public/api/image/minilogo" type="image/x-icon">
+</head>
+<body class="body-fav">
+
+    <head>
+
+      
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="icon" href="/public/api/image/minilogo" type="image/x-icon">
+<link rel="stylesheet" href="/public/css/web.css">
+<link rel="stylesheet" href="/public/css/font-awesome.css">
+<script src="/public/js/font-awesome.js"></script>
+
+
+</head>
+ 
+<header>
+    <nav class="navbar">
+        <a class="header-logo" href="https://otrashpost.github.io/public/inicio">
+           
+        </a>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="https://otrashpost.github.io/public/inicio" class="nav-link">Inicio</a>
+            </li>
+
+            <li class="nav-item">
+                <a href="https://otrashpost.github.io/public/filmes" class="nav-link">Filmes</a>
+            </li>
+
+            <li class="nav-item">
+                <a href="https://otrashpost.github.io/public/series" class="nav-link">Séries</a>
+            </li>
+
+            <li class="nav-item">
+                <a href="https://otrashpost.github.io/public/animes" class="nav-link">Animes</a>
+            </li>
+ <li class="nav-item">
+                <a href="https://play.google.com/store/apps/details?id=com.app.maxcine" class="nav-link">BAIXAR APLICATIVO</a>
+            </li>
+            
+        </ul>
+        <div class="right-item">
+            <a href="https://otrashpost.github.io/public/pesquisa" class="search-icon">
+                <i class="fas fa-search"></i>
+            </a>
+           
+        </div>
+
+        <div class="hamburguer">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+</header>
+
+<div class="bottom-nav">
+    <!-- Seus outros itens do menu -->
+    <ul class="nav-menu-b">
+        <li class="nav-item">
+            <a href="https://otrashpost.github.io/public/inicio" class="nav-link"><i class="fa-regular fa-house-blank"></i></a>
+            <p>Inicio</p>
+        </li>
+        <li class="nav-item">
+            <a href="https://otrashpost.github.io/public/filmes" class="nav-link"><i class="fa-regular fa-clapperboard-play"></i></a>
+            <p>Filmes</p>
+        </li>
+        <li class="nav-item">
+            <a href="https://otrashpost.github.io/public/series" class="nav-link"><i class="fa-regular fa-tv"></i></a>
+            <p>Series</p>
+        </li>
+        <li class="nav-item">
+            <a href="https://otrashpost.github.io/public/animes" class="nav-link"><i class="fa-regular fa-fan"></i></a>
+            <p>Animes</p>
+        </li>
+        <li class="nav-item">
+            <a href="https://otrashpost.github.io/public/pesquisa" class="nav-link"><i class="fas fa-search"></i></a>
+            <p>Buscar</p>
+        
+      <li class="nav-item">
+            <a href="https://play.google.com/store/apps/details?id=com.app.maxcine" class="nav-link"><i class="fas fa-android"></i></a>
+            <p>Novo Aplicativo</p>
+      
+      </li>
+    </ul>
+
+    <!--<div class="right-item-b">-->
+    <!--    <div class="profile-container">-->
+    <!--        <a href="javascript:void(0);" class="profile-dropdown-toggle">-->
+    <!--            <div class="round-image">-->
+    <!--                <img class="profile" src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/FE49954B252C628EC809C68832E9137D5926C2085D58A6510F8BBA12933F7B7E/scale?width=300&amp;aspectRatio=1.00&amp;format=png" alt="Imagem Redonda">-->
+    <!--            </div>-->
+    <!--        </a>-->
+
+    <!--        <div class="profile-dropdown-menu">-->
+    <!--            <a href="https://otrashpost.github.io/public/pesquisa" class="search-icon">-->
+    <!--                <i class="fas fa-search"></i>  Pesquisar-->
+    <!--            </a>-->
+
+    <!--            <a href="https://otrashpost.github.io/public/profile" class="search-icon">-->
+    <!--                <i class="fa-regular fa-user-vneck"></i>  Perfil-->
+    <!--            </a>-->
+
+    <!--            <a href="https://otrashpost.github.io/public/favoritos" class="favorites-icon">-->
+    <!--                <i class="fa-regular fa-heart-circle-check"></i>  Favoritos-->
+    <!--            </a>-->
+
+    <!--            <a href="https://otrashpost.github.io/public/logout" class="logout-icon" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">-->
+    <!--                <i class="fa-regular fa-right-from-bracket"></i>  Sair-->
+    <!--            </a>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <form id="logout-form" action="https://otrashpost.github.io/public/logout" method="POST" style="display: none;">-->
+    <!--        <input type="hidden" name="_token" value="5iBO7ewA2DgkjLkuAQCd5On6Luw0S8vcmLPgRlOj">-->
+    <!--    </form>-->
+    <!--</div>-->
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var dropdownToggle = document.querySelector('.profile-dropdown-toggle');
+    var dropdownMenu = document.querySelector('.profile-dropdown-menu');
+
+    dropdownToggle.addEventListener('click', function() {
+        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Fechar o dropdown ao clicar fora
+    window.addEventListener('click', function(e) {
+        if (!dropdownToggle.contains(e.target)) {
+            dropdownMenu.style.display = 'none';
+        }
+    });
+});
+
+</script>
+<script src="/public/js/menu-script.js"></script>
+
+    <div class="container-series">
+        <div class="filter">
+            <form action="https://otrashpost.github.io/public/filmes" method="GET">
+                <input type="hidden" name="_token" value="5iBO7ewA2DgkjLkuAQCd5On6Luw0S8vcmLPgRlOj">                <h3 for="genre">Filmes</h3>
+                <div class="dropdown">
+                    <div class="dropdown-selected">Todos</div>
+                    <div class="dropdown-options">
+                                                    <div class="dropdown-option" data-value="12">
+                                Aventura
+                            </div>
+                                                    <div class="dropdown-option" data-value="14">
+                                Fantasia
+                            </div>
+                                                    <div class="dropdown-option" data-value="16">
+                                Animação
+                            </div>
+                                                    <div class="dropdown-option" data-value="18">
+                                Drama
+                            </div>
+                                                    <div class="dropdown-option" data-value="27">
+                                Terror
+                            </div>
+                                                    <div class="dropdown-option" data-value="28">
+                                Ação
+                            </div>
+                                                    <div class="dropdown-option" data-value="35">
+                                Comédia
+                            </div>
+                                                    <div class="dropdown-option" data-value="36">
+                                História
+                            </div>
+                                                    <div class="dropdown-option" data-value="37">
+                                Faroeste
+                            </div>
+                                                    <div class="dropdown-option" data-value="53">
+                                Thriller
+                            </div>
+                                                    <div class="dropdown-option" data-value="80">
+                                Crime
+                            </div>
+                                                    <div class="dropdown-option" data-value="99">
+                                Documentário
+                            </div>
+                                                    <div class="dropdown-option" data-value="878">
+                                Ficção científica
+                            </div>
+                                                    <div class="dropdown-option" data-value="9648">
+                                Mistério
+                            </div>
+                                                    <div class="dropdown-option" data-value="10402">
+                                Música
+                            </div>
+                                                    <div class="dropdown-option" data-value="10749">
+                                Romance
+                            </div>
+                                                    <div class="dropdown-option" data-value="10751">
+                                Família
+                            </div>
+                                                    <div class="dropdown-option" data-value="10752">
+                                Guerra
+                            </div>
+                                                    <div class="dropdown-option" data-value="10770">
+                                Cinema TV
+                            </div>
+                                            </div>
+                    <select name="genre" id="genre" style="display:none;">
+                                                    <option class="genres-itens" value="12" >
+                                Aventura
+                            </option>
+                                                    <option class="genres-itens" value="14" >
+                                Fantasia
+                            </option>
+                                                    <option class="genres-itens" value="16" >
+                                Animação
+                            </option>
+                                                    <option class="genres-itens" value="18" >
+                                Drama
+                            </option>
+                                                    <option class="genres-itens" value="27" >
+                                Terror
+                            </option>
+                                                    <option class="genres-itens" value="28" >
+                                Ação
+                            </option>
+                                                    <option class="genres-itens" value="35" >
+                                Comédia
+                            </option>
+                                                    <option class="genres-itens" value="36" >
+                                História
+                            </option>
+                                                    <option class="genres-itens" value="37" >
+                                Faroeste
+                            </option>
+                                                    <option class="genres-itens" value="53" >
+                                Thriller
+                            </option>
+                                                    <option class="genres-itens" value="80" >
+                                Crime
+                            </option>
+                                                    <option class="genres-itens" value="99" >
+                                Documentário
+                            </option>
+                                                    <option class="genres-itens" value="878" >
+                                Ficção científica
+                            </option>
+                                                    <option class="genres-itens" value="9648" >
+                                Mistério
+                            </option>
+                                                    <option class="genres-itens" value="10402" >
+                                Música
+                            </option>
+                                                    <option class="genres-itens" value="10749" >
+                                Romance
+                            </option>
+                                                    <option class="genres-itens" value="10751" >
+                                Família
+                            </option>
+                                                    <option class="genres-itens" value="10752" >
+                                Guerra
+                            </option>
+                                                    <option class="genres-itens" value="10770" >
+                                Cinema TV
+                            </option>
+                                            </select>
+                </div>
+            </form>
+        </div>
+        <div class="series-list">
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1258">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/e8pI4XkYgUMuSJ8cEFbJE18wc4e.jpg" alt="Duna: Parte Dois">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1257">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/ii1DVzyj9uJOF9qBrnHCT6nAxUw.jpg" alt="He Went That Way">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1256">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/s38XHjbFXd7Wv2zJKwWnq5Qyl5l.jpg" alt="Festa no Covil">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1255">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/pF9Y5H5x94Tuo6xAZBCrGG8Wvq5.jpg" alt="Baby Shark - O Grande Filme">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1254">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/bgvmGUwUH4Iyoz0LpihR1y8eqlQ.jpg" alt="A Noite Em Que Voltaram Para Casa">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1253">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/A1LmHAJc2zNSAUfz0Dxp2Y1qAsH.jpg" alt="Senna: 30 Anos">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1252">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/jLjZ3QBL5nrDyaSg5T8vmYjb2RR.jpg" alt="Lua de Mel Inusitada">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1251">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/aNK6MA5EApIo0UJE7ZWSYcZBJKy.jpg" alt="Kung Fu Panda 4">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1250">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/glY7KE3sLWrVUTKbRS9kGlnz0or.jpg" alt="Eu, Capitão">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1249">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/5mF6zKM7LUnEVYTLAlwoZlskdbQ.jpg" alt="Sayen: A Caçadora">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1248">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/n51gQ3x8nTgHOGnHb2MJpOnCJzd.jpg" alt="Antares de la Luz: Uma Seita Apocalíptica">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1247">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/cjQzJ9xFdaN9KAwu7HUImIgbc2Y.jpg" alt="City Hunter">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1246">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/wbf1LkidorzXo2yI9pbjH23YJRr.jpg" alt="Possessões">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1245">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/dtZcntP9YCOi04iga6tR6UnZqAO.jpg" alt="Pica-Pau: As Férias no Acampamento">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1244">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/6IY8XqXmABgT50bvUfJr1rbG1Sv.jpg" alt="O Que Jennifer Fez?">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1243">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/t6cWfm0o5TzCa3nHtHhXpzjBc8V.jpg" alt="O Mal que Nos Habita">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1242">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/bZLo7tbOfbZWiSBsWz2tKWdSKmj.jpg" alt="Herança Roubada">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1241">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/4ESSN9N6DHnir7oomt0RoFy6kJC.jpg" alt="Cedo Demais">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1240">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/hE9ToZRWcEd3jh96gbhKjWlUOQa.jpg" alt="Uma Jornada Entre Amigos">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1239">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/iiYroOiA7PCwjmxRnMst6jfxXFY.jpg" alt="SDL - A Batalha Musical">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1238">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/hERAMeQsYvIBVieP72luNnNrZwz.jpg" alt="O Reencontro da Turma">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1237">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/5P0KKvPwIFeQnIn9clAOCJBuRsj.jpg" alt="Uma Parede entre Nós">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1236">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/cWmBAbqUIgn2Ysy513rqSYE0fYk.jpg" alt="Imaginário: Brinquedo Diabólico">
+                        </figure>
+                    </a>
+                </div>
+                            <div class="serie">
+                    <a href="https://otrashpost.github.io/public/filme/1235">
+                        <figure>
+                            <img src="http://image.tmdb.org/t/p/w500/kUX5ourGUJDG0yvEeS3uooZS0dS.jpg" alt="Música">
+                        </figure>
+                    </a>
+                </div>
+                    </div>
+
+        <div class="pagination">
+            <span class="pagination-links">
+                
+                
+                                    <a href="https://otrashpost.github.io/public/filmes?page=1" class="active">1</a>
+                                    <a href="https://otrashpost.github.io/public/filmes?page=2" class="">2</a>
+                
+                                    <a href="https://otrashpost.github.io/public/filmes?page=2">Próxima</a>
+                            </span>
+        </div>
+        <head>
+    <link rel="stylesheet" href="/public/css/web.css">
+</head>
+
+<footer>
+    <div class="footer">
+        <div class="container-footer">
+            <div class="logo-footer">
+                <img src="/public/api/image/minilogo" alt="">
+            </div>
+            <a href="https://play.google.com/store/apps/details?id=com.app.maxcine">
+                <div class="playstore">
+                    <img src="https://play.google.com/intl/pt-BR/badges/static/images/badges/pt-br_badge_web_generic.png" alt="Imagem">
+                
+             
+              
+              </div>
+            </a>
+            <div class="copy">
+                © 2024 MAXCINE. Todos os direitos reservados.
+            </div>
+        </div>
+    </div>
+</footer>
+        </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  var dropdown = document.querySelector('.dropdown');
+  var selected = dropdown.querySelector('.dropdown-selected');
+  var options = dropdown.querySelector('.dropdown-options');
+  var select = dropdown.querySelector('select');
+  
+  // Atualizar o texto selecionado com base na opção selecionada no <select>
+  function updateSelectedText() {
+    var selectedOption = select.options[select.selectedIndex];
+    if (selectedOption) {
+      selected.textContent = selectedOption.text;
+    }
+  }
+
+  // Inicializar o texto selecionado quando a página carregar
+  updateSelectedText();
+  
+  selected.addEventListener('click', function (e) {
+    options.style.display = options.style.display === 'block' ? 'none' : 'block';
+    e.stopPropagation();
+  });
+
+  options.addEventListener('click', function (e) {
+    if (e.target.classList.contains('dropdown-option')) {
+      selected.textContent = e.target.textContent;
+      select.value = e.target.getAttribute('data-value');
+      options.style.display = 'none';
+      updateSelectedText(); // Atualizar novamente para garantir consistência
+      dropdown.closest('form').submit(); // Enviar o formulário ao selecionar um item
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!dropdown.contains(e.target)) {
+      options.style.display = 'none';
+    }
+  });
+});
+</script>
+</body>
+</html>
