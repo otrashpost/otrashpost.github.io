@@ -3,27 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Extrair Conteúdo do Iframe</title>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<title>Extrair conteúdo de uma tag pre de outro site</title>
 <script>
 window.onload = function() {
-    var iframe = document.getElementById('meuIframe');
-    var conteudo = iframe.contentWindow.document.body.innerHTML;
-    $.ajax({
-        type: "POST",
-        url: "filmes.php",
-        data: { conteudo: conteudo },
-        success: function(response) {
-            console.log("Conteúdo do iframe enviado com sucesso para a página JSON.");
-        },
-        error: function(xhr, status, error) {
-            console.error("Erro ao enviar conteúdo do iframe para a página JSON:", error);
-        }
-    });
+    var iframe = document.createElement('iframe');
+    iframe.src = 'https://plex.maxcine.top/public/random-movie';
+    iframe.style.display = 'none'; // Oculta o iframe
+
+    iframe.onload = function() {
+        // Extrai o conteúdo da tag <pre> dentro do iframe
+        var conteudoPre = iframe.contentDocument.querySelector('pre').textContent;
+        
+        // Exibe o conteúdo na mesma página
+        document.body.innerHTML += '<p>' + conteudoPre + '</p>';
+        
+        // Remove o iframe da página
+        iframe.parentNode.removeChild(iframe);
+    };
+
+    // Adiciona o iframe à página
+    document.body.appendChild(iframe);
 };
 </script>
 </head>
 <body>
-<iframe id="meuIframe" src="https://plex.maxcine.top/public/random-movie"></iframe>
 </body>
 </html>
