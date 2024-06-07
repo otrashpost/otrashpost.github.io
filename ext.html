@@ -4,16 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Extrair Conteúdo do Iframe</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 window.onload = function() {
     var iframe = document.getElementById('meuIframe');
     var conteudo = iframe.contentWindow.document.body.innerHTML;
-    document.getElementById('conteudoIframe').innerHTML = conteudo;
+    $.ajax({
+        type: "POST",
+        url: "filmz.php",
+        data: { conteudo: conteudo },
+        success: function(response) {
+            console.log("Conteúdo do iframe enviado com sucesso para a página JSON.");
+        },
+        error: function(xhr, status, error) {
+            console.error("Erro ao enviar conteúdo do iframe para a página JSON:", error);
+        }
+    });
 };
 </script>
 </head>
 <body>
 <iframe id="meuIframe" src="https://plex.maxcine.top/public/random-movie"></iframe>
-<div id="conteudoIframe"></div>
 </body>
 </html>
