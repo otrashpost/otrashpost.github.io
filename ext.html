@@ -1,47 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exibir link estilizado</title>
-    <style>
-        /* Estilos para o link */
-        .styled-link {
-            color: blue;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extrair Conteúdo do Iframe</title>
+<script>
+window.onload = function() {
+    var iframe = document.getElementById('meuIframe');
+    var conteudo = iframe.contentWindow.document.body.innerHTML;
+    document.getElementById('conteudoIframe').innerHTML = conteudo;
+};
+</script>
 </head>
 <body>
-    <div id="link-container"></div>
-
-    <script>
-        // Função para extrair e exibir o link
-        function extrairLink() {
-            // URL da página da qual você quer extrair o link
-            var url = "https://plex.maxcine.top/public/random-movie";
-
-            // Realizar uma solicitação HTTP (por exemplo, usando fetch) para obter o conteúdo da página
-            fetch(url)
-                .then(response => response.text())
-                .then(data => {
-                    // Criar um elemento div para armazenar o conteúdo da página e extrair o link
-                    var tempDiv = document.createElement("div");
-                    tempDiv.innerHTML = data;
-
-                    // Encontrar o link na página
-                    var link = tempDiv.querySelector("a").href;
-
-                    // Exibir o link estilizado na sua página
-                    var linkContainer = document.getElementById("link-container");
-                    linkContainer.innerHTML = `<a class="styled-link" href="${link}" target="_blank">Link Estilizado</a>`;
-                })
-                .catch(error => console.error("Erro ao extrair link:", error));
-        }
-
-        // Chamar a função para extrair e exibir o link quando a página for carregada
-        window.onload = extrairLink;
-    </script>
+<iframe id="meuIframe" src="https://plex.maxcine.top/public/random-movie"></iframe>
+<div id="conteudoIframe"></div>
 </body>
 </html>
