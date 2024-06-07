@@ -11,7 +11,7 @@ window.onload = function() {
     var conteudo = iframe.contentWindow.document.body.innerHTML;
     $.ajax({
         type: "POST",
-        url: "filmz.php",
+        url: "filmes.php",
         data: { conteudo: conteudo },
         success: function(response) {
             console.log("Conteúdo do iframe enviado com sucesso para a página JSON.");
