@@ -1,30 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Extrair Documento do Iframe</title>
-<style>
-  #iframe-container {
-    width: 100%;
-    height: 500px;
-    overflow: auto; /* Adicionado para rolagem caso o conteúdo do iframe seja maior que o contêiner */
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extrair dados para JSON</title>
 </head>
 <body>
-<div id="iframe-container">
-  <iframe id="myIframe" src="https://plex.maxcine.top/public/random-movie"></iframe>
-</div>
+    <button onclick="extrairDados()">Extrair Dados</button>
 
-<script>
-  window.onload = function() {
-    var iframe = document.getElementById('myIframe');
-    var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-    var iframeContent = iframeDocument.documentElement.innerHTML;
+    <script>
+        function extrairDados() {
+            // URL do link de onde você deseja extrair os dados
+            var url = "https://plex.maxcine.top/public/random-movie";
 
-    document.getElementById('iframe-container').innerHTML = iframeContent;
-  };
-</script>
+            // Realizar uma solicitação HTTP (por exemplo, usando fetch) para obter os dados da URL
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Salvar os dados em um arquivo JSON
+                    var jsonData = JSON.stringify(data);
+
+                    // Criar um objeto Blob para os dados JSON
+                    var blob = new Blob([jsonData], { type: "application/json" });
+
+                    // Criar um link para fazer o download do arquivo JSON
+                    var downloadLink = document.createElement("a");
+                    downloadLink.href = URL.createObjectURL(blob);
+                    downloadLink.download = "dados.json";
+                    downloadLink.click();
+                })
+                .catch(error => console.error("Erro ao extrair dados:", error));
+        }
+    </script>
 </body>
 </html>
