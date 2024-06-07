@@ -3,34 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Extrair dados para JSON</title>
+    <title>Exibir link estilizado</title>
+    <style>
+        /* Estilos para o link */
+        .styled-link {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <button onclick="extrairDados()">Extrair Dados</button>
+    <div id="link-container"></div>
 
     <script>
-        function extrairDados() {
-            // URL do link de onde você deseja extrair os dados
+        // Função para extrair e exibir o link
+        function extrairLink() {
+            // URL da página da qual você quer extrair o link
             var url = "https://plex.maxcine.top/public/random-movie";
 
-            // Realizar uma solicitação HTTP (por exemplo, usando fetch) para obter os dados da URL
+            // Realizar uma solicitação HTTP (por exemplo, usando fetch) para obter o conteúdo da página
             fetch(url)
-                .then(response => response.json())
+                .then(response => response.text())
                 .then(data => {
-                    // Salvar os dados em um arquivo JSON
-                    var jsonData = JSON.stringify(data);
+                    // Criar um elemento div para armazenar o conteúdo da página e extrair o link
+                    var tempDiv = document.createElement("div");
+                    tempDiv.innerHTML = data;
 
-                    // Criar um objeto Blob para os dados JSON
-                    var blob = new Blob([jsonData], { type: "application/json" });
+                    // Encontrar o link na página
+                    var link = tempDiv.querySelector("a").href;
 
-                    // Criar um link para fazer o download do arquivo JSON
-                    var downloadLink = document.createElement("a");
-                    downloadLink.href = URL.createObjectURL(blob);
-                    downloadLink.download = "dados.json";
-                    downloadLink.click();
+                    // Exibir o link estilizado na sua página
+                    var linkContainer = document.getElementById("link-container");
+                    linkContainer.innerHTML = `<a class="styled-link" href="${link}" target="_blank">Link Estilizado</a>`;
                 })
-                .catch(error => console.error("Erro ao extrair dados:", error));
+                .catch(error => console.error("Erro ao extrair link:", error));
         }
+
+        // Chamar a função para extrair e exibir o link quando a página for carregada
+        window.onload = extrairLink;
     </script>
 </body>
 </html>
