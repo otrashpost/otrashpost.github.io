@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Captura de Chave Widevine</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script>
+        function capturarChave() {
+            var linkMPD = document.getElementById('linkMPD').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", linkMPD, true);
+            xhr.responseType = "document";
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var xmlDoc = xhr.responseXML;
+                    var keyElements = xmlDoc.getElementsByTagName('ContentProtection');
+                    for (var i = 0; i < keyElements.length; i++) {
+                        if (keyElements[i].getAttribute('schemeIdUri') === 'urn:uuid:EDEF8BA9-79D6-4ACE-A3C8-27DCD51D21ED') {
+                            var keyBase64 = keyElements[i].getAttribute('cenc:pssh');
+                            var keyHex = CryptoJS.enc.Base64.parse(keyBase64).toString(CryptoJS.enc.Hex);
+                            document.getElementById('chaveWidevine').innerHTML = keyHex.toUpperCase();
+                            break;
+                        }
+                    }
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <h2>Insira o link .mpd abaixo:</h2>
+    <input type="text" id="linkMPD" style="width: 80%;" placeholder="Insira o link .mpd aqui">
+    <button onclick="capturarChave()">Capturar Chave Widevine</button>
+    <h2>Chave Widevine:</h2>
+    <div id="chaveWidevine"></div>
+</body>
+</html>
