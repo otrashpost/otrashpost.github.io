@@ -1,61 +1,334 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplo de iframe com captura automática de links</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buscar Canal</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+
+    <style>
+        body {
+            background: #222;
+            line-height: 0;
+        }
+
+        #header {
+            height: 70px;
+            background-color: rgba(22, 22, 22, .8);
+            border-bottom: 1px solid rgba(44, 44, 44, .9);
+            width: 100%;
+            display: flex;
+            line-height: 70px;
+            font-size: 22px;
+            position: fixed;
+            top: 0;
+            z-index: 10;
+        }
+
+        #header i {
+            color: #999;
+        }
+
+        #header i:hover {
+            color: #2631cd;
+        }
+
+        #header .logo img {
+            max-width: 108px;
+        }
+
+        #player-container {
+            border-radius: 10px;
+            margin-top: 70px;
+            overflow: hidden;
+        }
+
+        .full-container {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #player {
+            height: 550px;
+        }
+
+        #player iframe {
+            width: 100%;
+			height: 100%;
+            <!--height: calc(100% - 50px);-->
+        }
+
+        #options-player {
+            background-color: #0006ff94;
+        }
+
+        #options-player .options {
+            display: inline-block;
+            margin: 5px 2.5px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            background-color: rgba(0, 0, 0, .4);
+            height: 40px;
+            line-height: 40px;
+            padding: 0 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        #options-player .options.active {
+            background-color: rgba(0, 0, 0, .8);
+        }
+
+        /* SEARCH CHANNEL */
+
+        .search-channel input {
+            height: 60px;
+            font-size: 20px;
+        }
+
+        /* CHANNEL LIST */
+
+        .list-channels {
+            height: 491px;
+        }
+
+        .channel a {
+            display: flex;
+            align-items: center;
+            background-color: #111111;
+            border-bottom: #333 solid 1px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+       .iframe-channel {
+            width: 100%;
+            height: 600px;
+        }
+        .channel a:hover {
+            background-color: #181818
+        }
+
+        .channel a.active {
+            background-color: #333333
+        }
+
+        .channel span {
+            line-height: 1.5;
+        }
+
+        .channel a.active span {
+            display: block !important;
+        }
+
+        .channel .number {
+            flex: 1;
+            font-size: 25px;
+            font-weight: 700;
+            line-height: 80px;
+            color: #fff;
+            padding: 0 5px;
+        }
+
+        .channel img {
+            max-width: 100%;
+        }
+
+        .channel .logo {
+            flex: 3;
+            max-width: 150px;
+        }
+
+        .logo-others img {
+            min-width: 70px;
+            max-width: 110px;
+            width: 100%;
+        }
+
+        .logo-others:nth-child(1) img{
+            min-width: 72px;
+        }
+
+        .channel .name {
+            flex: 3;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* set max width for mobile */
+        @media (max-width: 767px){
+            #header .logo img {
+                min-width: 70px !important;
+                max-width: 150px;
+                width: 100%;
+            }
+
+            .logo-others img{
+                width: 72px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 768px) {
+            #header .logo img {
+                max-width: 124px;
+            }
+
+            .container-logo {
+                margin-left: 1rem !important;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .alert .whatsapp img {
+                max-width: 40px;
+            }
+
+            .alert .card-icons img {
+                max-width: 40px;
+            }
+
+            .alert .whatsapp .icons {
+                flex: 0 0 13.666667%;
+                max-width: 13.666667%;
+            }
+         }
+
+        /* FOOTER */
+
+        footer {
+            font-size: 12px;
+            padding: 30px 0;
+            margin: 0 auto;
+            background-color: #1f1f1f;
+            margin-top: 40px;
+        }
+
+        footer h3 {
+            border-bottom: none;
+            color: #fff;
+            font-size: 13px;
+        }
+
+        footer section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        footer section div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        footer a {
+            color: #777;
+            margin: 10px 0;
+
+        }
+
+        footer a:hover {
+            color: #4c9ed9;
+            text-decoration: none;
+        }
+
+        footer p {
+            color: #aaa;
+            padding-left: 0;
+            line-height: 1.5;
+        }
+
+        @media screen and (max-width: 990px) {
+            #player {
+                height: 380px;
+            }
+
+            .list-channels {
+                height: 350px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <iframe id="iframe" width="800" height="600" src="" frameborder="0"></iframe>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4 col-xs-12 p-0">
+            <section class="search-channel">
+                <div class="input-group">
+                    <input type="text" class="form-control rounded-0 search-channel-input" id="channel-search" placeholder="Buscar Canal">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="search-btn">Buscar</button>
+                    </div>
+                </div>
+            </section>
+            <section class="list-channels overflow-auto">
+                <div class="channel">
+                    <a href="https://sinalpublico.github.io/play/dtv.html?id=globo" class="channel-link">
+                        <div class="number">01</div>
+                        <div class="logo">
+                            <img src="https://s2-globo-play.glbimg.com/kjm_K1sqLvnv2L2t7wu-0rmQwi4=/0x1080/https://s2-globo-play.glbimg.com/n9r_saN0Yqs14kZsvdUnsLBcFMg=/https://i.s3.glbimg.com/v1/AUTH_c3c606ff68e7478091d1ca496f9c5625/internal_photos/bs/2023/M/h/JDH8WwRoSuZitkcwjIIQ/on-air.jpg" alt="">
+                        </div>
+                        <div class="name">
+                            <span class="badge badge-info mb-1 d-none">Assistindo</span>
+                            <span>Globo</span>
+                        </div>
+                    </a>
+                </div>
+                <!-- Outros canais aqui -->
+            </section>
+        </div>
+        <div class="col-lg-8 col-xs-12">
+            <iframe id="channel-iframe" class="iframe-channel" src="https://sinalpublico.github.io/play/dtv.html?id=globo" frameborder="0"></iframe>
+        </div>
     </div>
-    <div id="linksContainer">
-        <h2>Links na página:</h2>
-        <ul id="linksList"></ul>
-    </div>
+</div>
 
-    <script>
-        var urls = [
-            "https://sinalpublico.github.io/play/dtv?id=premiereclubes",
-            "https://www.example2.com",
-            "https://www.example3.com"
-            // Adicione mais URLs conforme necessário
-        ];
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const iframe = document.getElementById("channel-iframe");
+        const searchBtn = document.getElementById("search-btn");
+        const channelSearch = document.getElementById("channel-search");
 
-        var currentUrlIndex = 0;
+        // Abre o primeiro link automaticamente no iframe
+        const firstChannelLink = document.querySelector(".channel-link");
+        iframe.src = firstChannelLink.href;
 
-        window.onload = function() {
-            carregarProximaPagina();
-        };
+        searchBtn.addEventListener("click", function() {
+            const channelName = channelSearch.value.trim();
+            const channelLinks = document.querySelectorAll(".channel-link");
 
-        function carregarProximaPagina() {
-            if (currentUrlIndex < urls.length) {
-                var iframe = document.getElementById("iframe");
-                iframe.onload = function() {
-                    capturarLinks();
-                    setTimeout(carregarProximaPagina, 2000); // Aguarda 2 segundos antes de carregar a próxima página
-                };
-                iframe.src = urls[currentUrlIndex];
-                currentUrlIndex++;
+            if (channelName !== "") {
+                channelLinks.forEach(function(link) {
+                    const channel = link.querySelector(".name span").textContent;
+                    if (channel.toLowerCase().includes(channelName.toLowerCase())) {
+                        link.style.display = "block";
+                    } else {
+                        link.style.display = "none";
+                    }
+                });
+            } else {
+                channelLinks.forEach(function(link) {
+                    link.style.display = "block";
+                });
             }
-        }
+        });
 
-        function capturarLinks() {
-            var iframe = document.getElementById("iframe");
-            var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-            var links = iframeDocument.getElementsByTagName("a");
-            var linksList = document.getElementById("linksList");
-
-            for (var i = 0; i < links.length; i++) {
-                var link = links[i].getAttribute("href");
-                var listItem = document.createElement("li");
-                var linkItem = document.createElement("a");
-                linkItem.href = link;
-                linkItem.textContent = link;
-                listItem.appendChild(linkItem);
-                linksList.appendChild(listItem);
-            }
-        }
-    </script>
+        document.querySelectorAll(".channel-link").forEach(function(link) {
+            link.addEventListener("click", function(event) {
+                event.preventDefault();
+                const channelUrl = this.href;
+                iframe.src = channelUrl;
+            });
+        });
+    });
+</script>
 </body>
 </html>
