@@ -6,7 +6,7 @@
 <title>Verificar Links</title>
 <script>
 function verificarLinks() {
-    const baseURL = 'https://0001-tbx.dtvott.com/hbomais/manifest.mpd';
+    const baseURL = 'https://0001-tbx.dtvott.com/megapix/manifest.mpd';
     const maxNum = 5000;
     const resultsContainer = document.getElementById('results');
     
@@ -22,12 +22,12 @@ async function verificarLink(url) {
     try {
         const response = await fetch(url);
         if (response.ok) {
-            adicionarResultado(url, 'Online');
+            adicionarResultado(url, '🟢Online');
         } else {
-            adicionarResultado(url, 'Não Funcionando');
+            adicionarResultado(url, '🔴Off-line');
         }
     } catch (error) {
-        adicionarResultado(url, 'Erro ao verificar');
+        adicionarResultado(url, 'ERRO SITE');
     }
 }
 
