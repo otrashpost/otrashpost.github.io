@@ -55,7 +55,7 @@
         }
         /* CHANNEL LIST */
         .list-channels {
-            height: 491px;
+            height: 737px; /* ajustado */
         }
         .channel a {
             display: flex;
@@ -67,7 +67,17 @@
         }
         .iframe-channel {
             width: 100%;
-            height: 600px;
+            height: 635px; /* ajustado */
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            position: relative;
+            overflow: hidden;
+        }
+        .iframe-channel iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
         .channel a:hover {
             background-color: #181818
@@ -124,10 +134,6 @@
             }
             .logo-others img {
                 width: 72px;
-            }
-            #player iframe {
-                width: 360px;
-                height: 220px;
             }
         }
         @media (min-width: 768px) and (max-width: 768px) {
@@ -197,11 +203,15 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-8 col-xs-12">
+            <div class="col-lg-12">
                 <!-- Este é o iframe do canal -->
-                <iframe id="channel-iframe" class="iframe-channel" src="https://sinalpublico.github.io/play/dtv.html?id=globo" allow="encrypted-media" frameborder="0"></iframe>
+                <div class="iframe-channel">
+                    <iframe id="channel-iframe" src="https://sinalpublico.github.io/play/dtv.html?id=globo" allow="encrypted-media" frameborder="0"></iframe>
+                </div>
             </div>
-            <div class="col-lg-4 col-xs-12 p-0">
+        </div>
+        <div class="row">
+            <div class="col-lg-12 p-0">
                 <section class="search-channel">
                     <div class="input-group">
                         <input type="text" class="form-control rounded-0 search-channel-input" id="channel-search" placeholder="Buscar Canal">
@@ -210,7 +220,11 @@
                         </div>
                     </div>
                 </section>
-                <section class="list-channels overflow-auto">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="list-channels overflow-auto" style="height: 737px;"> <!-- ajustado -->
                     <!-- Aqui está a lista de canais -->
                     <div class="channel">
                         <a href="https://sinalpublico.github.io/play/dtv.html?id=globo" class="channel-link">
