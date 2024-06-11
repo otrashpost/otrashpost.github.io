@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Análise de Manifest.mpd</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xml-js/1.6.11/xml-js.min.js"></script>
+</head>
+<body>
+    <h1>Análise de Manifest.mpd</h1>
+    
+    <input type="text" id="mpdUrl" placeholder="Insira o link do manifest.mpd">
+    <button onclick="checkWidevine()">Verificar Widevine</button>
+    
+    <script>
+        function checkWidevine() {
+            var mpdUrl = document.getElementById('mpdUrl').value;
+            
+            fetch(mpdUrl)
+            .then(response => response.text())
+            .then(data => {
+                var json = xmlToJson(data);
+                var protection = json.MPD.Period.AdaptationSet.ContentProtection['@_schemeIdUri'];
+                
+                if (protection === 'urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed') {
+                    alert('A proteção Widevine está sendo usada neste manifest.mpd.');
+                } else {
+                    alert('A proteção Widevine não está sendo usada neste manifest.mpd.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar o manifest.mpd:', error);
+                alert('Erro ao buscar o manifest.mpd. Verifique se o link está correto e acessível.');
+            });
+        }
+        
+        function xmlToJson(xml) {
+            var options = {compact: true, ignoreComment: true, spaces: 4};
+            var json = xmljs.xml2json(xml, options);
+            return JSON.parse(json);
+        }
+    </script>
+</body>
+</html>
