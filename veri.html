@@ -6,7 +6,7 @@
 <title>Verificar Links</title>
 <script>
 function verificarLinks() {
-    const baseURL = 'https://0001-tbx.dtvott.com/fx/manifest.mpd';
+    const baseURL = 'https://0001-tbx.dtvott.com/cartoon/manifest.mpd';
     const maxNum = 5000;
     const resultsContainer = document.getElementById('results');
     
@@ -24,10 +24,10 @@ async function verificarLink(url) {
         if (response.ok) {
             adicionarResultado(url, '🟢Online - ✅️');
         } else {
-            adicionarResultado(url, '🔴Off-line - ❌️');
+            adicionarResultado(url, '🔴Off-line - 🔴');
         }
     } catch (error) {
-        adicionarResultado(url, '🚫NÃO EXISTE🚫');
+        adicionarResultado(url, '⚠️NÃO EXISTE⚠️');
     }
 }
 
