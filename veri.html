@@ -6,7 +6,7 @@
 <title>Verificar Links</title>
 <script>
 function verificarLinks() {
-    const baseURL = 'https://0001-tbx.dtvott.com/bandsports/manifest.mpd';
+    const baseURL = 'https://0001-tbx.dtvott.com/fx/manifest.mpd';
     const maxNum = 5000;
     const resultsContainer = document.getElementById('results');
     
@@ -22,12 +22,12 @@ async function verificarLink(url) {
     try {
         const response = await fetch(url);
         if (response.ok) {
-            adicionarResultado(url, 'SITE 🟢Online');
+            adicionarResultado(url, '🟢Online - ✅️');
         } else {
-            adicionarResultado(url, 'SITE 🔴Off-line');
+            adicionarResultado(url, '🔴Off-line - ❌️');
         }
     } catch (error) {
-        adicionarResultado(url, '🚫 SITE NÃO EXISTE 🚫');
+        adicionarResultado(url, '🚫NÃO EXISTE🚫');
     }
 }
 
