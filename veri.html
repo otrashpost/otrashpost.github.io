@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificar Links</title>
+<script>
+function verificarLinks() {
+    const baseURL = 'https://0001-tbx.dtvott.com/adultswim/manifest.mpd';
+    const maxNum = 5000;
+    const resultsContainer = document.getElementById('results');
+    
+    resultsContainer.innerHTML = ''; // Limpa os resultados anteriores
+    
+    for (let i = 1; i <= maxNum; i++) {
+        const url = baseURL.replace('0001', pad(i, 4)); // Substitui o número
+        verificarLink(url);
+    }
+}
+
+async function verificarLink(url) {
+    try {
+        const response = await fetch(url);
+        if (response.ok) {
+            adicionarResultado(url, 'Funcionando');
+        } else {
+            adicionarResultado(url, 'Não Funcionando');
+        }
+    } catch (error) {
+        adicionarResultado(url, 'Erro ao verificar');
+    }
+}
+
+function adicionarResultado(url, status) {
+    const resultsContainer = document.getElementById('results');
+    const resultElement = document.createElement('div');
+    resultElement.textContent = `${url}: ${status}`;
+    resultsContainer.appendChild(resultElement);
+}
+
+function pad(num, size) {
+    let s = num + "";
+    while (s.length < size) s = "0" + s;
+    return s;
+}
+</script>
+</head>
+<body>
+<h1>Verificar Links</h1>
+<button onclick="verificarLinks()">Verificar</button>
+<div id="results"></div>
+</body>
+</html>
