@@ -22,7 +22,7 @@ async function verificarLink(url) {
     try {
         const response = await fetch(url);
         if (response.ok) {
-            adicionarResultado(url, 'Funcionando');
+            adicionarResultado(url, 'Online');
         } else {
             adicionarResultado(url, 'Não Funcionando');
         }
