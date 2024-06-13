@@ -1,0 +1,205 @@
+{
+  "log": {
+    "version": "1.2",
+    "creator": {
+      "name": "WebInspector",
+      "version": "537.36"
+    },
+    "pages": [
+      {
+        "startedDateTime": "2024-06-13T19:32:12.305Z",
+        "id": "page_5",
+        "title": "https://play.gratis/cdn-cgi/challenge-platform/h/g/scripts/jsd/6aac8896f227/main.js",
+        "pageTimings": {
+          "onContentLoad": 26.563999999780208,
+          "onLoad": 26.757999999972526
+        }
+      }
+    ],
+    "entries": [
+      {
+        "_initiator": {
+          "type": "other"
+        },
+        "_priority": "VeryHigh",
+        "_resourceType": "document",
+        "cache": {},
+        "pageref": "page_5",
+        "request": {
+          "method": "GET",
+          "url": "https://play.gratis/cdn-cgi/challenge-platform/h/g/scripts/jsd/6aac8896f227/main.js",
+          "httpVersion": "h3",
+          "headers": [
+            {
+              "name": ":authority",
+              "value": "play.gratis"
+            },
+            {
+              "name": ":method",
+              "value": "GET"
+            },
+            {
+              "name": ":path",
+              "value": "/cdn-cgi/challenge-platform/h/g/scripts/jsd/6aac8896f227/main.js"
+            },
+            {
+              "name": ":scheme",
+              "value": "https"
+            },
+            {
+              "name": "accept",
+              "value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+            },
+            {
+              "name": "accept-encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "accept-language",
+              "value": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7,es;q=0.6,da;q=0.5"
+            },
+            {
+              "name": "cache-control",
+              "value": "max-age=0"
+            },
+            {
+              "name": "cookie",
+              "value": "cf_clearance=FxGldUD2kExvSeRnRWRl3ygeVTWDC2zG2XYRGHxZ.lc-1716341102-1.0.1.1-GFa3XUlxD1ckFkBBr2u92bErswbGz_W0.p.QT_x9F6s7hg2.XdeqdVgviv3008q66zYZP0y8KevhG1sG13J_VQ"
+            },
+            {
+              "name": "priority",
+              "value": "u=0, i"
+            },
+            {
+              "name": "sec-ch-ua",
+              "value": "\"Google Chrome\";v=\"125\", \"Chromium\";v=\"125\", \"Not.A/Brand\";v=\"24\""
+            },
+            {
+              "name": "sec-ch-ua-mobile",
+              "value": "?0"
+            },
+            {
+              "name": "sec-ch-ua-platform",
+              "value": "\"Windows\""
+            },
+            {
+              "name": "sec-fetch-dest",
+              "value": "document"
+            },
+            {
+              "name": "sec-fetch-mode",
+              "value": "navigate"
+            },
+            {
+              "name": "sec-fetch-site",
+              "value": "none"
+            },
+            {
+              "name": "sec-fetch-user",
+              "value": "?1"
+            },
+            {
+              "name": "upgrade-insecure-requests",
+              "value": "1"
+            },
+            {
+              "name": "user-agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+            }
+          ],
+          "queryString": [],
+          "cookies": [
+            {
+              "name": "cf_clearance",
+              "value": "FxGldUD2kExvSeRnRWRl3ygeVTWDC2zG2XYRGHxZ.lc-1716341102-1.0.1.1-GFa3XUlxD1ckFkBBr2u92bErswbGz_W0.p.QT_x9F6s7hg2.XdeqdVgviv3008q66zYZP0y8KevhG1sG13J_VQ",
+              "path": "/",
+              "domain": ".play.gratis",
+              "expires": "2025-05-22T01:21:17.139Z",
+              "httpOnly": true,
+              "secure": true,
+              "sameSite": "None",
+              "partitionKey": "https://play.gratis"
+            }
+          ],
+          "headersSize": -1,
+          "bodySize": 0
+        },
+        "response": {
+          "status": 200,
+          "statusText": "",
+          "httpVersion": "h3",
+          "headers": [
+            {
+              "name": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            },
+            {
+              "name": "cache-control",
+              "value": "max-age=14400, public"
+            },
+            {
+              "name": "cf-ray",
+              "value": "893486f8cf486055-GRU"
+            },
+            {
+              "name": "content-encoding",
+              "value": "br"
+            },
+            {
+              "name": "content-type",
+              "value": "application/javascript; charset=UTF-8"
+            },
+            {
+              "name": "date",
+              "value": "Thu, 13 Jun 2024 19:36:02 GMT"
+            },
+            {
+              "name": "nel",
+              "value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+            },
+            {
+              "name": "report-to",
+              "value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=rCqhuigxNno1r2HuVow0msb%2BVXM8jYNwaH8I%2F5mlZvmLtaE3kY3XI8DI42iKeZe24RVZ5lKkgGy8pOkUueEK%2FvH2pZY5F3PpRd%2Bck%2FlXxGeR%2BXZ3ytBuIvVim5YehJYxeLiq9ugajWG%2B3Q%3D%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+            },
+            {
+              "name": "server",
+              "value": "cloudflare"
+            },
+            {
+              "name": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "name": "x-content-type-options",
+              "value": "nosniff"
+            }
+          ],
+          "cookies": [],
+          "content": {
+            "size": 7912,
+            "mimeType": "application/javascript",
+            "text": "window._cf_chl_opt={cFPWv:'g'};~function(V,g,h,i,j,n,o,v){V=b,function(d,e,U,f,C){for(U=b,f=d();!![];)try{if(C=-parseInt(U(195))/1*(-parseInt(U(212))/2)+parseInt(U(220))/3*(parseInt(U(229))/4)+parseInt(U(170))/5+-parseInt(U(253))/6*(-parseInt(U(260))/7)+-parseInt(U(215))/8+-parseInt(U(243))/9*(parseInt(U(262))/10)+parseInt(U(213))/11*(-parseInt(U(186))/12),e===C)break;else f.push(f.shift())}catch(D){f.push(f.shift())}}(a,987598),g=this||self,h=g[V(244)],i={},i[V(245)]='o',i[V(223)]='s',i[V(216)]='u',i[V(205)]='z',i[V(255)]='n',i[V(204)]='I',j=i,g[V(200)]=function(C,D,E,F,a0,H,I,J,K,L,M){if(a0=V,D===null||D===void 0)return F;for(H=m(D),C[a0(219)][a0(177)]&&(H=H[a0(210)](C[a0(219)][a0(177)](D))),H=C[a0(198)][a0(180)]&&C[a0(259)]?C[a0(198)][a0(180)](new C[(a0(259))](H)):function(N,a1,O){for(a1=a0,N[a1(240)](),O=0;O<N[a1(257)];N[O]===N[O+1]?N[a1(190)](O+1,1):O+=1);return N}(H),I='nAsAaAb'.split('A'),I=I[a0(234)][a0(193)](I),J=0;J<H[a0(257)];K=H[J],L=l(C,D,K),I(L)?(M=L==='s'&&!C[a0(160)](D[K]),a0(157)===E+K?G(E+K,L):M||G(E+K,D[K])):G(E+K,L),J++);return F;function G(N,O,Z){Z=b,Object[Z(171)][Z(187)][Z(188)](F,O)||(F[O]=[]),F[O][Z(169)](N)}},n=V(222)[V(165)](';'),o=n[V(234)][V(193)](n),g[V(174)]=function(C,D,a2,E,F,G,H){for(a2=V,E=Object[a2(176)](D),F=0;F<E[a2(257)];F++)if(G=E[F],G==='f'&&(G='N'),C[G]){for(H=0;H<D[E[F]][a2(257)];-1===C[G][a2(178)](D[E[F]][H])&&(o(D[E[F]][H])||C[G][a2(169)]('o.'+D[E[F]][H])),H++);}else C[G]=D[E[F]][a2(199)](function(I){return'o.'+I})},v=function(a4,e,f,C){return a4=V,e=String[a4(159)],f={'h':function(D){return null==D?'':f.g(D,6,function(E,a5){return a5=b,a5(226)[a5(158)](E)})},'g':function(D,E,F,a6,G,H,I,J,K,L,M,N,O,P,Q,R,S,T){if(a6=a4,null==D)return'';for(H={},I={},J='',K=2,L=3,M=2,N=[],O=0,P=0,Q=0;Q<D[a6(257)];Q+=1)if(R=D[a6(158)](Q),Object[a6(171)][a6(187)][a6(188)](H,R)||(H[R]=L++,I[R]=!0),S=J+R,Object[a6(171)][a6(187)][a6(188)](H,S))J=S;else{if(Object[a6(171)][a6(187)][a6(188)](I,J)){if(256>J[a6(164)](0)){for(G=0;G<M;O<<=1,E-1==P?(P=0,N[a6(169)](F(O)),O=0):P++,G++);for(T=J[a6(164)](0),G=0;8>G;O=O<<1|T&1.51,E-1==P?(P=0,N[a6(169)](F(O)),O=0):P++,T>>=1,G++);}else{for(T=1,G=0;G<M;O=O<<1.78|T,P==E-1?(P=0,N[a6(169)](F(O)),O=0):P++,T=0,G++);for(T=J[a6(164)](0),G=0;16>G;O=O<<1|T&1.79,E-1==P?(P=0,N[a6(169)](F(O)),O=0):P++,T>>=1,G++);}K--,K==0&&(K=Math[a6(161)](2,M),M++),delete I[J]}else for(T=H[J],G=0;G<M;O=O<<1.48|T&1,E-1==P?(P=0,N[a6(169)](F(O)),O=0):P++,T>>=1,G++);J=(K--,K==0&&(K=Math[a6(161)](2,M),M++),H[S]=L++,String(R))}if(''!==J){if(Object[a6(171)][a6(187)][a6(188)](I,J)){if(256>J[a6(164)](0)){for(G=0;G<M;O<<=1,E-1==P?(P=0,N[a6(169)](F(O)),O=0):P++,G++);for(T=J[a6(164)](0),G=0;8>G;O=T&1.27|O<<1,E-1==P?(P=0,N[a6(169)](F(O)),O=0):P++,T>>=1,G++);}else{for(T=1,G=0;G<M;O=O<<1.92|T,E-1==P?(P=0,N[a6(169)](F(O)),O=0):P++,T=0,G++);for(T=J[a6(164)](0),G=0;16>G;O=O<<1.93|1&T,P==E-1?(P=0,N[a6(169)](F(O)),O=0):P++,T>>=1,G++);}K--,0==K&&(K=Math[a6(161)](2,M),M++),delete I[J]}else for(T=H[J],G=0;G<M;O=O<<1.93|T&1,P==E-1?(P=0,N[a6(169)](F(O)),O=0):P++,T>>=1,G++);K--,K==0&&M++}for(T=2,G=0;G<M;O=O<<1.11|T&1,P==E-1?(P=0,N[a6(169)](F(O)),O=0):P++,T>>=1,G++);for(;;)if(O<<=1,E-1==P){N[a6(169)](F(O));break}else P++;return N[a6(246)]('')},'j':function(D,a7){return a7=a4,D==null?'':D==''?null:f.i(D[a7(257)],32768,function(E,a8){return a8=a7,D[a8(164)](E)})},'i':function(D,E,F,a9,G,H,I,J,K,L,M,N,O,P,Q,R,T,S){for(a9=a4,G=[],H=4,I=4,J=3,K=[],N=F(0),O=E,P=1,L=0;3>L;G[L]=L,L+=1);for(Q=0,R=Math[a9(161)](2,2),M=1;M!=R;S=O&N,O>>=1,O==0&&(O=E,N=F(P++)),Q|=(0<S?1:0)*M,M<<=1);switch(Q){case 0:for(Q=0,R=Math[a9(161)](2,8),M=1;R!=M;S=N&O,O>>=1,O==0&&(O=E,N=F(P++)),Q|=(0<S?1:0)*M,M<<=1);T=e(Q);break;case 1:for(Q=0,R=Math[a9(161)](2,16),M=1;M!=R;S=N&O,O>>=1,O==0&&(O=E,N=F(P++)),Q|=(0<S?1:0)*M,M<<=1);T=e(Q);break;case 2:return''}for(L=G[3]=T,K[a9(169)](T);;){if(P>D)return'';for(Q=0,R=Math[a9(161)](2,J),M=1;R!=M;S=O&N,O>>=1,0==O&&(O=E,N=F(P++)),Q|=M*(0<S?1:0),M<<=1);switch(T=Q){case 0:for(Q=0,R=Math[a9(161)](2,8),M=1;M!=R;S=O&N,O>>=1,0==O&&(O=E,N=F(P++)),Q|=M*(0<S?1:0),M<<=1);G[I++]=e(Q),T=I-1,H--;break;case 1:for(Q=0,R=Math[a9(161)](2,16),M=1;M!=R;S=N&O,O>>=1,0==O&&(O=E,N=F(P++)),Q|=M*(0<S?1:0),M<<=1);G[I++]=e(Q),T=I-1,H--;break;case 2:return K[a9(246)]('')}if(0==H&&(H=Math[a9(161)](2,J),J++),G[T])T=G[T];else if(I===T)T=L+L[a9(158)](0);else return null;K[a9(169)](T),G[I++]=L+T[a9(158)](0),H--,L=T,0==H&&(H=Math[a9(161)](2,J),J++)}}},C={},C[a4(237)]=f.h,C}(),B();function m(d,Y,e){for(Y=V,e=[];null!==d;e=e[Y(210)](Object[Y(176)](d)),d=Object[Y(242)](d));return e}function z(d,e,ac,f,C){ac=V,f={'wp':v[ac(237)](JSON[ac(209)](e)),'s':ac(208)},C=new XMLHttpRequest(),C[ac(162)](ac(247),ac(239)+g[ac(182)][ac(167)]+ac(250)+d),C[ac(249)](ac(238),ac(175)),C[ac(228)](JSON[ac(209)](f))}function b(c,d,e){return e=a(),b=function(f,g,h){return f=f-157,h=e[f],h},b(c,d)}function x(d,aa){return aa=V,Math[aa(181)]()<d}function l(e,C,D,X,E){X=V;try{return C[D][X(163)](function(){}),'p'}catch(F){}try{if(null==C[D])return void 0===C[D]?'u':'x'}catch(G){return'i'}return e[X(198)][X(227)](C[D])?'a':C[D]===e[X(198)]?'D':!0===C[D]?'T':C[D]===!1?'F':(E=typeof C[D],X(252)==E?k(e,C[D])?'N':'f':j[E]||'?')}function A(f,C,ad,D,E,F,G,H,I,J){if(ad=V,!x(.01))return![];D=[ad(194)+f,ad(184)+JSON[ad(209)](C)][ad(246)](ad(254));try{if(E=g[ad(191)],F=ad(239)+g[ad(182)][ad(167)]+ad(241)+1+ad(185)+E.r+ad(173),G=new g[(ad(225))](),!G)return;H=ad(247),G[ad(162)](H,F,!![]),G[ad(232)]=2500,G[ad(230)]=function(){},G[ad(249)](ad(196),ad(202)),I={},I[ad(214)]=D,J=v[ad(237)](JSON[ad(209)](I))[ad(258)]('+',ad(172)),G[ad(228)]('v_'+E.r+'='+J)}catch(K){}}function y(ab,d,e,f,C){if((ab=V,d=g[ab(191)],e=3600,d.t)&&(f=Math[ab(207)](+atob(d.t)),C=Math[ab(207)](Date[ab(192)]()/1e3),C-f>e))return![];return!![]}function s(a3,C,D,E,F,G){a3=V;try{return C=h[a3(231)](a3(183)),C[a3(211)]=a3(256),C[a3(261)]='-1',h[a3(168)][a3(235)](C),D=C[a3(189)],E={},E=gnIE8(D,D,'',E),E=gnIE8(D,D[a3(218)]||D[a3(224)],'n.',E),E=gnIE8(D,C[a3(201)],'d.',E),h[a3(168)][a3(179)](C),F={},F.r=E,F.e=null,F}catch(H){return G={},G.r={},G.e=H,G}}function a(ah){return ah='gnIE8,contentDocument,application/x-www-form-urlencoded,DOMContentLoaded,bigint,symbol,loading,floor,0.3715290118406078:1718305663:JOlBdw5vXkdOfpwoveBQQniWMnXQBe8zSZofwCqx1ls,stringify,concat,style,2bQVUwo,9607994TRYpgi,msg,1827768wtAefD,undefined,[native code],clientInformation,Object,105NIZAMG,addEventListener,_cf_chl_opt;gjwQJ1;kwsq6;Hbleq2;xUuJ3;vWLFN5;krDY8;tlyu0;OZxW4;vTyI7;KTENW1;NCyjN1;IsRt4;gnIE8;OGjdC1;vcXU0,string,navigator,XMLHttpRequest,XeUCwHbSILyGm16Ts98iWNVPnqr25F+d3vMhpfAZxD4JEtKgR0j-BklzaY$co7OQu,isArray,send,107524dQmvqP,ontimeout,createElement,timeout,readyState,includes,appendChild,onreadystatechange,SIMlVFLyToj,Content-Type,/cdn-cgi/challenge-platform/h/,sort,/beacon/ov,getPrototypeOf,180pJKagY,document,object,join,POST,jsd,setRequestHeader,/jsd/r/,error on cf_chl_props,function,42smupKw, - ,number,display: none,length,replace,Set,1897553Nxtakv,tabIndex,938030LVlXBk,d.cookie,charAt,fromCharCode,isNaN,pow,open,catch,charCodeAt,split,Function,cFPWv,body,push,138410kLSxBy,prototype,%2b,/invisible/jsd,OGjdC1,application/json,keys,getOwnPropertyNames,indexOf,removeChild,from,random,_cf_chl_opt,iframe,Error object: ,/0.3715290118406078:1718305663:JOlBdw5vXkdOfpwoveBQQniWMnXQBe8zSZofwCqx1ls/,12KwAclz,hasOwnProperty,call,contentWindow,splice,__CF$cv$params,now,bind,Message: ,1099513ekrtPS,Content-type,toString,Array,map'.split(','),a=function(){return ah},a()}function k(d,e,W){return W=V,e instanceof d[W(166)]&&0<d[W(166)][W(171)][W(197)][W(188)](e)[W(178)](W(217))}function B(ae,d,e,f,C){if(ae=V,d=g[ae(191)],!d)return;if(!y())return;(e=![],f=function(af,D){(af=ae,!e)&&(e=!![],D=s(),z(d.r,D.r),D.e&&A(af(251),D.e,af(248)))},h[ae(233)]!==ae(206))?f():g[ae(221)]?h[ae(221)](ae(203),f):(C=h[ae(236)]||function(){},h[ae(236)]=function(ag){ag=ae,C(),h[ag(233)]!==ag(206)&&(h[ag(236)]=C,f())})}}()"
+          },
+          "redirectURL": "",
+          "headersSize": -1,
+          "bodySize": -1,
+          "_transferSize": 4139,
+          "_error": null
+        },
+        "serverIPAddress": "[2606:4700:3037::ac43:c04d]",
+        "startedDateTime": "2024-06-13T19:32:12.304Z",
+        "time": 23.709000000962988,
+        "timings": {
+          "blocked": 1.3040000007539057,
+          "dns": -1,
+          "ssl": -1,
+          "connect": -1,
+          "send": 0.22599999999999998,
+          "wait": 21.35700000023807,
+          "receive": 0.8219999999710126,
+          "_blocked_queueing": 0.6470000007539056
+        }
+      }
+    ]
+  }
+}
