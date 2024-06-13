@@ -1,47 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificador de Links</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✅️VERIFICAR✅️</title>
+<script>
+function verificarLinks() {
+    const baseURL = 'https://vrio.s.llnwi.net/band/dash_live_0001/manifest.mpd?da=1&country=BR&accountType=DTH';
+    const maxNum = 5000;
+    const resultsContainer = document.getElementById('results');
+    
+    resultsContainer.innerHTML = ''; // Limpa os resultados anteriores
+    
+    for (let i = 1; i <= maxNum; i++) {
+        const url = baseURL.replace('0001', pad(i, 4)); // Substitui o número
+        verificarLink(url);
+    }
+}
+
+async function verificarLink(url) {
+    try {
+        const response = await fetch(url);
+        if (response.ok) {
+            adicionarResultado(url, '🟢Online - ✅️');
+        } else {
+            adicionarResultado(url, '🔴Off-line - 🔴');
+        }
+    } catch (error) {
+        adicionarResultado(url, '⚠️NÃO EXISTE⚠️');
+    }
+}
+
+function adicionarResultado(url, status) {
+    const resultsContainer = document.getElementById('results');
+    const resultElement = document.createElement('div');
+    resultElement.textContent = `${url}: ${status}`;
+    resultsContainer.appendChild(resultElement);
+}
+
+function pad(num, size) {
+    let s = num + "";
+    while (s.length < size) s = "0" + s;
+    return s;
+}
+</script>
 </head>
 <body>
-    <h1>Verificador de Links</h1>
-    <button onclick="verificarLinks()">Verificar Links de 0001 a 5000</button>
-    <div id="result"></div>
-
-    <script>
-        function verificarLinks() {
-            var base_url = "https://vrio.s.llnwi.net/band/dash_live_{0}/manifest.mpd?da=1&country=BR&accountType=DTH";
-            var resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = '';
-
-            for (var i = 1; i <= 5000; i++) {
-                var url = base_url.replace("{0}", pad(i, 4));
-                verificarLink(url, i, resultDiv);
-            }
-        }
-
-        function pad(num, size) {
-            var s = num.toString();
-            while (s.length < size) s = "0" + s;
-            return s;
-        }
-
-        function verificarLink(url, num, resultDiv) {
-            var xhr = new XMLHttpRequest();
-            xhr.open('HEAD', url, true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        resultDiv.innerHTML += `<p>Link ${num}: Funcionando corretamente</p>`;
-                    } else {
-                        resultDiv.innerHTML += `<p>Link ${num}: Não está funcionando. Código de status: ${xhr.status}</p>`;
-                    }
-                }
-            };
-            xhr.send();
-        }
-    </script>
+<h1>✅️ Verificar ✅️</h1>
+<button onclick="verificarLinks()">VER PRÓXIMO</button>
+<div id="results"></div>
 </body>
 </html>
