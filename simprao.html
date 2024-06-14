@@ -57,10 +57,10 @@
       document.getElementById('video-source').src = videoUrl;
       // Atualizando o player Plyr
       players[0].source = {
-        type: 'video',
+        type: 'm3u8',
         sources: [{
           src: videoUrl,
-          type: 'video/mp4',
+          type: 'm3u8',
         }],
       };
       // Recarregando o vídeo
