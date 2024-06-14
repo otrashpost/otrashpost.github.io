@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capturar HTML</title>
+</head>
+<body>
+    <h1>Capturar HTML de outro site</h1>
+    
+    <form id="htmlForm">
+        <label for="url">URL do site:</label><br>
+        <input type="text" id="url" name="url" value="https://exemplo.com"><br><br>
+        <button type="button" onclick="capturarHTML()">Capturar HTML</button>
+    </form>
+
+    <div id="resultado"></div>
+
+    <script>
+        function capturarHTML() {
+            var url = document.getElementById("url").value;
+
+            // Requisição para capturar o HTML
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var htmlCapturado = xhr.responseText;
+                    document.getElementById("resultado").innerHTML = "<pre>" + htmlCapturado + "</pre>";
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
