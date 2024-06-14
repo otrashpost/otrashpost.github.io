@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Player de Vídeo</title>
+  <!-- Adicionando Plyr CSS -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+  <style>
+    /* Estilo opcional para personalizar o player */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .plyr__video-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  </style>
+  
+  <!-- Adicionando a função getParameterByName -->
+  <script>
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
+        var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+  </script>
+</head>
+<body>
+
+<!-- Conteúdo do player -->
+<div class="plyr__video-wrapper">
+  <video id="player" controls crossorigin playsinline>
+    <!-- Source de vídeo MP4 -->
+    <source id="video-source" type="video/mp4">
+    <!-- Fallback para navegadores que não suportam o elemento <video> -->
+    Seu navegador não suporta o elemento de vídeo.
+  </video>
+</div>
+
+<!-- Adicionando Plyr JS -->
+<script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
+
+<!-- Inicializando Plyr -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Selecionando todos os elementos de vídeo com a classe 'plyr'
+    const players = Plyr.setup('#player', {
+      controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
+    });
+
+    // Obtendo o parâmetro 'urlm' da URL
+    let videoUrl = getParameterByName('urlm');
+    if (videoUrl) {
+      // Substituindo a fonte do vídeo
+      document.getElementById('video-source').src = videoUrl;
+      // Atualizando o player Plyr
+      players[0].source = {
+        type: 'video',
+        sources: [{
+          src: videoUrl,
+          type: 'video/mp4',
+        }],
+      };
+      // Recarregando o vídeo
+      players[0].reload();
+    }
+  });
+</script>
+
+</body>
+</html>
