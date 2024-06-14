@@ -44,11 +44,13 @@
 <script>
     window.onload = function() {
         var urlParams = new URLSearchParams(window.location.search);
-        var iframeSrc = urlParams.get("id");
+        var encodedParam = urlParams.get("id");
 
-        if (iframeSrc) {
+        if (encodedParam) {
+            var decodedLink = atob(encodedParam); // Decodifica o parâmetro codificado em base64
+
             var iframe = document.createElement("iframe");
-            iframe.src = iframeSrc;
+            iframe.src = decodedLink;
             iframe.frameBorder = "0";
             iframe.allowFullscreen = true;
             iframe.sandbox = "allow-same-origin allow-scripts";
@@ -57,10 +59,11 @@
             iframeContainer.className = "ViostreamIframe";
             iframeContainer.appendChild(iframe);
 
-            document.body.appendChild(iframeContainer);
+            document.body.insertBefore(iframeContainer, document.body.firstChild);
         }
     };
 </script>
+
 
 </body>
 </html>
