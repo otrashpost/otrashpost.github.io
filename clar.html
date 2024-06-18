@@ -6,6 +6,24 @@
   <title>Clappr Video Player</title>
   <!-- Incluindo o CSS do Clappr -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clappr/0.4.3/clappr.min.css">
+  <style>
+    /* Estilo para esconder o botão de tela cheia quando em tela cheia */
+    .fullscreen-button {
+      display: block;
+    }
+
+    .fullscreen-exit-button {
+      display: none;
+    }
+
+    .fullscreen-mode .fullscreen-button {
+      display: none;
+    }
+
+    .fullscreen-mode .fullscreen-exit-button {
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <div id="player-container"></div>
@@ -30,7 +48,7 @@
     } else if (id === "#") {
       alert('Página Anterior.');
     } else if (id === "ae") {
-      videoUrl = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/267/267.m3u8';
+      videoUrl = 'https://cc-07et6wc1z29gv.akamaized.net/index_1.m3u8';
     } else if (id === "sonymovies") {
       videoUrl = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/1475/1475.m3u8';
     } else {
@@ -45,7 +63,53 @@
         width: '100%',
         height: '360px',
         autoPlay: false, // Defina como true se deseja que o vídeo comece automaticamente
-        mediacontrol: {seekbar: '#1E88E5'} // Exemplo de configuração do controle de mídia
+        mediacontrol: {seekbar: '#1E88E5'}, // Exemplo de configuração do controle de mídia
+        plugins: [Clappr.FlashLSPlayerPlugin, Clappr.ExternalController, Clappr.MediaControl],
+        events: {
+          onReady: function() {
+            // Adicionando botão de tela cheia
+            var fullscreenButton = document.createElement('button');
+            fullscreenButton.className = 'fullscreen-button';
+            fullscreenButton.innerHTML = 'Fullscreen';
+            fullscreenButton.onclick = function() {
+              if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+                if (player.container.requestFullscreen) {
+                  player.container.requestFullscreen();
+                } else if (player.container.msRequestFullscreen) {
+                  player.container.msRequestFullscreen();
+                } else if (player.container.mozRequestFullScreen) {
+                  player.container.mozRequestFullScreen();
+                } else if (player.container.webkitRequestFullscreen) {
+                  player.container.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+                }
+              } else {
+                if (document.exitFullscreen) {
+                  document.exitFullscreen();
+                } else if (document.msExitFullscreen) {
+                  document.msExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                  document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                  document.webkitExitFullscreen();
+                }
+              }
+            };
+            player.container.appendChild(fullscreenButton);
+
+            // Adicionando classe ao player quando entra e sai do modo de tela cheia
+            player.on(Clappr.Events.ENTER_FULLSCREEN, function() {
+              player.container.classList.add('fullscreen-mode');
+              fullscreenButton.classList.remove('fullscreen-button');
+              fullscreenButton.classList.add('fullscreen-exit-button');
+            });
+
+            player.on(Clappr.Events.EXIT_FULLSCREEN, function() {
+              player.container.classList.remove('fullscreen-mode');
+              fullscreenButton.classList.remove('fullscreen-exit-button');
+              fullscreenButton.classList.add('fullscreen-button');
+            });
+          }
+        }
       });
     }
   </script>
