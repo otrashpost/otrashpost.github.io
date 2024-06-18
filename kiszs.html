@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JWPlayer com estilo personalizado</title>
-    <link rel="stylesheet" href="styler.css">
-    <!-- Inclua o JWPlayer -->
-    <script src="https://cdn.jwplayer.com/libraries/X.X.X/jwplayer.js"></script>
+    <title>JWPlayer com estilo básico</title>
+    <!-- Inclua os arquivos CSS e JS do JW Player -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jwplayer/8.10.6/skins/sixteen.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jwplayer/8.10.6/jwplayer.js"></script>
 </head>
 <body>
-    <div id="jwplayer"></div>
+    <div id="player"></div>
+
     <script>
-        var player = jwplayer("jwplayer");
-        player.setup({
-            file: "https://cdn-3.nxplay.com.br/TLC_BR_NX/tracks-v2a1/mono.m3u8",
-            // Configurações adicionais conforme necessário
+        // Configuração básica do JW Player
+        jwplayer("player").setup({
+            file: "http://uniplay.bigcdn.eu:80/movie/718044807/r443774s/345431.mp4", // Substitua pela URL do seu vídeo MP4
+            skin: {
+                name: "sixteen" // Escolha o estilo do player (este é um estilo padrão do JW Player)
+            },
+            width: "100%",
+            aspectratio: "16:9"
         });
     </script>
 </body>
