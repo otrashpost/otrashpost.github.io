@@ -1,0 +1,19 @@
+/* Estilo personalizado para o JWPlayer */
+.jw-controls {
+    background-color: red; /* Fundo vermelho para os controles */
+    color: white; /* Texto branco nos controles */
+}
+
+/* Botão de cast personalizado */
+.jw-controls .jw-icon-cast {
+    background-image: url('caminho-para-o-icone-cast.png'); /* Substitua com seu ícone de cast */
+    background-size: cover;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+/* Estilizando o botão de cast quando está ativo */
+.jw-controls .jw-icon-cast.active {
+    /* Adicione estilos adicionais se desejar */
+}
