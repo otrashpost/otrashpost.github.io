@@ -29,23 +29,27 @@
     }
 
     var id = getParameterByName('id');
-    
-    // Verifica se o parâmetro 'id' está presente na URL
-    if (id == "ae")
-{
+    var url;
+
+    // Verifica o valor do parâmetro 'id' e define o URL correspondente
+    if (id === "ae") {
         url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/267/267.m3u8';
-}
-else if (id == "sonymovies")
-{
+    } else if (id === "sonymovies") {
         url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/1475/1475.m3u8';
-}
+    } else if (id === "nick") {
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/284/284.m3u8';
+    } else {
+        alert('ID de vídeo não reconhecido!');
+    }
+
+    if (url) {
         // Cria o elemento de vídeo
         var videoPlayer = document.createElement('video');
         videoPlayer.controls = true; // Adiciona controles de vídeo
         videoPlayer.style.maxWidth = '100%'; // Define largura máxima
         
         // Define o atributo src para o link M3U8 do vídeo
-        videoPlayer.src = id; // Assume que 'id' é o link M3U8 completo
+        videoPlayer.src = url;
         
         // Adiciona o player de vídeo à div com id 'player'
         document.getElementById('player').appendChild(videoPlayer);
