@@ -6,9 +6,9 @@
   <meta name="referrer" content="no-referrer">      
   <meta name="theme-color" content="black">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PLAYER</title>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/reidoscanais/rdc@main/assets/css/player-v3.1.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/reidoscanais/rdc@main/assets/css/player-v3.1.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@clapper/core@latest/dist/clapper.css">
   <style>
     body {
@@ -39,7 +39,7 @@
     }
 
     // ID do vídeo baseado no parâmetro 'iu' na URL
-    var id = getParameterByName('id');
+    var id = getParameterByName('ui');
     var url;
 
     // Definição das URLs dos vídeos com base no ID
@@ -97,25 +97,22 @@
         break;
       default:
         // Caso nenhum ID corresponda, você pode definir uma URL padrão ou tratar de outra forma
+        console.error('ID de vídeo não reconhecido.');
         break;
     }
 
-    if (!url) {
-      // Trate aqui o caso em que 'url' não foi definido
-      console.error('URL do vídeo não encontrada.');
-      return;
+    // Inicialização do Clapper Player se 'url' estiver definida
+    if (url) {
+      const playerElement = document.getElementById('player');
+      const clapperPlayer = new Clapper.Player(playerElement, {
+        sources: [
+          { src: url, type: 'application/x-mpegURL' }
+        ],
+        autoplay: true,
+        controls: true,
+        aspectRatio: '16:9'
+      });
     }
-
-    // Inicialização do Clapper Player
-    const playerElement = document.getElementById('player');
-    const clapperPlayer = new Clapper.Player(playerElement, {
-      sources: [
-        { src: url, type: 'application/x-mpegURL' }
-      ],
-      autoplay: true,
-      controls: true,
-      aspectRatio: '16:9'
-    });
   });
 </script>
 
