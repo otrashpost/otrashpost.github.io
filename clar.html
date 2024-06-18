@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="none">
+  <meta name="referrer" content="no-referrer">      
+  <meta name="theme-color" content="black">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>PLAYER</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/reidoscanais/rdc@main/assets/css/player-v3.1.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@clapper/core@latest/dist/clapper.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    #player {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-top: 56.25%; /* Aspect ratio 16:9 */
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+<div id="player"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Função para obter parâmetro da URL
+    function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    // ID do vídeo baseado no parâmetro 'iu' na URL
+    var id = getParameterByName('iu');
+    var url;
+
+    // Definição das URLs dos vídeos com base no ID
+    switch (id) {
+      case "ae":
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/267/267.m3u8';
+        break;
+      case "sonymovies":
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/1475/1475.m3u8';
+        break;
+      case "nick":
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/284/284.m3u8';
+        break;
+      case "nickjr":
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/285/285.m3u8';
+        break;
+      case "paramount":
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/289/289.m3u8';
+        break;
+      case "sony":
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/279/279.m3u8';
+        break;
+      case "mtvlives":
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/286/286.m3u8';
+        break;
+      case "mtv":
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/287/287.m3u8';
+        break;
+      case "lifetime":
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/280/280.m3u8';
+        break;
+      case "h2":
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/282/282.m3u8';
+        break;
+      case "h1":
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/281/281.m3u8';
+        break;
+      case "bandnews":
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/276/276.m3u8';
+        break;
+      case "bandsports":
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/290/290.m3u8';
+        break;
+      case "comedycentral":
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/288/288.m3u8';
+        break;
+      case "arte1":
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/292/292.m3u8';
+        break;
+      case "axn":
+        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/278/278.m3u8';
+        break;
+      case "globo":
+        url = 'https://cdn.ittv.com.br/GLOBO_SP/manifest.m3u8';
+        break;
+      default:
+        // Caso nenhum ID corresponda, você pode definir uma URL padrão ou tratar de outra forma
+        break;
+    }
+
+    if (!url) {
+      // Trate aqui o caso em que 'url' não foi definido
+      console.error('URL do vídeo não encontrada.');
+      return;
+    }
+
+    // Inicialização do Clapper Player
+    const playerElement = document.getElementById('player');
+    const clapperPlayer = new Clapper.Player(playerElement, {
+      sources: [
+        { src: url, type: 'application/x-mpegURL' }
+      ],
+      autoplay: true,
+      controls: true,
+      aspectRatio: '16:9'
+    });
+  });
+</script>
+
+</body>
+</html>
