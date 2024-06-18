@@ -1,119 +1,55 @@
 <!DOCTYPE html>
-<html lang="pt_BR">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="robots" content="none">
-  <meta name="referrer" content="no-referrer">      
-  <meta name="theme-color" content="black">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PLAYER</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/reidoscanais/rdc@main/assets/css/player-v3.1.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@clapper/core@latest/dist/clapper.css">
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Player Clapper</title>
+<style>
     body {
-      margin: 0;
-      padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
     }
-    #player {
-      position: relative;
-      width: 100%;
-      height: 0;
-      padding-top: 56.25%; /* Aspect ratio 16:9 */
-      overflow: hidden;
+    video {
+        max-width: 100%;
+        height: auto;
     }
-  </style>
+</style>
 </head>
 <body>
-
 <div id="player"></div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Função para obter parâmetro da URL
+<script type="text/javascript">
     function getParameterByName(name) {
-      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-          results = regex.exec(location.search);
-      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
-    // ID do vídeo baseado no parâmetro 'iu' na URL
-    var id = getParameterByName('ui');
-    var url;
-
-    // Definição das URLs dos vídeos com base no ID
-    switch (id) {
-      case "ae":
+    var id = getParameterByName('id');
+    
+    // Verifica se o parâmetro 'id' está presente na URL
+    if (id == "ae")
+{
         url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/267/267.m3u8';
-        break;
-      case "sonymovies":
+}
+else if (id == "sonymovies")
+{
         url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/1475/1475.m3u8';
-        break;
-      case "nick":
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/284/284.m3u8';
-        break;
-      case "nickjr":
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/285/285.m3u8';
-        break;
-      case "paramount":
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/289/289.m3u8';
-        break;
-      case "sony":
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/279/279.m3u8';
-        break;
-      case "mtvlives":
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/286/286.m3u8';
-        break;
-      case "mtv":
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/287/287.m3u8';
-        break;
-      case "lifetime":
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/280/280.m3u8';
-        break;
-      case "h2":
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/282/282.m3u8';
-        break;
-      case "h1":
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/281/281.m3u8';
-        break;
-      case "bandnews":
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/276/276.m3u8';
-        break;
-      case "bandsports":
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/290/290.m3u8';
-        break;
-      case "comedycentral":
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/288/288.m3u8';
-        break;
-      case "arte1":
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/292/292.m3u8';
-        break;
-      case "axn":
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/278/278.m3u8';
-        break;
-      case "globo":
-        url = 'https://cdn.ittv.com.br/GLOBO_SP/manifest.m3u8';
-        break;
-      default:
-        // Caso nenhum ID corresponda, você pode definir uma URL padrão ou tratar de outra forma
-        console.error('ID de vídeo não reconhecido.');
-        break;
+}
+        // Cria o elemento de vídeo
+        var videoPlayer = document.createElement('video');
+        videoPlayer.controls = true; // Adiciona controles de vídeo
+        videoPlayer.style.maxWidth = '100%'; // Define largura máxima
+        
+        // Define o atributo src para o link M3U8 do vídeo
+        videoPlayer.src = id; // Assume que 'id' é o link M3U8 completo
+        
+        // Adiciona o player de vídeo à div com id 'player'
+        document.getElementById('player').appendChild(videoPlayer);
     }
-
-    // Inicialização do Clapper Player se 'url' estiver definida
-    if (url) {
-      const playerElement = document.getElementById('player');
-      const clapperPlayer = new Clapper.Player(playerElement, {
-        sources: [
-          { src: url, type: 'application/x-mpegURL' }
-        ],
-        autoplay: true,
-        controls: true,
-        aspectRatio: '16:9'
-      });
-    }
-  });
 </script>
 
 </body>
