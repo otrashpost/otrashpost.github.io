@@ -67,6 +67,11 @@
         plugins: [Clappr.FlashLSPlayerPlugin, Clappr.ExternalController, Clappr.MediaControl],
         events: {
           onReady: function() {
+            // Verifica se o vídeo está sendo reproduzido automaticamente
+            if (!player.isPlaying()) {
+              player.play();
+            }
+
             // Adicionando botão de tela cheia
             var fullscreenButton = document.createElement('button');
             fullscreenButton.className = 'fullscreen-button';
