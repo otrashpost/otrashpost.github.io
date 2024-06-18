@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>✅️VERIFICAR✅️</title>
+<title>✅️VERIFICAR A✅️</title>
 <script>
 function verificarLinks() {
-    const baseURL = 'jsjs';
-    const maxNum = 5000;
+    const baseURL = 'https://brflu.walk-tv.com/00001/tracks-v1a1/mono.m3u8';
+    const maxNum = 90000;
     const resultsContainer = document.getElementById('results');
     
     resultsContainer.innerHTML = ''; // Limpa os resultados anteriores
     
     for (let i = 1; i <= maxNum; i++) {
-        const url = baseURL.replace('0001', pad(i, 4)); // Substitui o número
+        const url = baseURL.replace('00001', pad(i, 4)); // Substitui o número
         verificarLink(url);
     }
 }
