@@ -1,60 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Player Clapper</title>
-<style>
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-    video {
-        max-width: 100%;
-        height: auto;
-    }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clappr Video Player</title>
+  <!-- Incluindo o CSS do Clappr -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clappr/0.4.3/clappr.min.css">
 </head>
 <body>
-<div id="player"></div>
+  <div id="player-container"></div>
 
-<script type="text/javascript">
+  <!-- Incluindo o Clappr e suas dependências -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clappr/0.4.3/clappr.min.js"></script>
+
+  <script type="text/javascript">
     function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+      name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
+      var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
     var id = getParameterByName('id');
-    var url;
+    var videoUrl;
 
-    // Verifica o valor do parâmetro 'id' e define o URL correspondente
-    if (id === "ae") {
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/267/267.m3u8';
+    // Verificando o valor do parâmetro 'id' e definindo a URL do vídeo correspondente
+    if (id === "") {
+      alert('ID não especificado na URL.');
+    } else if (id === "#") {
+      alert('Página Anterior.');
+    } else if (id === "ae") {
+      videoUrl = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/267/267.m3u8';
     } else if (id === "sonymovies") {
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/1475/1475.m3u8';
-    } else if (id === "nick") {
-        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/284/284.m3u8';
+      videoUrl = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/1475/1475.m3u8';
     } else {
-        alert('ID de vídeo não reconhecido!');
+      alert('ID não reconhecido.');
     }
 
-    if (url) {
-        // Cria o elemento de vídeo
-        var videoPlayer = document.createElement('video');
-        videoPlayer.controls = true; // Adiciona controles de vídeo
-        videoPlayer.style.maxWidth = '100%'; // Define largura máxima
-        
-        // Define o atributo src para o link M3U8 do vídeo
-        videoPlayer.src = url;
-        
-        // Adiciona o player de vídeo à div com id 'player'
-        document.getElementById('player').appendChild(videoPlayer);
+    // Criando o player Clappr com a URL definida dinamicamente
+    if (videoUrl) {
+      var player = new Clappr.Player({
+        source: videoUrl,
+        parentId: '#player-container',
+        width: '100%',
+        height: '360px',
+        autoPlay: false, // Defina como true se deseja que o vídeo comece automaticamente
+        mediacontrol: {seekbar: '#1E88E5'} // Exemplo de configuração do controle de mídia
+      });
     }
-</script>
-
+  </script>
 </body>
 </html>
