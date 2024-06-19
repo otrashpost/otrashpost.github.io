@@ -1,16 +1,31 @@
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplo de Incorporação de Vídeo</title>
+    <title>Exemplo de captura de conteúdo de iframe com sandbox</title>
 </head>
 <body>
-    <h1>Vídeo Incorporado</h1>
-    
-    <!-- Substitua o link abaixo pelo link direto do vídeo -->
-    <iframe width="560" height="315" src="https://reidoscanais.app/embed/player.php?l=aHR0cHM6Ly94bi0tLS1pdGJhdmJ2YWNlaXoueG4tLS0tLS0tNDNkYmFiYmNxdnNhYzhhZmJmZHdjb2Vja3ZrbmdkMWZybGd1aGFqOWIubmV0L3d0Yy5waHA/aWQ9MTU3OQ==" frameborder="0" allowfullscreen></iframe>
-    
+    <iframe id="meuIframe" src="https://reidoscanais.app/embed/player.php?l=aHR0cHM6Ly94bi0tLS1pdGJhdmJ2YWNlaXoueG4tLS0tLS0tNDNkYmFiYmNxdnNhYzhhZmJmZHdjb2Vja3ZrbmdkMWZybGd1aGFqOWIubmV0L3d0Yy5waHA/aWQ9MTU3OQ==" width="100%" height="400" frameborder="0" allowfullscreen sandbox="allow-same-origin allow-scripts"></iframe>
+
+    <pre id="conteudoPre"></pre>
+
+    <script>
+        window.onload = function() {
+            // Captura o conteúdo dentro do iframe
+            var iframe = document.getElementById('meuIframe');
+            var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            var preElement = iframeDocument.querySelector('pre');
+
+            // Verifica se o elemento <pre> existe dentro do iframe
+            if (preElement) {
+                // Obtém o texto dentro do <pre> e atualiza o conteúdo na página
+                document.getElementById('conteudoPre').textContent = preElement.textContent;
+            } else {
+                // Caso não encontre o <pre>, exibe uma mensagem de erro ou lida de outra forma
+                document.getElementById('conteudoPre').textContent = 'Não foi possível encontrar o conteúdo.';
+            }
+        }
+    </script>
 </body>
 </html>
