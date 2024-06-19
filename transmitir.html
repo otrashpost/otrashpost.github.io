@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reprodução de Stream HLS</title>
-    <!-- Incluir estilos CSS (opcional) -->
-    <link rel="stylesheet" href="https://otrashpost.github.io/public/css/stylers.css">
+    <title>Streaming HLS</title>
+    <!-- Inclua os estilos e scripts necessários -->
+    <link href="https://vjs.zencdn.net/7.14.3/video-js.css" rel="stylesheet">
+   <link rel="stylesheet" href="/style.css">
+    <script src="https://vjs.zencdn.net/7.14.3/video.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.15.0/videojs-contrib-hls.min.js"></script>
 </head>
 <body>
-    <div class="video-container">
-        <!-- Elemento de vídeo -->
-        <video id="my-video" class="video-js" controls preload="auto" width="640" height="360">
-            <!-- Fallback para navegadores que não suportam HLS -->
-            <source src="https://mycdn.delivery/space/tracks-v1a1/mono.m3u8" type="application/x-mpegURL">
-            Seu navegador não suporta a tag de vídeo ou a reprodução de HLS.
-        </video>
-    </div>
+    <!-- Elemento de vídeo -->
+    <video id="my-video" class="video-js" controls preload="auto" width="640" height="264" data-setup="{}">
+        <source src="https://mycdn.delivery/space/tracks-v1a1/mono.m3u8" type="application/x-mpegURL">
+        <!-- Mensagem de fallback para navegadores que não suportam HLS -->
+        Your browser does not support the video tag or HLS playback.
+    </video>
 
-    <!-- Incluir script JavaScript -->
-    <script src="https://otrashpost.github.io/public/js/scripts.js"></script>
+    <script>
+        // Configure o player de vídeo
+        var player = videojs('my-video');
+        player.play(); // Inicia a reprodução automaticamente
+    </script>
 </body>
 </html>
