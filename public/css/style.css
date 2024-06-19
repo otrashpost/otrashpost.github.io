@@ -118,5 +118,5 @@ main {
 .mySlides img {
     width: 100%; /* Mantém a largura da imagem dentro do máximo do slideshow */
     max-width: 100%;
-    height: auto;
+    height: 500px;
 }
