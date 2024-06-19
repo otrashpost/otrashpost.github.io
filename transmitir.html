@@ -1,123 +1,192 @@
-<!DOCTYPE html>
+		<!DOCTYPE html>
 <html lang="pt_BR">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style type="text/css">
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style type="text/css">
+                body {
+                        margin: 0;
+                        padding: 0;
+                }
 
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-
-        #player {
-            position: absolute;
-            top: 50px; /* deixamos espaço para o cabeçalho */
-            left: 0;
-            bottom: 0;
-            height: calc(100% - 50px); /* ajustamos a altura do player */
-            width: 100%;
-            border: 0;
-            overflow: hidden;
-        }
-    </style>
+                #player {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        height: 100%;
+                        width: 100%;
+                        border: 0;
+                        overflow: hidden;
+                }
+        </style>
     <meta name="robots" content="none">
-    <meta name="referrer" content="no-referrer">
+    <meta name="referrer" content="no-referrer">      
     <meta name="theme-color" content="black">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>PLAYER</title>
-    <link rel="stylesheet" type="text/css"
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/jwplayer/jwplayer.latest.js"></script>
     <script src="https://fastly.jsdelivr.net/npm/disable-devtool@latest/disable-devtool.min.js"></script>
     <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
-    <script>
-        jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
-    </script>
-    <script type="text/javascript">
-        function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
-            var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
-            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
-
-        var id = getParameterByName('id');
-        var url;
-
-        if (id == "recordpaulista-token") {
-            url = 'https://cdn-3.nxplay.com.br/RECORD_PAULISTA_PFZ_NXPLAY_01/index.m3u8';
-        } else if (id == "tnt-token") {
-            url = 'https://cdn-3.nxplay.com.br/TNT_TK/index.m3u8';
-        } else if (id == "filmearts-token") {
-            url = 'https://cdn-3.nxplay.com.br/Film_Arts_Brasil/index.m3u8';
-        } else if (id == "bandsports-token") {
-            url = 'https://cdn-3.nxplay.com.br/BAND_SPORTS/index.m3u8';
-        } else if (id == "bandnews-token") {
-            url = 'https://cdn-3.nxplay.com.br/BAND_NEWS_TK/index.m3u8';
-        } else if (id == "agromais-token") {
-            url = 'https://cdn-3.nxplay.com.br/AGROMAIS_HD_TK/index.m3u8';
-        } else if (id == "recordnews-token") {
-            url = 'https://cdn-3.nxplay.com.br/RECORD_NEWS/index.m3u8';
-        } else if (id == "ae-token") {
-            url = 'http://cdn.connectbr.com.br/AE/index.m3u8';
-        }
-
-        var playerInstance = jwplayer("player");
-        playerInstance.setup({
-            playlist: [{
-                "sources": [{
-                    "default": false,
-                    "type": "hls",
-                    "file": url,
-                }]
-            }],
-            width: "100%",
-            height: "100%",
-            aspectratio: "16:9",
-            autostart: true,
-            mute: false,
-            cast: {},
-            sharing: false
-        });
-
-        // EPG Data
-        var epgData = {
-            "recordpaulista-token": "EPG da Record Paulista",
-            "tnt-token": "EPG da TNT",
-            "filmearts-token": "EPG da Film Arts",
-            "bandsports-token": "EPG da Band Sports",
-            "bandnews-token": "EPG da Band News",
-            "agromais-token": "EPG da AgroMais",
-            "recordnews-token": "EPG da Record News",
-            "ae-token": "EPG da AE"
-        };
-
-        // Exibir o EPG correspondente ao canal selecionado
-        var channelName = epgData[id];
-        if (channelName) {
-            document.getElementById('epg').innerText = channelName;
-        } else {
-            document.getElementById('epg').innerText = "EPG não disponível";
-        }
-    </script>
+    <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';</script>
+        <script type="text/javascript">
+                function getParameterByName(name) {
+                        name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
+                        var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
+                                results = regex.exec(location.search);
+                        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+                }
+                var id = getParameterByName('id');
+                if (id == "#") {
+                        alert('Pagina Anterior');
+                }
+</script>
 </head>
 
 <body>
-    <header>
-        <h1 id="epg">EPG</h1>
-    </header>
-    <div id="player"></div>
+<div id="player"></div>
+<script>
+if (id == "recordpaulista-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/RECORD_PAULISTA_PFZ_NXPLAY_01/index.m3u8';
+}
+else if (id == "tnt-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/TNT_TK/index.m3u8';
+}
+else if (id == "filmearts-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/Film_Arts_Brasil/index.m3u8';
+}
+else if (id == "bandsports-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/BAND_SPORTS/index.m3u8';
+}
+else if (id == "bandnews-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/BAND_NEWS_TK/index.m3u8';
+}
+else if (id == "agromais-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/AGROMAIS_HD_TK/index.m3u8';
+}
+else if (id == "recordnews-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/RECORD_NEWS/index.m3u8';
+}
+else if (id == "ae-token")
+{
+        url = 'http://cdn.connectbr.com.br/AE/index.m3u8';
+}
+else if (id == "dreamworks-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/DREAMWORKS/index.m3u8';
+}
+else if (id == "discoverykids-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/DISCOVERY_KIDS_NX/index.m3u8';
+}
+else if (id == "espn1-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/ESPN/index.m3u8';
+}
+else if (id == "espn2-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/ESPN_2/index.m3u8';
+}
+else if (id == "espn3-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/ESPN_3/index.m3u8';
+}
+else if (id == "espn4-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/ESPN_4/index.m3u8';
+}
+else if (id == "cartoonnetwork-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/CARTOON_NETWORK_TK/tracks-v1a1/mono.m3u8';
+}
+else if (id == "fishtv-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/FISH_TV_NX/tracks-v2a1/index.m3u8';
+}
+else if (id == "foodnet-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/FOOD_NETWORK_NX/index.m3u8';
+}
+else if (id == "hgtv-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/HGTV_BR_NX/index.m3u8';
+}
+else if (id == "space-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/SPACE_TK/index.m3u8';
+}
+else if (id == "animalpla-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/ANIMAL_PLANET_NX/index.m3u8';
+}
+else if (id == "discoverytlc-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/TLC_BR_NX/index.m3u8';
+}
+else if (id == "history1-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/HISTORY_TK/index.m3u8';
+}
+else if (id == "history2-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/HISTORY_2_TK/index.m3u8';
+}
+else if (id == "discoveryhh-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/DISCOVERY_HH_NX/index.m3u8';
+}
+else if (id == "discoverywor-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/DISCOVERY_WORLD_NX/index.m3u8';
+}
+else if (id == "discoverysci-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/DISCOVERY_SCIENCE_NX/index.m3u8';
+}
+else if (id == "discoverycha-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/DISCOVERY_CHANNEL_NX/index.m3u8';
+}
+else if (id == "discoveryther-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/DISCOVERY_THEATER_NX/index.m3u8';
+}
+else if (id == "discoverytur-token")
+{
+        url = 'https://cdn-3.nxplay.com.br/DISCOVERY_TURBO_NX/index.m3u8';
+}
+
+var playerInstance = jwplayer("player");
+playerInstance.setup({
+    playlist: [{
+      "sources": [{
+		"default": false,
+		"type": "hls",
+		"file": url,
+				}
+			]
+		}
+	],
+    width: "100%",
+    height: "100%",
+    aspectratio: "16:9",
+    autostart: true,
+    mute: false,
+    cast: {},
+    sharing: false
+        });    
+</script>
 </body>
 
 </html>
