@@ -1,27 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Streaming HLS</title>
-    <!-- Inclua os estilos e scripts necessários -->
-    <link href="https://vjs.zencdn.net/7.14.3/video-js.css" rel="stylesheet">
-   <link rel="stylesheet" href="/style.css">
-    <script src="https://vjs.zencdn.net/7.14.3/video.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.15.0/videojs-contrib-hls.min.js"></script>
-</head>
-<body>
-    <!-- Elemento de vídeo -->
-    <video id="my-video" class="video-js" controls preload="auto" width="640" height="264" data-setup="{}">
-        <source src="https://mycdn.delivery/space/tracks-v1a1/mono.m3u8" type="application/x-mpegURL">
-        <!-- Mensagem de fallback para navegadores que não suportam HLS -->
-        Your browser does not support the video tag or HLS playback.
-    </video>
+fetch('https://mycdn.delivery/space/tracks-v1a1/mono.m3u8')
+    .then(response => response.text())
+    .then(data => {
+        // Processar o conteúdo do arquivo .m3u8
+        processM3U8Content(data);
+    })
+    .catch(error => {
+        console.error('Erro ao carregar o arquivo .m3u8', error);
+    });
 
-    <script>
-        // Configure o player de vídeo
-        var player = videojs('my-video');
-        player.play(); // Inicia a reprodução automaticamente
-    </script>
-</body>
-</html>
+function processM3U8Content(content) {
+    // Dividir o conteúdo por quebras de linha para analisar linha por linha
+    const lines = content.split('\n');
+
+    // Variáveis para armazenar as informações desejadas
+    let extm3u = '';
+    let targetDuration = 0;
+    let version = 0;
+
+    // Iterar sobre cada linha do arquivo .m3u8
+    lines.forEach(line => {
+        // Remover espaços em branco extras
+        line = line.trim();
+
+        // Verificar se a linha começa com #EXTM3U, #EXT-X-TARGETDURATION ou #EXT-X-VERSION
+        if (line.startsWith('#EXTM3U')) {
+            extm3u = line;
+        } else if (line.startsWith('#EXT-X-TARGETDURATION')) {
+            targetDuration = parseInt(line.split(':')[1]);
+        } else if (line.startsWith('#EXT-X-VERSION')) {
+            version = parseInt(line.split(':')[1]);
+        }
+
+        // Você pode adicionar mais lógica para capturar outras informações conforme necessário
+    });
+
+    // Exemplo de como você pode usar essas informações
+    console.log('EXTM3U:', extm3u);
+    console.log('TARGET DURATION:', targetDuration);
+    console.log('VERSION:', version);
+
+    // Aqui você pode usar essas variáveis para atualizar dinamicamente seu site
+}
