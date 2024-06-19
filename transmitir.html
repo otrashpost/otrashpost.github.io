@@ -6,12 +6,13 @@
     <title>Streaming HLS</title>
     <!-- Inclua os estilos e scripts necessários -->
     <link href="https://vjs.zencdn.net/7.14.3/video-js.css" rel="stylesheet">
+   <link rel="stylesheet" href="/style.css">
     <script src="https://vjs.zencdn.net/7.14.3/video.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.15.0/videojs-contrib-hls.min.js"></script>
 </head>
 <body>
     <!-- Elemento de vídeo -->
-    <video id="my-video" class="video-js" controls preload="auto" width="640" height="264" data-setup="{}">
+    <video id="my-video" class="video-js" controls preload="auto" width="100%" height="100%" data-setup="{}">
         <source src="https://mycdn.delivery/space/tracks-v1a1/mono.m3u8" type="application/x-mpegURL">
         <!-- Mensagem de fallback para navegadores que não suportam HLS -->
         Your browser does not support the video tag or HLS playback.
