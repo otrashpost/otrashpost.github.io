@@ -23,8 +23,54 @@
             transform: scale(1.1);
         }
 
-        /* Estilos para o modal */
-        .modal {
+        /* Estilos para o slideshow */
+        .slideshow-container {
+            max-width: 100%;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .mySlides {
+            display: none;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 1);
+        }
+        .caption-container {
+            text-align: center;
+            padding: 2px 16px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            position: relative;
+            bottom: 75px;
+            width: 100%;
+        }
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+              .modal {
             display: none; /* Inicialmente oculto */
             position: fixed;
             top: 0;
@@ -63,6 +109,26 @@
         </div>
     </header>
 
+    <!-- Slideshow section -->
+    <section class="slideshow-container">
+        <div class="mySlides">
+            <img src="https://via.placeholder.com/800x400" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <img src="https://via.placeholder.com/800x400" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <img src="https://via.placeholder.com/800x400" style="width:100%">
+        </div>
+
+        <!-- Navigation buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </section>
+
     <main>
         <section class="gallery">
             <div class="item">
@@ -76,10 +142,8 @@
             </div>
             <!-- Adicione mais div.item para mais imagens -->
         </section>
-    </main>
-  
-      <main>
-        <section class="gallery">
+      
+              <section class="gallery">
             <div class="item">
                 <img src="https://via.placeholder.com/400x400" alt="Image 1" onclick="openModal('https://via.placeholder.com/400x400')">
             </div>
@@ -91,25 +155,35 @@
             </div>
             <!-- Adicione mais div.item para mais imagens -->
         </section>
-    </main>
-  
-      <main>
-        <section class="gallery">
-            <div class="item">
-                <img src="https://via.placeholder.com/400x400" alt="Image 1" onclick="openModal('https://via.placeholder.com/400x400')">
-            </div>
-            <div class="item">
-                <img src="https://via.placeholder.com/400x400" alt="Image 2" onclick="openModal('https://via.placeholder.com/400x400')">
-            </div>
-            <div class="item">
-                <img src="https://via.placeholder.com/400x400" alt="Image 3" onclick="openModal('https://via.placeholder.com/400x400')">
-            </div>
-            <!-- Adicione mais div.item para mais imagens -->
-        </section>
+      
     </main>
 
-    <!-- Modal -->
-    <div id="myModal" class="modal">
+    <script>
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var slides = document.getElementsByClassName("mySlides");
+            var captionText = document.getElementById("caption");
+
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+
+            slides[slideIndex - 1].style.display = "block";
+            captionText.innerHTML = slideIndex + " / " + slides.length;
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+    </script>
+  
+  <div id="myModal" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <img class="modal-content" id="modalImage">
     </div>
