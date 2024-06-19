@@ -108,3 +108,15 @@ main {
         grid-template-columns: repeat(3, 1fr); /* 3 colunas por linha */
     }
 }
+.slideshow-container {
+    max-width: 800px; /* Defina o máximo desejado */
+    position: relative;
+    margin: 0 auto; /* Centraliza o slideshow */
+    margin-bottom: 20px;
+}
+
+.mySlides img {
+    width: 100%; /* Mantém a largura da imagem dentro do máximo do slideshow */
+    max-width: 100%;
+    height: auto;
+}
