@@ -109,7 +109,7 @@ main {
     }
 }
 .slideshow-container {
-    max-width: 800px; /* Defina o máximo desejado */
+    max-width: 100%; /* Defina o máximo desejado */
     position: relative;
     margin: 0 auto; /* Centraliza o slideshow */
     margin-bottom: 20px;
@@ -118,5 +118,5 @@ main {
 .mySlides img {
     width: 100%; /* Mantém a largura da imagem dentro do máximo do slideshow */
     max-width: 100%;
-    height: 500px;
+    height: 400px;
 }
