@@ -5,6 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OTRASHPOST</title>
     <link rel="stylesheet" href="/public/css/style.css">
+    <style>
+        /* Estilos adicionais para melhorar a aparência das imagens */
+        .item {
+            margin-bottom: 20px;
+        }
+        .item img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .item img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Estilos para o modal */
+        .modal {
+            display: none; /* Inicialmente oculto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8); /* Fundo semi-transparente */
+            z-index: 9999; /* Garante que o modal esteja acima de todo o conteúdo */
+            overflow: auto; /* Permite rolar o conteúdo se necessário */
+            padding: 20px;
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 80%;
+            max-height: 80%;
+        }
+        .close {
+            color: #fff;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -13,53 +60,73 @@
                 <img src="https://i.pinimg.com/564x/fe/92/04/fe9204fdfd040aa7675f63b0f9a0dac4.jpg" alt="Profile Picture">
                 <span class="profile-name">TaldoRafael</span>
             </div>
-
+        </div>
     </header>
 
     <main>
         <section class="gallery">
             <div class="item">
-                <img src="https://via.placeholder.com/400x400" alt="Image 1">
+                <img src="https://via.placeholder.com/400x400" alt="Image 1" onclick="openModal('https://via.placeholder.com/400x400')">
             </div>
             <div class="item">
-                <img src="https://via.placeholder.com/400x400" alt="Image 2">
+                <img src="https://via.placeholder.com/400x400" alt="Image 2" onclick="openModal('https://via.placeholder.com/400x400')">
             </div>
             <div class="item">
-                <img src="https://via.placeholder.com/400x400" alt="Image 3">
+                <img src="https://via.placeholder.com/400x400" alt="Image 3" onclick="openModal('https://via.placeholder.com/400x400')">
             </div>
-            <!-- Repeat similar div.item elements for more images -->
+            <!-- Adicione mais div.item para mais imagens -->
         </section>
     </main>
-
+  
       <main>
         <section class="gallery">
             <div class="item">
-                <img src="https://via.placeholder.com/400x400" alt="Image 1">
+                <img src="https://via.placeholder.com/400x400" alt="Image 1" onclick="openModal('https://via.placeholder.com/400x400')">
             </div>
             <div class="item">
-                <img src="https://via.placeholder.com/400x400" alt="Image 2">
+                <img src="https://via.placeholder.com/400x400" alt="Image 2" onclick="openModal('https://via.placeholder.com/400x400')">
             </div>
             <div class="item">
-                <img src="https://via.placeholder.com/400x400" alt="Image 3">
+                <img src="https://via.placeholder.com/400x400" alt="Image 3" onclick="openModal('https://via.placeholder.com/400x400')">
             </div>
-            <!-- Repeat similar div.item elements for more images -->
+            <!-- Adicione mais div.item para mais imagens -->
         </section>
     </main>
-   
-            <main>
+  
+      <main>
         <section class="gallery">
             <div class="item">
-                <img src="https://via.placeholder.com/400x400" alt="Image 1">
+                <img src="https://via.placeholder.com/400x400" alt="Image 1" onclick="openModal('https://via.placeholder.com/400x400')">
             </div>
             <div class="item">
-                <img src="https://via.placeholder.com/400x400" alt="Image 2">
+                <img src="https://via.placeholder.com/400x400" alt="Image 2" onclick="openModal('https://via.placeholder.com/400x400')">
             </div>
             <div class="item">
-                <img src="https://via.placeholder.com/400x400" alt="Image 3">
+                <img src="https://via.placeholder.com/400x400" alt="Image 3" onclick="openModal('https://via.placeholder.com/400x400')">
             </div>
-            <!-- Repeat similar div.item elements for more images -->
+            <!-- Adicione mais div.item para mais imagens -->
         </section>
     </main>
-      
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        function openModal(imageUrl) {
+            var modal = document.getElementById('myModal');
+            var modalImg = document.getElementById('modalImage');
+
+            modal.style.display = 'block';
+            modalImg.src = imageUrl;
+        }
+
+        function closeModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'none';
+        }
+    </script>
 </body>
 </html>
