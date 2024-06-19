@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat Online</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+    .chat-container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .chat-header {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .user-info {
+        display: flex;
+        align-items: center;
+    }
+    .user-info img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+    .user-info .username {
+        font-size: 1.1em;
+    }
+    .chat-messages {
+        padding: 20px;
+        overflow-y: auto;
+        max-height: 400px;
+    }
+    .message {
+        margin-bottom: 10px;
+    }
+    .message .user {
+        font-weight: bold;
+        color: #007bff;
+    }
+    .message .time {
+        font-size: 0.8em;
+        color: #999;
+        margin-left: 10px;
+    }
+    .message .text {
+        margin-top: 5px;
+    }
+    .chat-input {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background-color: #f7f7f7;
+        border-top: 1px solid #ddd;
+    }
+    .chat-input input[type="text"] {
+        flex: 1;
+        padding: 8px;
+        font-size: 1em;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    .chat-input button {
+        padding: 8px 15px;
+        font-size: 1em;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .chat-input button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+<div class="chat-container">
+    <div class="chat-header">
+        <span>Chat Online</span>
+        <div class="user-info">
+            <img src="default-avatar.png" alt="Avatar">
+            <span class="username" id="username">Usuário</span>
+            <button onclick="changeUsername()">Alterar Nome</button>
+        </div>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+        <!-- Aqui serão exibidas as mensagens -->
+    </div>
+    <div class="chat-input">
+        <input type="text" id="message" placeholder="Digite sua mensagem...">
+        <button onclick="sendMessage()">Enviar</button>
+    </div>
+</div>
+
+<!-- Modal para alterar o nome de usuário -->
+<div id="usernameModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Alterar Nome de Usuário</h2>
+        <input type="text" id="newUsername" placeholder="Novo nome de usuário...">
+        <button onclick="saveUsername()">Salvar</button>
+    </div>
+</div>
+
+<script>
+    // Função para abrir o modal de alteração de nome de usuário
+    function changeUsername() {
+        var modal = document.getElementById('usernameModal');
+        modal.style.display = 'block';
+    }
+
+    // Função para fechar o modal
+    function closeModal() {
+        var modal = document.getElementById('usernameModal');
+        modal.style.display = 'none';
+    }
+
+    // Função para salvar o novo nome de usuário
+    function saveUsername() {
+        var newUsername = document.getElementById('newUsername').value.trim();
+        if (newUsername !== '') {
+            document.getElementById('username').textContent = newUsername;
+            closeModal(); // Fecha o modal após salvar
+        }
+    }
+
+    // Função para enviar uma mensagem
+    function sendMessage() {
+        var messageInput = document.getElementById('message');
+        var message = messageInput.value.trim();
+        var username = document.getElementById('username').textContent;
+        
+        if (message !== '') {
+            var now = new Date();
+            var time = now.getHours() + ':' + now.getMinutes();
+            
+            var chatMessages = document.getElementById('chat-messages');
+            var messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.innerHTML = '<span class="user">' + username + '</span> <span class="time">' + time + '</span><div class="text">' + message + '</div>';
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            messageInput.value = '';
+        }
+    }
+</script>
+
+</body>
+</html>
