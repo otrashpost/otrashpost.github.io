@@ -124,3 +124,20 @@ main {
 .caption-container {
     display: none;
 }
+.search-input {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 300px; /* Defina o tamanho desejado */
+    margin-right: 10px;
+}
+.search-input {
+    padding: 8px;
+    font-size: 26px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: calc(100% - 100px); /* Ajuste conforme necessário */
+    max-width: 700px; /* Defina um valor máximo se desejar */
+    margin-right: 10px;
+}
