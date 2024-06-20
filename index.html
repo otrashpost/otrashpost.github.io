@@ -45,10 +45,9 @@
         /* Estilos para o slideshow */
         .slideshow-container {
             max-width: 800px; /* Largura máxima desejada */
-            margin: 0 auto; /* Centraliza na página */
+            margin: 0 auto 20px; /* Centraliza na página e adiciona margem inferior */
             position: relative;
             overflow: hidden; /* Esconde partes das imagens que ultrapassam a largura */
-            margin-bottom: 20px;
         }
         .mySlides {
             display: none;
@@ -105,6 +104,12 @@
         .search-button:hover {
             background-color: #0056b3;
         }
+
+        /* Estilos para a numeração dos slides */
+        .caption-container {
+            text-align: center;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -142,7 +147,7 @@
 
         <!-- Navigation buttons -->
         <div class="caption-container">
- 
+            <p id="caption"></p>
         </div>
     </section>
 
