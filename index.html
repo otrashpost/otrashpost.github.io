@@ -10,8 +10,10 @@
         .item {
             margin-bottom: 20px;
             position: relative;
+            text-align: center; /* Centraliza o conteúdo */
         }
         .item img {
+            position: relative; /* Garante que o posicionamento absoluto seja relativo ao .item */
             width: 100%;
             max-width: 100%;
             height: auto;
@@ -22,6 +24,22 @@
         }
         .item img:hover {
             transform: scale(1.1);
+        }
+        .image-caption {
+            position: absolute;
+            top: 10px; /* Posicionamento em relação ao topo da imagem */
+            left: 50%; /* Centraliza horizontalmente */
+            transform: translateX(-50%); /* Centraliza horizontalmente */
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            opacity: 0; /* Inicia oculto */
+            transition: opacity 0.3s ease;
+        }
+        .item:hover .image-caption {
+            opacity: 1; /* Mostra o texto ao passar o mouse sobre o item */
         }
 
         /* Estilos para o slideshow */
@@ -61,6 +79,32 @@
         .slide-button:hover {
             background-color: #0056b3;
         }
+
+        /* Estilos para a seção de pesquisa */
+        .search-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .search-input {
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 60%;
+            margin-right: 10px;
+        }
+        .search-button {
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -77,29 +121,37 @@
     <section class="slideshow-container">
         <div class="mySlides">
             <a href="https://example.com/page1" target="_blank">
-                <img src="https://via.placeholder.com/800x400" style="width:100%">
+                <img src="https://via.placeholder.com/800x400" style="width:100%" alt="Slide 1">
             </a>
             <button class="slide-button" onclick="window.open('https://example.com/page1', '_blank')">Abrir Link 1</button>
         </div>
 
         <div class="mySlides">
             <a href="https://example.com/page2" target="_blank">
-                <img src="https://via.placeholder.com/800x400" style="width:100%">
+                <img src="https://via.placeholder.com/800x400" style="width:100%" alt="Slide 2">
             </a>
             <button class="slide-button" onclick="window.open('https://example.com/page2', '_blank')">Abrir Link 2</button>
         </div>
 
         <div class="mySlides">
             <a href="https://example.com/page3" target="_blank">
-                <img src="https://via.placeholder.com/800x400" style="width:100%">
+                <img src="https://via.placeholder.com/800x400" style="width:100%" alt="Slide 3">
             </a>
             <button class="slide-button" onclick="window.open('https://example.com/page3', '_blank')">Abrir Link 3</button>
         </div>
 
         <!-- Navigation buttons -->
         <div class="caption-container">
-            <p id="caption"></p>
+ 
         </div>
+    </section>
+
+    <!-- Seção de pesquisa -->
+    <section class="search-section">
+        <form id="searchForm" onsubmit="return searchImages()">
+            <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar nome da imagem...">
+            <button type="submit" class="search-button">Pesquisar</button>
+        </form>
     </section>
 
     <main>
@@ -107,26 +159,24 @@
             <div class="item">
                 <a href="https://example.com/page1" target="_blank">
                     <img src="https://via.placeholder.com/400x400" alt="Image 1">
+                    <span class="image-caption">Image 1</span>
                 </a>
             </div>
             <div class="item">
                 <a href="https://example.com/page2" target="_blank">
                     <img src="https://via.placeholder.com/400x400" alt="Image 2">
+                    <span class="image-caption">Image 2</span>
                 </a>
             </div>
             <div class="item">
                 <a href="https://example.com/page3" target="_blank">
                     <img src="https://via.placeholder.com/400x400" alt="Image 3">
+                    <span class="image-caption">Image 3</span>
                 </a>
             </div>
             <!-- Adicione mais div.item para mais imagens -->
         </section>
     </main>
-
-    <div id="myModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage">
-    </div>
 
     <script>
         var slideIndex = 0;
@@ -163,6 +213,22 @@
         function closeModal() {
             var modal = document.getElementById('myModal');
             modal.style.display = 'none';
+        }
+
+        function searchImages() {
+            var searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            var items = document.querySelectorAll('.gallery .item');
+
+            items.forEach(function(item) {
+                var altText = item.querySelector('img').getAttribute('alt').toLowerCase();
+                if (altText.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            return false; // Prevent form submission
         }
     </script>
 </body>
