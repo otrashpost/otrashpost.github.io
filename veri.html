@@ -13,7 +13,7 @@ function verificarLinks() {
     resultsContainer.innerHTML = ''; // Limpa os resultados anteriores
     
     for (let i = 1; i <= maxNum; i++) {
-        const url = baseURL.replace('01', pad(i, 4)); // Substitui o número
+        const url = baseURL.replace('01', pad(i, 2)); // Substitui o número
         verificarLink(url);
     }
 }
