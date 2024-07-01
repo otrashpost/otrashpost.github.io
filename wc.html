@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Player com DRM Widevine</title>
     <style type="text/css">
         body {
             margin: 0;
@@ -23,370 +22,71 @@
         }
     </style>
     <meta name="referrer" content="no-referrer">
-    <!-- Link para o arquivo CSS do player (opcional) -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
-    <!-- Script principal do JW Player -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
     <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
-    <!-- Chave de licença para JW Player -->
     <script>
         jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
+    </script>
+    <script type="text/javascript">
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
+            var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+        var id = getParameterByName('id');
+        if (id == "#") {
+            alert('Pagina Anterior');
+        }
+        var fileUrl, widevineUrl;
+
+        if (id == "record-token") {
+              fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_izguqv54/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
+              widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2l6Z3VxdjU0IiwiZmlsZXMiOiIifQ%3D%3D&signature=acW%2FSu7vwY2nqPgk8jFRCh0BxYg%3D";
+
+        } else if (id == "sportv") {
+             fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_0rt9bh6a/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
+             widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxXzBydDliaDZhIiwiZmlsZXMiOiIifQ%3D%3D&signature=jgNzwTewpxEfh9MM7q3fAvkoKJo%3D";
+
+        } else if (id == "sportv2") {
+              fileUrl = 'https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_gbrlwyd7/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd';
+              widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2dicmx3eWQ3IiwiZmlsZXMiOiIifQ%3D%3D&signature=WywS2%2FijX7XcWBim5ic5Ruodw%2B0%3D";
+       
+        } else if (id == "sbt-token") {
+              fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_02fpiszm/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
+              widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxXzAyZnBpc3ptIiwiZmlsZXMiOiIifQ%3D%3D&signature=QvsVGodY7lLZphZUb3LnVUcrBIM%3D";
+  }
     </script>
 </head>
 
 <body>
     <div id="player"></div>
     <script>
-        // Função para obter parâmetros da URL
-        function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
-            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
+        console.log('fileUrl:', fileUrl);
+        console.log('widevineUrl:', widevineUrl);
 
-        // Obtém o valor do parâmetro 'id' da URL
-        var id = getParameterByName('id');
-
-       
-  if (id ==  "bandsports") {
-    fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_gbrlwyd7/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-    widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2dicmx3eWQ3IiwiZmlsZXMiOiIifQ%3D%3D&signature=WywS2%2FijX7XcWBim5ic5Ruodw%2B0%3D";
-} else {
-    if (id ==  'combate') {
-      fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_g7xop5jb/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-      widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2c3eG9wNWpiIiwiZmlsZXMiOiIifQ%3D%3D&signature=mmvc8cf%2FskfazhEVnggEztov0Dg%3D";
-} else {
-      if (id ==  "sportv") {
-        fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_0rt9bh6a/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-        widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxXzBydDliaDZhIiwiZmlsZXMiOiIifQ%3D%3D&signature=jgNzwTewpxEfh9MM7q3fAvkoKJo%3D";
-} else {
-        if (id ==  'sportv2') {
-          fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_ss9rnynh/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-          widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX3NzOXJueW5oIiwiZmlsZXMiOiIifQ%3D%3D&signature=ap50SFIsTeMhoayDR9mXcK2R2EE%3D";
-} else {
-          if (id ==  'sportv3') {
-            fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_02fpiszm/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-            widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxXzAyZnBpc3ptIiwiZmlsZXMiOiIifQ%3D%3D&signature=QvsVGodY7lLZphZUb3LnVUcrBIM%3D";
- } else {
-            if (id ==  "premiere") {
-              fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_izguqv54/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-              widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2l6Z3VxdjU0IiwiZmlsZXMiOiIifQ%3D%3D&signature=acW%2FSu7vwY2nqPgk8jFRCh0BxYg%3D";
-} else {
-              if (id ==  "premiere2") {
-                fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_sruumdrm/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX3NydXVtZHJtIiwiZmlsZXMiOiIifQ%3D%3D&signature=xxrujz2pCXIBT5k%2FaktFsTsHpW8%3D";
-} else {
-                if (id ==  "premiere3") {
-                  fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_mqg3j6fl/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                  widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX21xZzNqNmZsIiwiZmlsZXMiOiIifQ%3D%3D&signature=S%2B3VDJuMjixQyerEYmjepGkRDmo%3D";
- } else {
-                  if (id ==  "premiere4") {
-                    fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_sp29t4kp/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                    widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX3NwMjl0NGtwIiwiZmlsZXMiOiIifQ%3D%3D&signature=k%2FaYIZKZ5ONOfTW88UOBBog1ugA%3D";
- } else {
-                    if (id ==  "premiere5") {
-                      fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_entaj4j5/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                      widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2VudGFqNGo1IiwiZmlsZXMiOiIifQ%3D%3D&signature=flSd9oazgTL6BonCMkLbFDs83lI%3D";
-} else {
-                      if (id ==  'premiere6') {
-                        fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_y6vh90eq/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                        widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX3k2dmg5MGVxIiwiZmlsZXMiOiIifQ%3D%3D&signature=RlzqUk2850lASXXIw5HYVoybSVs%3D";
- } else {
-                        if (id ==  "premiere7") {
-                          fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_xbthotql/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                          widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX3hidGhvdHFsIiwiZmlsZXMiOiIifQ%3D%3D&signature=UbmPDewaq88JWF%2B6wORnmhe5oj0%3D";
-} else {
-                          if (id ==  "premiere8") {
-                            fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_w8olvcfa/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                            widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX3c4b2x2Y2ZhIiwiZmlsZXMiOiIifQ%3D%3D&signature=JgeeptN9YnMStb2pweKc7C4Z4fY%3D";
- } else {
-                            if (id ==  'paramount1') {
-                              fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_c3t8eifm/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                              widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2MzdDhlaWZtIiwiZmlsZXMiOiIifQ%3D%3D&signature=KJ3FH90duq5jA9%2B%2BL7wp82%2FeLc4%3D";
-} else {
-                              if (id ==  'paramount2') {
-                                fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_x1h5qlm2/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX3gxaDVxbG0yIiwiZmlsZXMiOiIifQ%3D%3D&signature=wgzqNjLeP9DR6eFp0Io7xlPdo5s%3D";
-} else {
-                                if (id ==  "paramount3") {
-                                  fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_l4isxhbs/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                  widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2w0aXN4aGJzIiwiZmlsZXMiOiIifQ%3D%3D&signature=QbiKpz%2B94o0F84DODv3e5O%2B%2FVLA%3D";
-} else {
-                                  if (id ==  "paramount4") {
-                                    fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_d0atinga/deliveryProfileId/24062/protocol/https/format/mpegdash/manifest.mpd";
-                                    widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2QwYXRpbmdhIiwiZmlsZXMiOiIifQ%3D%3D&signature=Bd273dDeXmlECaHPCqjmB8VHTc0%3D";
-  } else {
-                                    if (id ==  'paramount5') {
-                                      fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_9zqi97o6/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                      widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxXzl6cWk5N282IiwiZmlsZXMiOiIifQ%3D%3D&signature=EVep9LA%2BgW1EpNXOBK9tBmpcsSU%3D";
- } else {
-                                      if (id ==  "band") {
-                                        fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_cyu2aysq/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                                        widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2N5dTJheXNxIiwiZmlsZXMiOiIifQ%3D%3D&signature=cLFfKuh2FhdCc9mgBVIKggIYUvY%3D";
-} else {
-                                        if (id ==  "bandnews") {
-                                          fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_nd547djd/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                          widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX25kNTQ3ZGpkIiwiZmlsZXMiOiIifQ%3D%3D&signature=%2F983zbpT6blDW7B2yhAYS6K66TM%3D";
- } else {
-                                          if (id ==  "bis") {
-                                            fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_snx954jn/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                            widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX3NueDk1NGpuIiwiZmlsZXMiOiIifQ%3D%3D&signature=ALWH91u083SrErmfTtItptw5kis%3D";
-9 } else {
-                                            if (id ==  "canalbrasil") {
-                                              fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_rlszc7f0/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                                              widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX3Jsc3pjN2YwIiwiZmlsZXMiOiIifQ%3D%3D&signature=lU5PXhL7YYKfeOOVs8WSZbTMnZU%3D";
-} else {
-                                              if (id ==  'cnnbrasil') {
-                                                fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_6bvdb65h/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                                                widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxXzZidmRiNjVoIiwiZmlsZXMiOiIifQ%3D%3D&signature=CJm1LrtjXNqi4y1HrKR%2FdZ19lN0%3D";
- } else {
-                                                if (id ==  "cancaonova") {
-                                                  fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_5qw7d8nj/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                                  widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxXzVxdzdkOG5qIiwiZmlsZXMiOiIifQ%3D%3D&signature=W1%2FwT%2F0aUPmzSeJaNsTYP77nhhw%3D";
-} else {
-                                                  if (id ==  "comedycentral") {
-                                                    fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_9gb0i92j/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                                                    widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxXzlnYjBpOTJqIiwiZmlsZXMiOiIifQ%3D%3D&signature=j26%2F03nG4WPg7zvsHMkfN8fN1h0%3D";
-} else {
-                                                    if (id ==  'tvcultura') {
-                                                      fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_fllsf60a/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                                      widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2ZsbHNmNjBhIiwiZmlsZXMiOiIifQ%3D%3D&signature=ui5wckNpaUBcdpjjDv1DIZq8ZNk%3D";
-} else {
-                                                      if (id ==  "filmeart") {
-                                                        fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_057l5edz/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                                                        widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxXzA1N2w1ZWR6IiwiZmlsZXMiOiIifQ%3D%3D&signature=0KzwekvOhjpHo5HouKY0PTScWb8%3D";
-} else {
-                                                        if (id ==  "futura") {
-                                                          fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_ldtlzcqa/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                                                          widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2xkdGx6Y3FhIiwiZmlsZXMiOiIifQ%3D%3D&signature=o9fgvWIzFu6BQfMQw8I7wkiF8sY%3D";
- } else {
-                                                          if (id ==  'gnt') {
-                                                            fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_yhgyou7j/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                                                            widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX3loZ3lvdTdqIiwiZmlsZXMiOiIifQ%3D%3D&signature=x7dWkF34WX4VnkHQZjoY4xx%2FzMk%3D";
-} else {
-                                                            if (id ==  "gazeta") {
-                                                              fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_ojn2lnd1/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                                              widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX29qbjJsbmQxIiwiZmlsZXMiOiIifQ%3D%3D&signature=zQxgkoUjbluO%2Bx9gEtyx%2FrFKp5U%3D";
- } else {
-                                                              if (id ==  'globonews') {
-                                                                fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_j6pemrqt/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                                                widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2o2cGVtcnF0IiwiZmlsZXMiOiIifQ%3D%3D&signature=7sWFGTznG%2FqAqGpxbfeeWofRBUk%3D";
-} else {
-                                                                if (id ==  "gloob") {
-                                                                  fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_o3n1fzrf/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                                                  widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX28zbjFmenJmIiwiZmlsZXMiOiIifQ%3D%3D&signature=ygr%2FIS8n5rAiv42pOQ%2F5egk8Dqg%3D";
-} else {
-                                                                  if (id ==  "gloobinho") {
-                                                                    fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_1al7y38e/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                                                    widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxXzFhbDd5MzhlIiwiZmlsZXMiOiIifQ%3D%3D&signature=4vRdY6Du9EZY%2FJrhelmDrQeo6cY%3D";
- } else {
-                                                                    if (id ==  "mtv") {
-                                                                      fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_95zxi22y/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                                                      widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxXzk1enhpMjJ5IiwiZmlsZXMiOiIifQ%3D%3D&signature=H9fo9BIsnBfp5nd9sCHwxslHyOc%3D";
-} else {
-                                                                      if (id ==  'megapix') {
-                                                                        fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_tm8jpqhy/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                                                                        widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX3RtOGpwcWh5IiwiZmlsZXMiOiIifQ%3D%3D&signature=m%2BAJzpJYF%2FgxGv7BEDBYpueCWCU%3D";
-} else {
-                                                                        if (id ==  "modoviagem") {
-                                                                          fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_b9cfqhor/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                                                          widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2I5Y2ZxaG9yIiwiZmlsZXMiOiIifQ%3D%3D&signature=gBXm%2F6JDC0vayDZp3cHWRAHA%2Bu4%3D";
-                                                                          _0x8fc59c = "ModoViagem";
-                                                                          _0x427812 = "Assista à programação do canal ModoViagem de maneira gratuita!";
-                                                                          _0x2b156d = "https://upload.wikimedia.org/wikipedia/commons/f/ff/Logotipo_do_Modo_Viagem.svg";
-                                                                        } else {
-                                                                          if (id ==  "multishow") {
-                                                                            fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_60j9saur/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                                                                            widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxXzYwajlzYXVyIiwiZmlsZXMiOiIifQ%3D%3D&signature=MpMVRCuZOXpnKiXb9wOBYEgX1G4%3D";
-                                                                            _0x8fc59c = "Multishow";
-                                                                            _0x427812 = "Assista à programação do Multishow de maneira gratuita!";
-                                                                            _0x2b156d = "https://upload.wikimedia.org/wikipedia/commons/4/4a/Multishow.png";
-                                                                          } else {
-                                                                            if (id ==  "nick") {
-                                                                              fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_3cpghna3/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                                                                              widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxXzNjcGdobmEzIiwiZmlsZXMiOiIifQ%3D%3D&signature=EL76IKLt%2FcNlFjNohOJWfK%2BvsBA%3D";
-                                                                              _0x8fc59c = "Nickelodeon";
-                                                                              _0x427812 = "Assista à programação da Nickelodeon de maneira gratuita!";
-                                                                              _0x2b156d = "https://upload.wikimedia.org/wikipedia/commons/7/7a/Nickelodeon_2009_logo.svg";
-                                                                            } else {
-                                                                              if (id ==  "nickjr") {
-                                                                                fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_o1fv2m2w/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                                                                                widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX28xZnYybTJ3IiwiZmlsZXMiOiIifQ%3D%3D&signature=WLETEgHTspkZmfnw32HYzQNHAmM%3D";
-                                                                                _0x8fc59c = "Nick JR";
-                                                                                _0x427812 = "Assista à programação da Nick JR de maneira gratuita!";
-                                                                                _0x2b156d = "https://upload.wikimedia.org/wikipedia/commons/a/a1/Nick_Jr._logo_2009.svg";
-                                                                              } else {
-                                                                                if (id ==  "canaloff") {
-                                                                                  fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_a9nmz7zy/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                                                                  widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2E5bm16N3p5IiwiZmlsZXMiOiIifQ%3D%3D&signature=0BrbiUzuP9KoqjIqcqtImhw%2F%2BpY%3D";
-                                                                                  _0x8fc59c = "Canal Off";
-                                                                                  _0x427812 = "Assista à programação do Canal Off de maneira gratuita!";
-                                                                                  _0x2b156d = "https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_Canal_OFF.png";
-                                                                                } else {
-                                                                                  if (id ==  "paramount") {
-                                                                                    fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_w3wt4y1m/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                                                                    widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX3czd3Q0eTFtIiwiZmlsZXMiOiIifQ%3D%3D&signature=f3wnptCo2LoRD4jCIt5vw8dV6ZM%3D";
-                                                                                    _0x8fc59c = 'Paramount';
-                                                                                    _0x427812 = "Assista à programação do Paramount de maneira gratuita!";
-                                                                                    _0x2b156d = "https://upload.wikimedia.org/wikipedia/commons/1/1b/Paramount_Global_Logo.svg";
-                                                                                  } else {
-                                                                                    if (id ==  'record') {
-                                                                                      fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_uwy5arp5/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                                                                      widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX3V3eTVhcnA1IiwiZmlsZXMiOiIifQ%3D%3D&signature=CaDL5xHxwdqs%2FOkapdVDcVfJu6o%3D";
-                                                                                      _0x8fc59c = 'RecordTV';
-                                                                                      _0x427812 = "Assista à programação da RecordTV de maneira gratuita!";
-                                                                                      _0x2b156d = "https://upload.wikimedia.org/wikipedia/pt/1/10/Logotipo_da_Record.png";
-                                                                                    } else {
-                                                                                      if (id ==  "recordnews") {
-                                                                                        fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_ztp6olt4/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                                                                                        widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX3p0cDZvbHQ0IiwiZmlsZXMiOiIifQ%3D%3D&signature=VcneE5gQ1LcoSuKB5338XajUNTo%3D";
-                                                                                        _0x8fc59c = "Record News";
-                                                                                        _0x427812 = "Assista à programação da Record News de maneira gratuita!";
-                                                                                        _0x2b156d = "https://upload.wikimedia.org/wikipedia/commons/7/76/Record_News_logo_2022.svg";
-                                                                                      } else {
-                                                                                        if (id ==  "redevida") {
-                                                                                          fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_pkhvvy1s/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                                                                          widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX3BraHZ2eTFzIiwiZmlsZXMiOiIifQ%3D%3D&signature=tHsl0NQUmA5S1JmVzW7aLuJr%2Fnk%3D";
-                                                                                          _0x8fc59c = "Rede Vida";
-                                                                                          _0x427812 = "Assista à programação da Rede Vida de maneira gratuita!";
-                                                                                          _0x2b156d = "https://upload.wikimedia.org/wikipedia/commons/0/0c/Rede_Vida_logo.png";
-                                                                                        } else {
-                                                                                          if (id ==  "tvratimbum") {
-                                                                                            fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_0tyro3zl/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                                                                                            widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxXzB0eXJvM3psIiwiZmlsZXMiOiIifQ%3D%3D&signature=KoywSOqcNaUFNwRxgFUY5WqY59c%3D";
-                                                                                            _0x8fc59c = "TV Ra Tim Bum";
-                                                                                            _0x427812 = "Assista à programação da TV Ra Tim Bum de maneira gratuita!";
-                                                                                            _0x2b156d = "https://upload.wikimedia.org/wikipedia/commons/d/de/TV_R%C3%A1-Tim-Bum.png";
-                                                                                          } else {
-                                                                                            if (id ==  "sbt") {
-                                                                                              fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_a4ch5k8t/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                                                                                              widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2E0Y2g1azh0IiwiZmlsZXMiOiIifQ%3D%3D&signature=yLv%2Bmd4mjnvSDsfINNXIJZ1i9io%3D";
-                                                                                              _0x8fc59c = "SBT";
-                                                                                              _0x427812 = "Assista à programação do SBT de maneira gratuita!";
-                                                                                              _0x2b156d = "https://upload.wikimedia.org/wikipedia/pt/4/41/Logotipo_do_SBT.svg";
-                                                                                            } else {
-                                                                                              if (id ==  "tvbrasil") {
-                                                                                                fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_8pqvbgfa/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                                                                                widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxXzhwcXZiZ2ZhIiwiZmlsZXMiOiIifQ%3D%3D&signature=LraSdwn8CtGOccCf5SfmPyZsTAk%3D";
-                                                                                                _0x8fc59c = "TV Brasil";
-                                                                                                _0x427812 = "Assista à programação da TV Brasil de maneira gratuita!";
-                                                                                                _0x2b156d = "https://upload.wikimedia.org/wikipedia/commons/b/b9/TV_Brasil_logo_2023.svg";
-                                                                                              } else {
-                                                                                                if (id ==  "studiouniversal") {
-                                                                                                  fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_l57qbckb/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                                                                                                  widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2w1N3FiY2tiIiwiZmlsZXMiOiIifQ%3D%3D&signature=LPUpkDo9wBwdb%2BdwvcCXRsC0dTc%3D";
-                                                                                                  _0x8fc59c = "Studio Universal";
-                                                                                                  _0x427812 = "Assista à programação da Studio Universal de maneira gratuita!";
-                                                                                                  _0x2b156d = "https://upload.wikimedia.org/wikipedia/commons/0/06/Logo_Studio_Universal.svg";
-                                                                                                } else {
-                                                                                                  if (id ==  "tcaction") {
-                                                                                                    fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_gqqi5fl2/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                                                                                    widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2dxcWk1ZmwyIiwiZmlsZXMiOiIifQ%3D%3D&signature=7g3EhXp%2FesFpLaDXEUxQ81V7i28%3D";
-                                                                                                    _0x8fc59c = "TC Action";
-                                                                                                    _0x427812 = "Assista à programação da TC Action de maneira gratuita!";
-                                                                                                    _0x2b156d = "https://upload.wikimedia.org/wikipedia/commons/3/37/Telecine_Action_2.png";
-                                                                                                  } else {
-                                                                                                    if (id ==  "tcfun") {
-                                                                                                      fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_7m2cn9xp/deliveryProfileId/23003/protocol/https/format/mpegdash/manifest.mpd";
-                                                                                                      widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxXzdtMmNuOXhwIiwiZmlsZXMiOiIifQ%3D%3D&signature=mBIYwKrKc%2B4Y9WrPeczjW3rkErE%3D";
-                                                                                                      _0x8fc59c = "TC Fun";
-                                                                                                      _0x427812 = "Assista à programação da TC Fun de maneira gratuita!";
-                                                                                                      _0x2b156d = "https://upload.wikimedia.org/wikipedia/commons/8/8b/Telecine_Fun_(2019).svg";
-                                                                                                    } else {
-                                                                                                      if (id ==  "tcpipoca") {
-                                                                                                        fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_b0cwawva/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                                                                                        widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX2IwY3dhd3ZhIiwiZmlsZXMiOiIifQ%3D%3D&signature=X0w%2FiqbTFjwNLkL8OtRU2ysrLaA%3D";
-                                                                                                        _0x8fc59c = "TC Pipoca";
-                                                                                                        _0x427812 = "Assista à programação da TC Pipoca de maneira gratuita!";
-                                                                                                        _0x2b156d = "https://upload.wikimedia.org/wikipedia/commons/a/a6/Telecine_Pipoca_(2019).svg";
-                                                                                                      } else {
-                                                                                                        if (id ==  "tctouch") {
-                                                                                                          fileUrl = "https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_uw19pcd7/deliveryProfileId/22993/protocol/https/format/mpegdash/manifest.mpd";
-                                                                                                          widevineUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiZGpKOE1qSTJOemd6TVh4M2UteEd5bVU0SHZJQVNOakpoZ1ZsVm9Ta0g5Q1Z4TnpFTlpQeGRqZlg4aDB2OXdjaFRvX1QySDdqdjZZWWhlNGMwWEFORVdSbGdvaVNrNXU3Q1dmXzc4endqMFpZWXZ0SnNSUHpFSi0talE9PSIsImFjY291bnRfaWQiOjIyNjc4MzEsImNvbnRlbnRfaWQiOiIxX3V3MTlwY2Q3IiwiZmlsZXMiOiIifQ%3D%3D&signature=2ympZ2Mh04i%2BiP%2F8R78oCU%2BYrSk%3D";
-                                                                                                          _0x8fc59c = "TC Touch";
-                                                                                                          _0x427812 = "Assista à programação da TC Touch de maneira gratuita!";
-                                                                                                      }
-                                                                                                    }
-                                                                                                  }
-                                                                                                }
-                                                                                              }
-                                                                                            }
-                                                                                          }
-                                                                                        }
-                                                                                      }
-                                                                                    }
-                                                                                  }
-                                                                                }
-                                                                              }
-                                                                            }
-                                                                          }
-                                                                        }
-                                                                      }
-                                                                    }
-                                                                  }
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-        };
-
-        // Verifica se 'id' corresponde a uma página conhecida
-        if (id && pages[id]) {
-            var fileUrl = pages[id].fileUrl;
-            var widevineUrl = pages[id].widevineUrl;
-            var pageTitle = pages[id].title;
-
-            // Configuração do player JW Player
-            var playerInstance = jwplayer("player");
-            playerInstance.setup({
-                playlist: [{
-                    sources: [{
-                        file: fileUrl,
-                        type: "dash",
-                        drm: {
-                            widevine: {
-                                url: widevineUrl
-                            }
-                        }
-                    }]
-                }],
-                width: "100%",
-                height: "100%",
-                aspectratio: "16:9",
-                autostart: true,
-                cast: {},
-                sharing: false
-            });
-        }
+       var playerInstance = jwplayer("player");
+                        playerInstance.setup({
+                                playlist: [{
+                                        "sources": [{
+                                                "default": false,
+                                                "type": "mpd",
+                                                "file": url,
+                                                "drm: {
+                                                            widevine: {
+                                                            url: widevineUrl,
+                                                },
+                                                "label": "0"
+                                        }]
+                                }],
+                                width: "100%",
+                                height: "100%",
+                                aspectratio: "16:9",
+                                autostart: true,
+                                cast: {},
+                                sharing: false
+                        });
     </script>
 </body>
-
 </html>
