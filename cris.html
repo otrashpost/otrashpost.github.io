@@ -3,33 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>x✅️VERIFICAR✅️</title>
+<title>xu✅️VERIFICAR✅️</title>
 <script>
-function verificarLinks() {
+async function verificarLinks() {
     const baseURL = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/{num1}/{num2}.m3u8';
     const maxNum = 5000;
     const resultsContainer = document.getElementById('results');
     
     resultsContainer.innerHTML = ''; // Limpa os resultados anteriores
     
+    // Array para armazenar URLs online
+    const onlineLinks = [];
+    
+    // Verificar todos os links
     for (let i = 1; i <= maxNum; i++) {
         const url = baseURL
             .replace('{num1}', pad(i, 3)) // Substitui o primeiro número
             .replace('{num2}', pad(i, 3)); // Substitui o segundo número
-        verificarLink(url);
+        // Adiciona a URL ao array de links online
+        onlineLinks.push(verificarLink(url));
     }
+
+    // Aguarda que todas as verificações sejam concluídas
+    const results = await Promise.all(onlineLinks);
+    
+    // Adiciona apenas links online aos resultados
+    results.forEach(result => {
+        if (result.status === '🟢Online - ✅️') {
+            adicionarResultado(result.url, result.status);
+        }
+    });
 }
 
 async function verificarLink(url) {
     try {
         const response = await fetch(url);
         if (response.ok) {
-            adicionarResultado(url, '🟢Online - ✅️');
+            return { url, status: '🟢Online - ✅️' };
         } else {
-            adicionarResultado(url, '🔴Off-line - 🔴');
+            return { url, status: '🔴Off-line - 🔴' };
         }
     } catch (error) {
-        adicionarResultado(url, '⚠️NÃO EXISTE⚠️');
+        return { url, status: '⚠️NÃO EXISTE⚠️' };
     }
 }
 
