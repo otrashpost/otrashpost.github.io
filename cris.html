@@ -3,14 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>xu✅️VERIFICAR✅️</title>
+<title>x✅️VERIFICAR✅️</title>
+<style>
+    #progress-container {
+        margin-top: 20px;
+    }
+    #progress-bar {
+        width: 100%;
+        height: 20px;
+        margin-top: 10px;
+    }
+    #countdown {
+        margin-top: 10px;
+    }
+</style>
 <script>
+let totalLinks = 10000;
+let linksChecked = 0;
+
 async function verificarLinks() {
     const baseURL = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/{num1}/{num2}.m3u8';
-    const maxNum = 5000;
+    const maxNum = totalLinks;
     const resultsContainer = document.getElementById('results');
-    
+    const progressBar = document.getElementById('progress-bar');
+    const countdown = document.getElementById('countdown');
+
     resultsContainer.innerHTML = ''; // Limpa os resultados anteriores
+    linksChecked = 0;
+    
+    // Atualiza a contagem inicial
+    countdown.textContent = `Faltam verificar: ${maxNum}`;
+    progressBar.value = 0;
+    progressBar.max = maxNum;
     
     // Array para armazenar URLs online
     const onlineLinks = [];
@@ -45,6 +69,10 @@ async function verificarLink(url) {
         }
     } catch (error) {
         return { url, status: '⚠️NÃO EXISTE⚠️' };
+    } finally {
+        // Atualiza a contagem e o progresso após cada verificação
+        linksChecked++;
+        updateProgress();
     }
 }
 
@@ -53,6 +81,14 @@ function adicionarResultado(url, status) {
     const resultElement = document.createElement('div');
     resultElement.textContent = `${url}: ${status}`;
     resultsContainer.appendChild(resultElement);
+}
+
+function updateProgress() {
+    const progressBar = document.getElementById('progress-bar');
+    const countdown = document.getElementById('countdown');
+    
+    progressBar.value = linksChecked;
+    countdown.textContent = `Faltam verificar: ${totalLinks - linksChecked}`;
 }
 
 function pad(num, size) {
@@ -66,5 +102,10 @@ function pad(num, size) {
 <h1>✅️ Verificar ✅️</h1>
 <button onclick="verificarLinks()">VER PRÓXIMO</button>
 <div id="results"></div>
+
+<div id="progress-container">
+    <progress id="progress-bar" value="0" max="5000"></progress>
+    <div id="countdown">Faltam verificar: 5000</div>
+</div>
 </body>
 </html>
