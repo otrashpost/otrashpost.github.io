@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>✅️VERIFICAR✅️</title>
+<title>x✅️asd✅️</title>
 <style>
     #progress-container {
         margin-top: 20px;
@@ -31,11 +31,11 @@
     }
 </style>
 <script>
-let totalLinks = 10000;
+let totalLinks = 5000;
 let linksChecked = 0;
 
 async function verificarLinks() {
-    const baseURL = 'https://stream.ads.ottera.tv/playlist.m3u8?network_id={num1}';
+    const baseURL = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore105/stream/hls/{num1}/{num2}.m3u8';
     const maxNum = totalLinks;
     const resultsContainer = document.getElementById('results');
     const progressBar = document.getElementById('progress-bar');
@@ -56,6 +56,7 @@ async function verificarLinks() {
     for (let i = 1; i <= maxNum; i++) {
         const url = baseURL
             .replace('{num1}', pad(i, 3)) // Substitui o primeiro número
+            .replace('{num2}', pad(i, 3)); // Substitui o segundo número
         // Adiciona a URL ao array de links online
         onlineLinks.push(verificarLink(url));
     }
@@ -113,8 +114,8 @@ function pad(num, size) {
 <button onclick="verificarLinks()">VER PRÓXIMO</button>
 
 <div id="progress-container">
-    <progress id="progress-bar" value="0" max="10000"></progress>
-    <div id="countdown">Faltam verificar: 10000</div>
+    <progress id="progress-bar" value="0" max="5000"></progress>
+    <div id="countdown">Faltam verificar: 5000</div>
 </div>
 
 <div class="intbox">
