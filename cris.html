@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✅️VERIFICAR✅️</title>
+<script>
+function verificarLinks() {
+    const baseURL = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/{num1}/{num2}.m3u8';
+    const maxNum = 5000;
+    const resultsContainer = document.getElementById('results');
+    
+    resultsContainer.innerHTML = ''; // Limpa os resultados anteriores
+    
+    for (let i = 1; i <= maxNum; i++) {
+        const url = baseURL
+            .replace('{num1}', pad(i, 3)) // Substitui o primeiro número
+            .replace('{num2}', pad(i, 3)); // Substitui o segundo número
+        verificarLink(url);
+    }
+}
+
+async function verificarLink(url) {
+    try {
+        const response = await fetch(url);
+        if (response.ok) {
+            adicionarResultado(url, '🟢Online - ✅️');
+        } else {
+            adicionarResultado(url, '🔴Off-line - 🔴');
+        }
+    } catch (error) {
+        adicionarResultado(url, '⚠️NÃO EXISTE⚠️');
+    }
+}
+
+function adicionarResultado(url, status) {
+    const resultsContainer = document.getElementById('results');
+    const resultElement = document.createElement('div');
+    resultElement.textContent = `${url}: ${status}`;
+    resultsContainer.appendChild(resultElement);
+}
+
+function pad(num, size) {
+    let s = num + "";
+    while (s.length < size) s = "0" + s;
+    return s;
+}
+</script>
+</head>
+<body>
+<h1>✅️ Verificar ✅️</h1>
+<button onclick="verificarLinks()">VER PRÓXIMO</button>
+<div id="results"></div>
+</body>
+</html>
