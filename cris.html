@@ -22,7 +22,7 @@ let totalLinks = 10000;
 let linksChecked = 0;
 
 async function verificarLinks() {
-    const baseURL = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/{num1}/{num2}.m3u8';
+    const baseURL = 'https://stream.ads.ottera.tv/playlist.m3u8?network_id={num1}';
     const maxNum = totalLinks;
     const resultsContainer = document.getElementById('results');
     const progressBar = document.getElementById('progress-bar');
@@ -43,7 +43,6 @@ async function verificarLinks() {
     for (let i = 1; i <= maxNum; i++) {
         const url = baseURL
             .replace('{num1}', pad(i, 3)) // Substitui o primeiro número
-            .replace('{num2}', pad(i, 3)); // Substitui o segundo número
         // Adiciona a URL ao array de links online
         onlineLinks.push(verificarLink(url));
     }
