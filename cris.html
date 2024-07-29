@@ -3,10 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>xh✅️VERIFICAR✅️</title>
+<title>x✅️VERIFICAR✅️</title>
 <style>
     #progress-container {
         margin-top: 20px;
+    }
+    .intbox {
+        border: 2px solid #007bff;
+        border-radius: 8px;
+        padding: 15px;
+        background-color: #f8f9fa;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     #progress-bar {
         width: 100%;
@@ -15,14 +22,15 @@
     }
     #countdown {
         margin-top: 10px;
+        font-weight: bold;
     }
 </style>
 <script>
-let totalLinks = 10000;
+let totalLinks = 5000;
 let linksChecked = 0;
 
 async function verificarLinks() {
-    const baseURL = 'https://stream.ads.ottera.tv/playlist.m3u8?network_id={num1}';
+    const baseURL = 'https://stream.ads.ottera.tv/playlist.m3u8?network_id={num2}';
     const maxNum = totalLinks;
     const resultsContainer = document.getElementById('results');
     const progressBar = document.getElementById('progress-bar');
@@ -103,8 +111,10 @@ function pad(num, size) {
 <div id="results"></div>
 
 <div id="progress-container">
-    <progress id="progress-bar" value="0" max="5000"></progress>
-    <div id="countdown">Faltam verificar: 5000</div>
+    <div class="intbox">
+        <progress id="progress-bar" value="0" max="10000"></progress>
+        <div id="countdown">Faltam verificar: 10000</div>
+    </div>
 </div>
 </body>
 </html>
