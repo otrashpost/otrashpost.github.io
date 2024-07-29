@@ -3,17 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>x✅️asd✅️</title>
+<title>x✅️VERIFICAR✅️</title>
 <style>
     #progress-container {
-        margin-top: 20px;
-    }
-    .intbox {
-        border: 2px solid #007bff;
-        border-radius: 8px;
-        padding: 15px;
-        background-color: #f8f9fa;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
         margin-top: 20px;
     }
     #progress-bar {
@@ -23,11 +15,6 @@
     }
     #countdown {
         margin-top: 10px;
-        font-weight: bold;
-    }
-    #results-container {
-        max-height: 400px;
-        overflow-y: auto;
     }
 </style>
 <script>
@@ -35,7 +22,7 @@ let totalLinks = 5000;
 let linksChecked = 0;
 
 async function verificarLinks() {
-    const baseURL = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore105/stream/hls/{num1}/{num2}.m3u8';
+    const baseURL = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/{num1}/{num2}.m3u8';
     const maxNum = totalLinks;
     const resultsContainer = document.getElementById('results');
     const progressBar = document.getElementById('progress-bar');
@@ -64,9 +51,11 @@ async function verificarLinks() {
     // Aguarda que todas as verificações sejam concluídas
     const results = await Promise.all(onlineLinks);
     
-    // Adiciona os resultados dentro da intbox
+    // Adiciona apenas links online aos resultados
     results.forEach(result => {
-        adicionarResultado(result.url, result.status);
+        if (result.status === '🟢Online - ✅️') {
+            adicionarResultado(result.url, result.status);
+        }
     });
 }
 
@@ -112,15 +101,11 @@ function pad(num, size) {
 <body>
 <h1>✅️ Verificar ✅️</h1>
 <button onclick="verificarLinks()">VER PRÓXIMO</button>
+<div id="results"></div>
 
 <div id="progress-container">
     <progress id="progress-bar" value="0" max="5000"></progress>
     <div id="countdown">Faltam verificar: 5000</div>
-</div>
-
-<div class="intbox">
-    <h2>Resultados</h2>
-    <div id="results-container" class="intbox-content"></div>
 </div>
 </body>
 </html>
