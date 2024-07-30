@@ -22,7 +22,7 @@ let totalLinks = 5000;
 let linksChecked = 0;
 
 async function verificarLinks() {
-    const baseURL = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/{num1}/{num2}.m3u8';
+    const baseURL = 'hls/{num1}/{num2}.';
     const maxNum = totalLinks;
     const resultsContainer = document.getElementById('results');
     const progressBar = document.getElementById('progress-bar');
