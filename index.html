@@ -26,6 +26,31 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 		background: none !important;
 		padding: 0 !important;
 	}
+        /* Estilos para a seção de pesquisa */
+        .search-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .search-input {
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 60%;
+            margin-right: 10px;
+        }
+        .search-button {
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
 </style>
 <style id="classic-theme-styles-inline-css" type="text/css">
 /*! This file is auto-generated */
@@ -229,45 +254,6 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
   </div>
 </section>
 
-<div class="bd cont">
-  
-<style>
-        /* Estilos adicionais para melhorar a aparência das imagens */
-        .item {
-            margin-bottom: 20px;
-            position: relative;
-            text-align: center; /* Centraliza o conteúdo */
-        }
-        .item img {
-            position: relative; /* Garante que o posicionamento absoluto seja relativo ao .item */
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            cursor: pointer;
-            border-radius: 5px;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        .item img:hover {
-            transform: scale(1.1);
-        }
-        .image-caption {
-            position: absolute;
-            top: 10px; /* Posicionamento em relação ao topo da imagem */
-            left: 50%; /* Centraliza horizontalmente */
-            transform: translateX(-50%); /* Centraliza horizontalmente */
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 12px;
-            opacity: 0; /* Inicia oculto */
-            transition: opacity 0.3s ease;
-        }
-        .item:hover .image-caption {
-            opacity: 1; /* Mostra o texto ao passar o mouse sobre o item */
-        }
-       </style>
 <!-- GRUPO -->
 
 <div class="colored-box-content">
@@ -287,7 +273,10 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
                 >
             </font>
         </strong>
+    </div>
+    <div style="height:20px;overflow:hidden"></div>
 </div>
+
     <!-- Seção de pesquisa -->
     <section class="search-section">
         <form id="searchForm" onsubmit="return searchImages()">
@@ -295,7 +284,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
             <button type="submit" class="search-button">Pesquisar</button>
         </form>
     </section>
-</div>
+
     <main>
         <section class="gallery">
             <div class="item">
@@ -591,11 +580,11 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
             return false; // Prevent form submission
         }
     </script>
-  
-  
-</footer>
 
-</div>
+
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=650bce971ce1b90012e5d869&product=sop' async='async'></script>  
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 
 <script type="text/javascript" src="wp-content/themes/toronites/resources/assets/js/libs.min_ver%3D1720650536.js" id="libs.min.js-js"></script>
 <script type="text/javascript" id="pub.min.js-js-extra">
