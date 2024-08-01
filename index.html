@@ -28,28 +28,45 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 	}
         /* Estilos para a seção de pesquisa */
         .search-section {
-            text-align: center;
-            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            margin: 20px 0; /* Ajuste conforme necessário */
+        }
+        #searchForm {
+            display: flex;
+            align-items: center;
         }
         .search-input {
-            padding: 8px;
+            padding: 10px;
             font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            width: 60%;
-            margin-right: 10px;
+            margin-right: 10px; /* Espaçamento entre o input e o botão */
+            border: 1px solid #ccc; /* Adiciona uma borda ao campo de entrada */
+            border-radius: 4px; /* Adiciona bordas arredondadas ao campo de entrada */
+            width: 200px; /* Ajuste a largura conforme necessário */
         }
         .search-button {
-            padding: 8px 16px;
+            padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
+            border: none; /* Remove a borda padrão do botão */
+            border-radius: 4px; /* Adiciona bordas arredondadas ao botão */
+            background-color: #007bff; /* Cor de fundo do botão */
+            color: #fff; /* Cor do texto do botão */
         }
         .search-button:hover {
-            background-color: #0056b3;
+            background-color: #0056b3; /* Cor de fundo quando o mouse passa sobre o botão */
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .item {
+            margin: 10px;
+        }
+        .widget-content {
+            text-align: center;
+            margin-top: 20px;
         }
 </style>
 <style id="classic-theme-styles-inline-css" type="text/css">
@@ -550,7 +567,6 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
             <a href="https://gratis.pixbet.com/_/KQ9S2P" target="_top"><img border="5" data-original-height="18" data-original-width="150" src="/imgs/palpitegratis.png" alt="PALPITE GRATIS"></a></div></div></div>
 
     <script>
-
         function openModal(imageUrl) {
             var modal = document.getElementById('myModal');
             var modalImg = document.getElementById('modalImage');
