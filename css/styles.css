@@ -166,7 +166,7 @@ main {
     display: flex;
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center;     /* Centraliza verticalmente, se a altura da seção permitir */
-    height: 100vh;           /* Opcional: Define a altura da seção para preencher a tela */
+    height: 800;           /* Opcional: Define a altura da seção para preencher a tela */
 }
 
 #searchForm {
