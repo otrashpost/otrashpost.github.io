@@ -59,6 +59,15 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
             text-align: center;
             margin-top: 20px;
         }
+	 .copy-confirmation {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+        }
 </style>
 <style id="classic-theme-styles-inline-css" type="text/css">
 /*! This file is auto-generated */
@@ -247,27 +256,15 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 
 <!-- GRUPO -->
 
-<div class="colored-box-content">
-    <div class="paragraph" style="text-align:center;">
-        <span><font size="5">⬇️</font></span>
-        <strong><font color="#070b97" size="5">TELEGRAM</font></strong>
-        <span><font size="5">⬇️</font></span>
+    <div class="widget-content">
+        <a id="copy-link" href="https://gratis.pixbet.com/_/KQ9S2P" target="_top">
+            <img border="5" data-original-height="18" data-original-width="150" src="/imgs/palpitegratis.png" alt="PALPITE GRATIS">
+        </a>
     </div>
-    <div class="paragraph" style="text-align:center;">
-        <strong>
-            <font size="5">
-                <input 
-                    type="text" 
-                    value="https://t.me/sinalpublico" 
-                    style="display: block; margin: 0 auto; text-align: center; width: 35%; border-radius: 15px; border: 1px solid #ccc; padding: 10px;" 
-                    onclick="this.select(); document.execCommand('copy'); alert('O LINK DO GRUPO FOI COPIADO');"
-                >
-            </font>
-        </strong>
+    <div id="confirmation" class="copy-confirmation">link do grupo foi copiado!</div>
     </div>
-    <div style="height:20px;overflow:hidden"></div>
-</div>
-
+  </div>
+	
     <!-- Seção de pesquisa -->
     <section class="search-section">
         <form id="searchForm" onsubmit="return searchImages()">
@@ -567,11 +564,33 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
         }
     </script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var linkElement = document.getElementById('copy-link');
+            var confirmationElement = document.getElementById('confirmation');
+
+            linkElement.addEventListener('click', function(event) {
+                event.preventDefault(); // Impede o comportamento padrão do link
+
+                // Cria um elemento temporário para copiar o texto
+                var tempInput = document.createElement('input');
+                tempInput.value = linkElement.href;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+
+                // Mostra a mensagem de confirmação
+                confirmationElement.style.display = 'block';
+                setTimeout(function() {
+                    confirmationElement.style.display = 'none';
+                }, 2000); // A mensagem desaparecerá após 2 segundos
+            });
+        });
+    </script>
 
 <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=650bce971ce1b90012e5d869&product=sop' async='async'></script>  
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-
 <script type="text/javascript" src="wp-content/themes/toronites/resources/assets/js/libs.min_ver%3D1720650536.js" id="libs.min.js-js"></script>
 <script type="text/javascript" id="pub.min.js-js-extra">
 /* <![CDATA[ */
