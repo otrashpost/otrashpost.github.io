@@ -1,49 +1,59 @@
-<html><head><script type="text/javascript" charset="utf-8" async="" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script><script type="text/javascript" charset="utf-8" async="" src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwpsrv.js"></script><script type="text/javascript" charset="utf-8" async="" src="//ssl.p.jwpcdn.com/player/v/8.26.0/vast.js"></script>
-    <title>Player</title>
-    <meta content="width=device-width, initial-scale=1" name="viewport">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Language" content="pt-br">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
+    <title>Player</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/hotstar.css">
+
+    <!-- JavaScript -->
     <script src="//cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/jwplayer/jwplayer.latest.js"></script>
-<body style="padding: 0px; margin:0px;" marginwidth="0" marginheight="0">
-<script src="//ssl.p.jwpcdn.com/player/v/8.21.0/jwplayer.js"></script>
-<script> jwplayer.key = 'ITWMv7t88JGzI0xPwW8I0+LveiXX9SWbfdmt0ArUSyc='; </script>
-
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwpsrv.js" async></script>
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/vast.js" async></script>
+    <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1" async></script>
+    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+    <link rel="dns-prefetch" href="//acscdn.com">
+    <link rel="dns-prefetch" href="//youradexchange.com">
+    <script type="text/javascript" src="https://acscdn.com/script/suv5.js"></script>
 </head>
-
-<body>
+<body style="padding: 0; margin: 0;">
     <div id="player"></div>
+
     <script>
+        jwplayer.key = 'ITWMv7t88JGzI0xPwW8I0+LveiXX9SWbfdmt0ArUSyc=';
+
         function setupPlayer() {
-        var playerInstance = jwplayer("player");
-        playerInstance.setup({
-            playlist: [{
-                sources: [
-                    {
-                        default: false,
-                        type: "mpd",
-                        file: "https://playdash-cdn.xyz/https://0108-vos.dtvott.com/DASH/manifest.mpd",
-                        drm: {
-                            clearkey: {
-                                key: "feb149d1ba340d1a9ac2ba6a512c8e03",
-                                keyId: "8f492be58fd03634ad813b5accd568e5"
-                            }
+            var playerInstance = jwplayer("player");
+            playerInstance.setup({
+                playlist: [{
+                    sources: [
+                        {
+                            default: false,
+                            type: "mpd",
+                            file: "https://playdash-cdn.xyz/https://0108-vos.dtvott.com/DASH/manifest.mpd",
+                            drm: {
+                                clearkey: {
+                                    key: "feb149d1ba340d1a9ac2ba6a512c8e03",
+                                    keyId: "8f492be58fd03634ad813b5accd568e5"
+                                }
+                            },
+                            label: "1"
                         },
-                        label: "1"
-                    },
-                    {
-                        default: true,
-                        type: "mpd",
-                        file: "https://playdash-cdn.xyz/https://0108-vos.dtvott.com/DASH/manifest.mpd",
-                        drm: {
-                            widevine: {},
-                            playready: {}
-                        },
-                        label: "2"
-                    }
-                ]
-            }],
+                        {
+                            default: true,
+                            type: "mpd",
+                            file: "https://playdash-cdn.xyz/https://0108-vos.dtvott.com/DASH/manifest.mpd",
+                            drm: {
+                                widevine: {},
+                                playready: {}
+                            },
+                            label: "2"
+                        }
+                    ]
+                }],
                 width: "100%",
                 height: "100%",
                 cast: {},
@@ -63,11 +73,14 @@
                     tag: ""
                 }
             });
+
+            playerInstance.on('error', function() {
+                playerInstance.load({ file: "https://anonmedia.eu/globorj-globorio/tracks-v1a1/mono.m3u8" });
+                playerInstance.play();
+            });
         }
 
-        setupPlayer(); 
-    } 
+        setupPlayer();
     </script>
 </body>
-
 </html>
