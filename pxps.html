@@ -61,6 +61,44 @@
             sharing: false
         });
     </script>
+    <script>
+  var player = videojs('videoPlayer', {
+    techOrder: ['dash'],
+    sources: [{
+      src: 'https://0108-vos.dtvott.com/DASH/manifest.mpd',
+      type: 'application/dash+xml'
+    }]
+  });
+</script>
+
+    <script>
+  async function fetchLink() {
+    try {
+      let response = await fetch('https://0108-vos.dtvott.com/DASH/manifest.mpd');
+      if (!response.ok) throw new Error('Network response was not ok');
+      let data = await response.text();
+      console.log(data); // Aqui você pode manipular o conteúdo do manifesto
+    } catch (error) {
+      console.error('There has been a problem with your fetch operation:', error);
+    }
+  }
+
+  fetchLink();
+</script>
+
+<script>
+  window.location.href = 'https://0108-vos.dtvott.com/DASH/manifest.mpd';
+</script>
+
+    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var link = 'https://0108-vos.dtvott.com/DASH/manifest.mpd';
+    // Modifique o conteúdo da página aqui usando o link
+    document.body.innerHTML = `<p>O link do vídeo é: <a href="${link}">${link}</a></p>`;
+  });
+</script>
+
+
 </body>
 
 </html>
