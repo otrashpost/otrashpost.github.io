@@ -31,28 +31,36 @@
 <body>
     <div id="player"></div>
     <script>
-        // Substitua 'URL_DO_SEU_ARQUIVO_MPD' pelo caminho do seu arquivo .mpd
-        var url = 'https://playdash-cdn.xyz/https://0108-vos.dtvott.com/DASH/manifest.mpd';
-
-        // Configurações DRM, se necessário. Caso contrário, remova essa parte.
-        var drmConfig = {
-            "clearkey": {
-                "keyId": "8f492be58fd03634ad813b5accd568e5",
-                "key": "feb149d1ba340d1a9ac2ba6a512c8e03"
-            }
-        };
-
         var playerInstance = jwplayer("player");
         playerInstance.setup({
             playlist: [{
-                "sources": [{
-                    "default": false,
-                    "type": "mpd",
-                    "file": url,
-                    "drm": drmConfig, // Remova esta linha se não usar DRM
-                    "label": "0"
-                }]
+                sources: [
+                    {
+                        default: false,
+                        type: "mpd",
+                        file: "https://playdash-cdn.xyz/https://0108-vos.dtvott.com/DASH/manifest.mpd",
+                        drm: {
+                            clearkey: {
+                                key: "feb149d1ba340d1a9ac2ba6a512c8e03",
+                                keyId: "8f492be58fd03634ad813b5accd568e5"
+                            }
+                        },
+                        label: "1"
+                    },
+                    {
+                        default: true,
+                        type: "mpd",
+                        file: "https://playdash-cdn.xyz/https://0108-vos.dtvott.com/DASH/manifest.mpd",
+                        drm: {
+                            widevine: {},
+                            playready: {}
+                        },
+                        label: "2"
+                    }
+                ]
             }],
+            primary: "html5",
+            hlshtml: true,
             width: "100%",
             height: "100%",
             aspectratio: "16:9",
@@ -61,7 +69,6 @@
             sharing: false
         });
     </script>
-
 </body>
 
 </html>
