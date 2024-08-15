@@ -2,6 +2,7 @@ const API_KEY = '05902896074695709d7763505bb88b4d';
 const TRENDING_URL = `https://api.themoviedb.org/3/trending/tv/week?api_key=${API_KEY}`;
 const ANIME_BASE_URL = `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=16`;
 const MOVIE_BASE_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=16`;
+
 let currentPageAnime = 1;
 let currentPageMovie = 1;
 let loadingTrending = false;
