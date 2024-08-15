@@ -3,43 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Site de Filmes e Animes</title>
+    <title>CineStream - Filmes e Séries</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Meu Site de Filmes e Animes</h1>
+        <div class="header-container">
+            <div class="logo">CineStream</div>
+            <nav>
+                <ul>
+                    <li><a href="#featured">Destaques</a></li>
+                    <li><a href="#genres">Gêneros</a></li>
+                    <li><a href="#latest">Novidades</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <section id="trending-section">
-            <h2>Em Alta</h2>
-            <div id="trending-slider-container">
-                <div id="trending-slider"></div>
-                <div id="trending-indicators"></div>
+        <section id="featured" class="featured">
+            <h1>Filmes e Séries em Destaque</h1>
+            <div id="featured-slider" class="slider">
+                <div class="slider-inner"></div>
+                <button class="slider-control prev" aria-label="Slide Anterior">‹</button>
+                <button class="slider-control next" aria-label="Próximo Slide">›</button>
             </div>
-            <div id="trending-spinner" class="spinner">Carregando...</div>
+            <div id="featured-spinner" class="spinner">Carregando...</div>
         </section>
 
-        <section id="anime-section">
-            <h2>Animes Legendados</h2>
-            <div id="anime-container" class="container"></div>
-            <div id="anime-spinner" class="spinner">Carregando...</div>
+        <section id="genres" class="genres">
+            <h2>Gêneros Populares</h2>
+            <div id="genres-container" class="grid-container"></div>
         </section>
 
-        <section id="movie-section">
-            <h2>Filmes</h2>
-            <div id="movie-container" class="container"></div>
-            <div id="movie-spinner" class="spinner">Carregando...</div>
+        <section id="latest" class="latest">
+            <h2>Novidades</h2>
+            <div id="latest-movies" class="recent-category">
+                <h3>Filmes Recentes</h3>
+                <div id="movies-container" class="grid-container"></div>
+                <div id="movies-spinner" class="spinner">Carregando...</div>
+            </div>
+
+            <div id="latest-shows" class="recent-category">
+                <h3>Séries Recentes</h3>
+                <div id="shows-container" class="grid-container"></div>
+                <div id="shows-spinner" class="spinner">Carregando...</div>
+            </div>
         </section>
     </main>
 
-    <div id="details">
-        <button id="close-details">✖</button>
-        <img id="details-poster" src="" alt="">
-        <h2 id="details-title"></h2>
-        <p id="details-overview"></p>
-        <p id="details-release-date"></p>
+    <div id="details" class="modal">
+        <button id="close-details" class="modal-close">✖</button>
+        <div class="modal-content">
+            <img id="details-poster" src="" alt="">
+            <div class="modal-text">
+                <h2 id="details-title"></h2>
+                <p id="details-overview"></p>
+                <p id="details-release-date"></p>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
