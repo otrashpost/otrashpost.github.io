@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>x✅️VERIFICAR✅️</title>
+<style>
+    #progress-container {
+        margin-top: 20px;
+    }
+    #progress-bar {
+        width: 100%;
+        height: 20px;
+        margin-top: 10px;
+    }
+    #countdown {
+        margin-top: 10px;
+    }
+</style>
+<script>
+let totalLinks = 5000;
+let linksChecked = 0;
+
+async function verificarLinks() {
+    const baseURL = 'hls/{num1}/{num2}.';
+    const maxNum = totalLinks;
+    const resultsContainer = document.getElementById('results');
+    const progressBar = document.getElementById('progress-bar');
+    const countdown = document.getElementById('countdown');
+
+    resultsContainer.innerHTML = ''; // Limpa os resultados anteriores
+    linksChecked = 0;
+    
+    // Atualiza a contagem inicial
+    countdown.textContent = `Faltam verificar: ${maxNum}`;
+    progressBar.value = 0;
+    progressBar.max = maxNum;
+    
+    // Array para armazenar URLs online
+    const onlineLinks = [];
+    
+    // Verificar todos os links
+    for (let i = 1; i <= maxNum; i++) {
+        const url = baseURL
+            .replace('{num1}', pad(i, 3)) // Substitui o primeiro número
+            .replace('{num2}', pad(i, 3)); // Substitui o segundo número
+        // Adiciona a URL ao array de links online
+        onlineLinks.push(verificarLink(url));
+    }
+
+    // Aguarda que todas as verificações sejam concluídas
+    const results = await Promise.all(onlineLinks);
+    
+    // Adiciona apenas links online aos resultados
+    results.forEach(result => {
+        if (result.status === '🟢Online - ✅️') {
+            adicionarResultado(result.url, result.status);
+        }
+    });
+}
+
+async function verificarLink(url) {
+    try {
+        const response = await fetch(url);
+        if (response.ok) {
+            return { url, status: '🟢Online - ✅️' };
+        } else {
+            return { url, status: '🔴Off-line - 🔴' };
+        }
+    } catch (error) {
+        return { url, status: '⚠️NÃO EXISTE⚠️' };
+    } finally {
+        // Atualiza a contagem e o progresso após cada verificação
+        linksChecked++;
+        updateProgress();
+    }
+}
+
+function adicionarResultado(url, status) {
+    const resultsContainer = document.getElementById('results');
+    const resultElement = document.createElement('div');
+    resultElement.textContent = `${url}: ${status}`;
+    resultsContainer.appendChild(resultElement);
+}
+
+function updateProgress() {
+    const progressBar = document.getElementById('progress-bar');
+    const countdown = document.getElementById('countdown');
+    
+    progressBar.value = linksChecked;
+    countdown.textContent = `Faltam verificar: ${totalLinks - linksChecked}`;
+}
+
+function pad(num, size) {
+    let s = num + "";
+    while (s.length < size) s = "0" + s;
+    return s;
+}
+</script>
+</head>
+<body>
+<h1>✅️ Verificar ✅️</h1>
+<button onclick="verificarLinks()">VER PRÓXIMO</button>
+<div id="results"></div>
+
+<div id="progress-container">
+    <progress id="progress-bar" value="0" max="5000"></progress>
+    <div id="countdown">Faltam verificar: 5000</div>
+</div>
+</body>
+</html>
