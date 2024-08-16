@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Fetch API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #data-container {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .loading {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dados do Canal</h1>
+    <div id="data-container" class="loading">Carregando dados...</div>
+
+    <script>
+        const pageUrl = 'https://api.codetabs.com/v1/proxy/?quest=https://oreidabola.online/canais/canal1.php';
+        const dataContainer = document.getElementById('data-container');
+
+        fetch(pageUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(data => {
+                dataContainer.innerHTML = data;
+                dataContainer.classList.remove('loading');
+            })
+            .catch(error => {
+                dataContainer.innerHTML = `Erro ao carregar dados: ${error.message}`;
+                dataContainer.classList.remove('loading');
+            });
+    </script>
+</body>
+</html>
+d
