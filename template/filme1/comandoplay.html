@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captura de Informações do Filme</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .movie-info, .tv-details {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .movie-info h1, .tv-details h2 {
+            font-size: 1.5em;
+        }
+        .movie-info .rating, .tv-details .episode-list {
+            font-size: 1.2em;
+            color: #007bff;
+        }
+        .movie-info .movie-description {
+            margin-top: 10px;
+        }
+        .tv-details .tv-poster img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .episode-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .episode-list li {
+            margin-bottom: 5px;
+        }
+        .loading {
+            font-size: 1.2em;
+            color: #007bff;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Informações do Filme</h1>
+    <div id="movie-info" class="loading">Carregando...</div>
+    
+    <h1>Detalhes da Série</h1>
+    <div id="tv-details" class="loading">Carregando...</div>
+
+    <script>
+        const apiUrl = "https://api.codetabs.com/v1/proxy/?quest=https://comandoplay.com/rick-e-morty-o-anime/";
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Cria um elemento temporário para parsear o HTML
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
+                
+                // Captura informações do filme
+                const movieInfo = doc.querySelector('.movie-info');
+                const tvPoster = doc.querySelector('.tv-poster img');
+                
+                if (movieInfo) {
+                    // Extraindo informações específicas do filme
+                    const title = movieInfo.querySelector('.entry-title')?.textContent.trim() || 'Título não disponível';
+                    const tagline = movieInfo.querySelector('.tagline')?.textContent.trim() || 'Tagline não disponível';
+                    const rating = movieInfo.querySelector('.progress-value')?.textContent.trim() || 'Rating não disponível';
+                    const description = movieInfo.querySelector('.movie-description .trama')?.textContent.trim() || 'Descrição não disponível';
+                    const contentRating = movieInfo.querySelector('#Rated')?.textContent.trim() || 'Classificação não disponível';
+                    const network = movieInfo.querySelector('.network a')?.textContent.trim() || 'Rede não disponível';
+                    const year = movieInfo.querySelector('.movie-data a')?.textContent.trim() || 'Ano não disponível';
+                    const genre = movieInfo.querySelector('span[itemprop="genre"] a')?.textContent.trim() || 'Gênero não disponível';
+                    const duration = movieInfo.querySelector('span[itemprop="duration"]')?.textContent.trim() || 'Duração não disponível';
+                    const status = movieInfo.querySelector('.stato')?.textContent.trim() || 'Status não disponível';
+                    
+                    // Captura a imagem do pôster
+                    const posterSrc = tvPoster?.getAttribute('src') || '';
+                    const posterAlt = tvPoster?.getAttribute('alt') || 'Pôster não disponível';
+                    
+                    // Monta a string HTML para exibição do filme
+                    const movieHtml = `
+                        <div class="tv-poster">
+                            <img src="${posterSrc}" alt="${posterAlt}">
+                        </div>
+                        <h1>${title}</h1>
+                        <h2>${tagline}</h2>
+                        <div class="rating">Rating: ${rating}</div>
+                        <p><strong>Classificação:</strong> ${contentRating}</p>
+                        <p><strong>Rede:</strong> ${network}</p>
+                        <p><strong>Ano:</strong> ${year}</p>
+                        <p><strong>Gênero:</strong> ${genre}</p>
+                        <p><strong>Duração:</strong> ${duration}</p>
+                        <p><strong>Status:</strong> ${status}</p>
+                        <p class="movie-description"><strong>Descrição:</strong> ${description}</p>
+                    `;
+                    
+                    document.getElementById('movie-info').innerHTML = movieHtml;
+                } else {
+                    document.getElementById('movie-info').innerHTML = '<div class="error">Informações do filme não encontradas.</div>';
+                }
+
+                // Captura informações da seção tv-details
+                const tvDetails = doc.querySelector('.tv-details');
+                
+                if (tvDetails) {
+                    // Captura detalhes da temporada e episódios
+                    const seasons = tvDetails.querySelector('.tv-details-seasons ol');
+                    const episodes = tvDetails.querySelector('.tv-details-episodes ol');
+                    const episodeInfo = tvDetails.querySelector('.tv-details-episodes-info');
+                    
+                    // Extraindo detalhes da temporada
+                    const seasonsHtml = seasons ? seasons.innerHTML : '<p>Temporadas não disponíveis.</p>';
+                    
+                    // Extraindo detalhes dos episódios
+                    const episodesHtml = episodes ? episodes.innerHTML : '<p>Episódios não disponíveis.</p>';
+                    
+                    // Extraindo informações do episódio
+                    const episodeTitle = episodeInfo ? episodeInfo.querySelector('h2')?.textContent.trim() || 'Título do Episódio não disponível' : '';
+                    const trailerSrc = episodeInfo?.querySelector('.player img')?.getAttribute('src') || '';
+                    const trailerAlt = episodeInfo?.querySelector('.player img')?.getAttribute('alt') || 'Trailer não disponível';
+                    const episodeSynopsis = episodeInfo?.querySelector('.synopsis')?.textContent.trim() || 'Sinopse não disponível';
+                    
+                    // Monta a string HTML para exibição dos detalhes da série
+                    const tvDetailsHtml = `
+                        <div class="tv-details-seasons">
+                            <h2>Temporadas</h2>
+                            ${seasonsHtml}
+                        </div>
+                        <div class="tv-details-episodes">
+                            <h2>Episódios</h2>
+                            ${episodesHtml}
+                        </div>
+                        <div class="tv-details-episodes-info">
+                            <h2>${episodeTitle}</h2>
+                            <div class="player">
+                                <div id="s1_1" class="trailer">
+                                    <div class="trailer__player">
+                                        <div class="play-button">
+                                            <a href="https://watch.brplayer.site/watch?v=LV1JSDWB" data-modal-type="iframe" style="display: block">
+                                                <i class="fa fa-play-circle"></i>
+                                            </a>
+                                        </div>
+                                        <img loading="lazy" class="entered loaded hover" src="${trailerSrc}" alt="${trailerAlt}" width="1280">
+                                    </div>
+                                </div>
+                                <div class="ep" id="dl1_1">
+                                    <a href="https://paste1.org/p/tsDJ/" target="_blank" style="display: block">
+                                        <i class="fa fa-download"></i> Download s1 e1
+                                    </a>
+                                </div>
+                                <div class="synopsis">${episodeSynopsis}</div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.getElementById('tv-details').innerHTML = tvDetailsHtml;
+                } else {
+                    document.getElementById('tv-details').innerHTML = '<div class="error">Detalhes da série não encontrados.</div>';
+                }
+            })
+            .catch(error => {
+                document.getElementById('movie-info').innerHTML = `<div class="error">Erro: ${error.message}</div>`;
+                document.getElementById('tv-details').innerHTML = `<div class="error">Erro: ${error.message}</div>`;
+            });
+    </script>
+</body>
+</html>
