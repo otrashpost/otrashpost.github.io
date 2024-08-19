@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos do Mercado Livre</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #0073e6;
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+        #productList {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            list-style-type: none;
+            margin: 0;
+        }
+        #productList li {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #productList li:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        #productList img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid #ddd;
+        }
+        #productList h2 {
+            font-size: 1.1em;
+            margin: 10px 15px 5px;
+            color: #0073e6;
+        }
+        #productList p {
+            margin: 0 15px 15px;
+            color: #555;
+            font-size: 0.9em;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Responsividade */
+        @media (max-width: 768px) {
+            #productList {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Produtos do Mercado Livre</h1>
+    </header>
+    <ul id="productList"></ul>
+
+    <script>
+        async function fetchAndDisplayProducts() {
+            try {
+                const response = await fetch('https://api.codetabs.com/v1/proxy/?quest=https://lista.mercadolivre.com.br/_CustId_1704771170_FILTRABLE*GENDER_18549360?item_id=MLB3626279157&category_id=MLB31447&seller_id=1704771170&client=recoview-selleritems&recos_listing=true#applied_filter_id%3DFILTRABLE_GENDER%26applied_filter_name%3DG%C3%AAnero%26applied_filter_order%3D1%26applied_value_id%3D18549360%26applied_value_name%3DMasculino%26applied_value_order%3D2%26applied_value_results%3D113%26is_custom%3Dfalse');
+                const html = await response.text();
+                
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                
+                const items = doc.querySelectorAll('.ui-search-layout__item');
+                
+                const productList = document.getElementById('productList');
+                productList.innerHTML = '';
+
+                items.forEach(item => {
+                    const title = item.querySelector('.ui-search-item__title')?.textContent.trim() || 'Título não disponível';
+                    const imageUrl = item.querySelector('.ui-search-result-image__element')?.getAttribute('src') || '';
+                    const link = item.querySelector('.ui-search-link')?.getAttribute('href') || '#';
+                    const rating = item.querySelector('.ui-search-reviews__rating-number')?.textContent.trim() || 'N/A';
+                    const reviews = item.querySelector('.ui-search-reviews__amount')?.textContent.trim() || '0';
+
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `
+                        <a href="${link}" target="_blank">
+                            <img src="${imageUrl}" alt="${title}">
+                            <h2>${title}</h2>
+                            <p>Avaliação: ${rating} (${reviews} opiniões)</p>
+                        </a>
+                    `;
+                    productList.appendChild(listItem);
+                });
+            } catch (error) {
+                document.getElementById('productList').innerHTML = `<p style="padding: 20px; text-align: center; color: #f00;">Erro: ${error.message}</p>`;
+            }
+        }
+
+        fetchAndDisplayProducts();
+    </script>
+</body>
+</html>
