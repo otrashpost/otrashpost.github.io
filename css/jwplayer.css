@@ -1,47 +1,18 @@
-/* Define o esquema de cores azul para o JW Player */
-
-.jw-player {
-    background-color: #1a1a1a; /* Cor de fundo do player */
+* {
+	box-sizing:border-box;
 }
-
-.jw-controls {
-    background: rgba(0, 0, 0, 0.6); /* Cor de fundo dos controles com transparência */
+body {
+	background:#000;
+	width:100%;
+	height:100vh;
+	overflow:hidden;
 }
-
-.jw-button, .jw-icon {
-    color: #00aaff; /* Cor dos ícones e botões */
-}
-
-.jw-button:hover, .jw-icon:hover {
-    color: #0099cc; /* Cor dos ícones e botões ao passar o mouse */
-}
-
-.jw-slider .jw-slider-time .jw-slider-bar {
-    background: #00aaff; /* Cor da barra de progresso do vídeo */
-}
-
-.jw-slider .jw-slider-time .jw-slider-handle {
-    background: #0099cc; /* Cor do controle deslizante */
-}
-
-.jw-title {
-    color: #ffffff; /* Cor do título do vídeo */
-}
-
-.jw-media-controls .jw-icon {
-    color: #ffffff; /* Cor dos ícones dos controles de mídia */
-}
-
-.jw-error-container {
-    background-color: #ff0000; /* Cor de fundo da mensagem de erro */
-    color: #ffffff; /* Cor do texto da mensagem de erro */
-}
-
-.jw-settings-menu {
-    background-color: #000000; /* Cor de fundo do menu de configurações */
-}
-
-.jw-settings-menu .jw-menu-item:hover {
-    background-color: #00aaff; /* Cor de fundo do item do menu ao passar o mouse */
-    color: #ffffff; /* Cor do texto do item do menu ao passar o mouse */
+#playertv {
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	display:block;
 }
