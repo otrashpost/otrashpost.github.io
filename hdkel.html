@@ -372,7 +372,12 @@ header img {
             fetchAndProcessContent();
         });
     </script>
-        <script type="text/javascript">
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+<script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script> 
+
+  </script>
+    <script type="text/javascript">
     document.addEventListener("contextmenu", function(e){
         e.preventDefault();
     }, false);
@@ -397,17 +402,19 @@ header img {
         }
     }
     </script>
-    <script>
+    
+ <script>
     /*function check(e)
     {
     alert(e.keyCode);
     }*/
     document.onkeydown = function(e) {
             if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 85 || e.keyCode === 117)) {//Alt+c, Alt+v will also be disabled sadly.
-                alert('DESABILITADO');
+                alert('OFF-LINE');
             }
             return false;
     };
        </script>
+    
 </body>
 </html>
