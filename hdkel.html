@@ -3,224 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetFlix Inspired</title>
+    <title>PLAYER</title>
     <style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #000;
-    color: #fff;
-    overflow-x: hidden;
-}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
 
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #000;
-    color: #fff;
-    padding: 15px 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #000;
+            color: #fff;
+            padding: 15px 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-header img {
-    height: 40px;
-}
+        header img {
+            height: 40px;
+        }
 
-.banner {
-    position: relative;
-    height: 70vh;
-    background: url('https://telaviva.com.br/wp-content/uploads/2022/05/streaming.jpg') no-repeat center center;
-    background-size: cover;
-    color: #fff;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
+        .banner {
+            position: relative;
+            height: 70vh;
+            background: url('https://telaviva.com.br/wp-content/uploads/2022/05/streaming.jpg') no-repeat center center;
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
 
-.banner h1 {
-    font-size: 4em;
-    margin: 0;
-}
+        .banner h1 {
+            font-size: 4em;
+            margin: 0;
+        }
 
-.banner p {
-    font-size: 1.2em;
-    margin: 10px 0;
-}
+        .banner p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
 
-.search-bar {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
 
-.search-bar input {
-    padding: 10px;
-    font-size: 1em;
-    border: 2px solid #e50914;
-    border-radius: 5px;
-    width: 300px;
-    color: #000;
-}
+        .search-bar input {
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #e50914;
+            border-radius: 5px;
+            width: 300px;
+            color: #000;
+        }
 
-.search-bar button {
-    padding: 10px 20px;
-    font-size: 1em;
-    background-color: #e50914;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-left: 10px;
-}
+        .search-bar button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #e50914;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
 
-.search-bar button:hover {
-    background-color: #f40612;
-}
+        .search-bar button:hover {
+            background-color: #f40612;
+        }
 
-.section {
-    padding: 20px;
-}
+        .section {
+            padding: 20px;
+        }
 
-.section h2 {
-    font-size: 2em;
-    margin: 0 0 20px;
-}
+        .section h2 {
+            font-size: 2em;
+            margin: 0 0 20px;
+        }
 
-.carousel-wrapper {
-    position: relative;
-    overflow: hidden;
-    padding: 10px;
-}
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            padding: 10px;
+        }
 
-.carousel {
-    display: flex;
-    overflow-x: auto;
-    gap: 10px;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    padding: 0;
-    margin: 0;
-    align-items: flex-start;
-}
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            padding: 0;
+            margin: 0;
+            align-items: flex-start;
+            -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+        }
 
-.carousel::-webkit-scrollbar {
-    display: none;
-}
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
 
-.movie-card {
-    background-color: #00000;
-    border-radius: 8px;
-    overflow: hidden;
-    flex: none;
-    scroll-snap-align: start;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    width: 200px;
-    display: flex;
-    flex-direction: column;
-}
+        .movie-card {
+            background-color: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            flex: none;
+            scroll-snap-align: start;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+        }
 
-.movie-card img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
+        .movie-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
 
-.movie-info {
-    padding: 10px;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.6);
-}
+        .movie-info {
+            padding: 10px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.6);
+        }
 
-.movie-info h3 {
-    margin: 0;
-    font-size: 1.2em; /* Ajuste o tamanho da fonte aqui */
-}
+        .movie-info h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
 
-.movie-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
-}
+        .movie-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+        }
 
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 1.5em;
-    z-index: 100;
-    transition: background-color 0.3s;
-}
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 1.5em;
+            z-index: 100;
+            transition: background-color 0.3s;
+        }
 
-.carousel-button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
+        .carousel-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
 
-.carousel-button.left {
-    left: 10px;
-}
+        .carousel-button.left {
+            left: 10px;
+        }
 
-.carousel-button.right {
-    right: 10px;
-}
+        .carousel-button.right {
+            right: 10px;
+        }
 
-.loading {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5em;
-    z-index: 1000;
-}
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            z-index: 1000;
+        }
 
-@media (max-width: 768px) {
-    .banner h1 {
-        font-size: 2.5em;
-    }
+        @media (max-width: 768px) {
+            .banner h1 {
+                font-size: 2.5em;
+            }
 
-    .banner p {
-        font-size: 1em;
-    }
+            .banner p {
+                font-size: 1em;
+            }
 
-    .movie-card {
-        width: 150px;
-    }
+            .movie-card {
+                width: 150px;
+            }
 
-    .movie-info h3 {
-        font-size: 1em; /* Ajuste o tamanho da fonte para dispositivos menores */
-    }
-}
+            .movie-info h3 {
+                font-size: 1em;
+            }
+        }
 
-@media (min-width: 769px) {
-    .movie-info h3 {
-        font-size: 1.3em; /* Ajuste o tamanho da fonte para dispositivos maiores */
-    }
-}
+        @media (min-width: 769px) {
+            .movie-info h3 {
+                font-size: 1.3em;
+            }
+        }
 
-.movie-card.hidden {
-    display: none;
-}
-
+        .movie-card.hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -241,180 +241,23 @@ header img {
     <div class="loading" id="loading">Carregando...</div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const apiUrl = 'https://api.codetabs.com/v1/proxy/?quest=https://sinalpublicos.weebly.com/listfilmestoken.html';
-            const loadingElement = document.getElementById('loading');
-            const carouselsContainer = document.getElementById('carousels');
-
-            async function fetchAndProcessContent() {
-                loadingElement.style.display = 'flex';
-
-                try {
-                    const response = await fetch(apiUrl);
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    const text = await response.text();
-                    const lines = text.split('\n');
-                    carouselsContainer.innerHTML = '';
-
-                    const categories = {};
-                    let currentItem = null;
-
-                    lines.forEach(line => {
-                        if (line.startsWith('#EXTINF')) {
-                            const metaInfo = line.match(/tvg-name="([^"]*)".*tvg-logo="([^"]*)".*group-title="([^"]*)"/);
-                            if (metaInfo) {
-                                currentItem = {
-                                    name: metaInfo[1],
-                                    logo: metaInfo[2],
-                                    groupTitle: metaInfo[3],
-                                    url: line
-                                };
-                            }
-                        } else if (line.startsWith('http')) {
-                            if (currentItem) {
-                                const encodedUrl = encodeURIComponent(line);
-                                const playerUrl = `http://playm3utype.weebly.com/playerfilmes.html?url=${encodedUrl}&img=${encodeURIComponent(currentItem.logo)}`;
-
-                                if (!categories[currentItem.groupTitle]) {
-                                    categories[currentItem.groupTitle] = [];
-                                }
-
-                                categories[currentItem.groupTitle].push({
-                                    name: currentItem.name,
-                                    logo: currentItem.logo,
-                                    url: playerUrl
-                                });
-
-                                currentItem = null;
-                            }
-                        }
-                    });
-
-                    Object.keys(categories).forEach(category => {
-                        const categorySection = document.createElement('section');
-                        categorySection.className = 'section';
-                        categorySection.innerHTML = `<h2>${category}</h2>`;
-
-                        const carouselWrapper = document.createElement('div');
-                        carouselWrapper.className = 'carousel-wrapper';
-
-                        const carousel = document.createElement('div');
-                        carousel.className = 'carousel';
-
-                        categories[category].forEach(item => {
-                            const card = document.createElement('div');
-                            card.className = 'movie-card';
-                            card.innerHTML = `
-                                <a href="${item.url}" target="_blank">
-                                    <img src="${item.logo}" alt="${item.name} Logo">
-                                    <div class="movie-info">
-                                        <h3>${item.name}</h3>
-                                    </div>
-                                </a>
-                            `;
-                            carousel.appendChild(card);
-                        });
-
-                        const leftButton = document.createElement('button');
-                        leftButton.className = 'carousel-button left';
-                        leftButton.innerText = '<';
-                        leftButton.addEventListener('click', () => {
-                            carousel.scrollBy({ left: -carousel.offsetWidth / 5, behavior: 'smooth' });
-                        });
-
-                        const rightButton = document.createElement('button');
-                        rightButton.className = 'carousel-button right';
-                        rightButton.innerText = '>';
-                        rightButton.addEventListener('click', () => {
-                            carousel.scrollBy({ left: carousel.offsetWidth / 5, behavior: 'smooth' });
-                        });
-
-                        carouselWrapper.appendChild(leftButton);
-                        carouselWrapper.appendChild(carousel);
-                        carouselWrapper.appendChild(rightButton);
-
-                        categorySection.appendChild(carouselWrapper);
-                        carouselsContainer.appendChild(categorySection);
-                    });
-
-                    setupSearchFunctionality();
-
-                } catch (error) {
-                    carouselsContainer.innerHTML = 'Erro ao carregar o conteúdo: ' + error.message;
-                } finally {
-                    loadingElement.style.display = 'none';
-                }
-            }
-
-            function setupSearchFunctionality() {
-                const searchButton = document.getElementById('searchButton');
-                const searchInput = document.getElementById('searchInput');
-
-                searchButton.addEventListener('click', () => {
-                    const query = searchInput.value.toLowerCase();
-                    const movieCards = document.querySelectorAll('.movie-card');
-
-                    movieCards.forEach(card => {
-                        const movieName = card.querySelector('.movie-info h3').textContent.toLowerCase();
-                        card.classList.toggle('hidden', !movieName.includes(query));
-                    });
-                });
-
-                searchInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        searchButton.click();
-                    }
-                });
-            }
-
-            fetchAndProcessContent();
-        });
+const _0x427476=_0x13c5;function _0x53e6(){const _0x5ada9f=['push','groupTitle','ZrlIe','url','ayerfilmes','\x20Logo\x22>\x0a\x20\x20','match','getElement','button','29826588VghRBy','keypress','url=','movie-card','UDBsl','searchInpu','\x20\x20\x20\x20\x20<img\x20','gUTTt','CSnTM','section','addEventLi','PteMf','http','carousels','vL3VwbGF5Z','hqDEb','11329281hWyhOm','className','startsWith','.movie-inf','Loaded','layerfilme','95dzPLXB','oFmqV','</h3>\x0a\x20\x20\x20\x20','smooth','ById','Network\x20re','classList','i.codetabs','rregar\x20o\x20c','keys','OssEm','\x20\x20\x20<a\x20href','appendChil','none','ZSUFV','vYZvL','textConten','mNvbS8.htm','&img=','LbdKg','value','.com/v1/pr','fhalC','key','34738QNzBnx','stener','ault','utton\x20righ','oibPh','e-info\x22>\x0a\x20','ltnOR','.carousel','1169661SkvkGH','sponse\x20was','_blank\x22>\x0a\x20','VkgBL','.weebly.co','flex','CzdNq','uaoWU','createElem','div','56qGtCZu','CZNYT','</h2>','split','qdVqr','style','NkrOg','mKVYw','Enter','torAll','jBSrF','xByaO','<h2>','h3>','loading','lmes.html?','lJVDs','https://ap','\x22\x20target=\x22','toLowerCas','\x20not\x20ok','message','logo','offsetWidt','ent','querySelec','119796qhRKDD','eEEVE','toggle','name','YIbjH','157344OPUNay','scrollBy','preventDef','AKCjl','searchButt','10zBzJPJ','PcBav','display','mousedown','\x22\x20alt=\x22','rapper','http://upl','\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','onteúdo:\x20','includes','om/aHR0cDo','\x20\x20\x20\x20\x20\x20\x20\x20\x20<','oxy/?quest','hidden','Erro\x20ao\x20ca','\x20</a>\x0a\x20\x20\x20\x20','src=\x22','text','carousel-b','innerHTML','s.weebly.c','EScKV','#EXTINF','beQBm','514661MxvypQ','74vdSCfp','XJmaWxtZXM','UmZvy','pfdCo','m/playerfi','ud2VlYmx5L','tor','innerText','lass=\x22movi','.movie-car','rEUcD','\x20\x20</div>\x0a\x20','IQBhI','lXUGy','carousel','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20','GbpZp','carousel-w','o\x20h3','OiamP','jNfnR','UHAdR','click','forEach','\x20\x20\x20\x20<div\x20c','=http://up','\x20\x20\x20\x20','EOeSz','utton\x20left','RvcYI','pFkno','bXihi','DOMContent'];_0x53e6=function(){return _0x5ada9f;};return _0x53e6();}function _0x13c5(_0x9efabc,_0x39c0b2){const _0x3144c0=_0x53e6();return _0x13c5=function(_0x4d9081,_0x453090){_0x4d9081=_0x4d9081-(-0x64*-0x22+-0x16*0x6d+-0x2ff);let _0x60c5f=_0x3144c0[_0x4d9081];return _0x60c5f;},_0x13c5(_0x9efabc,_0x39c0b2);}(function(_0x4ccc98,_0x2b72e0){const _0x35743f=_0x13c5,_0x54207c=_0x4ccc98();while(!![]){try{const _0x33756a=-parseInt(_0x35743f(0x152))/(0x2484+0x463*0x2+0x2d49*-0x1)*(parseInt(_0x35743f(0xfa))/(-0x1*0x37f+0x1ed4+0x577*-0x5))+-parseInt(_0x35743f(0x15a))/(0x1a3*0xf+0x3aa+-0x1c34)+parseInt(_0x35743f(0x17e))/(0x26d7+0x1259+-0x1*0x392c)*(parseInt(_0x35743f(0x13a))/(-0x2400*0x1+-0xd*0x8e+-0xd9*-0x33))+-parseInt(_0x35743f(0x183))/(-0x55f*-0x5+0x16cf+-0x24*0x161)+parseInt(_0x35743f(0xf9))/(-0x5ba+0x2110*0x1+0x1b4f*-0x1)*(parseInt(_0x35743f(0x164))/(0x4*-0x9b+-0x11f0+0x122*0x12))+-parseInt(_0x35743f(0x134))/(-0xfd+-0xea9*0x1+0xfaf)*(parseInt(_0x35743f(0x188))/(-0x19bf+-0x2*-0x27b+0x14d3*0x1))+parseInt(_0x35743f(0x124))/(0x25d5+-0x2601+0x37);if(_0x33756a===_0x2b72e0)break;else _0x54207c['push'](_0x54207c['shift']());}catch(_0x2b3c2d){_0x54207c['push'](_0x54207c['shift']());}}}(_0x53e6,0x123172+0x110dd9*0x1+-0x13*0x12f3f),document[_0x427476(0x12e)+_0x427476(0x153)](_0x427476(0x11a)+_0x427476(0x138),()=>{const _0x30f981=_0x427476,_0x7df09f={'pFkno':_0x30f981(0xf7),'RvcYI':_0x30f981(0x130),'PteMf':function(_0x47b75c,_0x291454){return _0x47b75c(_0x291454);},'CSnTM':_0x30f981(0x163),'CZNYT':_0x30f981(0x127),'AKCjl':function(_0x274e24,_0x2ebf01){return _0x274e24/_0x2ebf01;},'PcBav':_0x30f981(0x13d),'lJVDs':_0x30f981(0x12d),'VkgBL':_0x30f981(0x10b)+_0x30f981(0x18d),'hqDEb':_0x30f981(0x108),'lXUGy':_0x30f981(0x123),'jBSrF':_0x30f981(0xf3)+_0x30f981(0x116),'mKVYw':_0x30f981(0x110),'ZrlIe':_0x30f981(0xf3)+_0x30f981(0x155)+'t','ltnOR':_0x30f981(0x15f),'rEUcD':_0x30f981(0x13f)+_0x30f981(0x15b)+_0x30f981(0x178),'uaoWU':function(_0x3bcea6){return _0x3bcea6();},'eEEVE':function(_0x413c2e,_0x4624df){return _0x413c2e+_0x4624df;},'pfdCo':_0x30f981(0xef)+_0x30f981(0x142)+_0x30f981(0x190),'fhalC':_0x30f981(0x147),'YIbjH':_0x30f981(0x103)+'d','NkrOg':_0x30f981(0x137)+_0x30f981(0x10c),'qdVqr':_0x30f981(0xee),'oFmqV':function(_0x2c397a,_0x3b6a79){return _0x2c397a===_0x3b6a79;},'LbdKg':_0x30f981(0x16c),'GbpZp':_0x30f981(0x187)+'on','ZSUFV':_0x30f981(0x129)+'t','UmZvy':_0x30f981(0x125),'UDBsl':_0x30f981(0x175)+_0x30f981(0x141)+_0x30f981(0x14f)+_0x30f981(0xed)+_0x30f981(0x113)+_0x30f981(0x139)+_0x30f981(0xf5)+_0x30f981(0xeb)+_0x30f981(0x132)+_0x30f981(0xfb)+_0x30f981(0xff)+_0x30f981(0x14b)+'l','IQBhI':_0x30f981(0x172),'UHAdR':_0x30f981(0x131),'jNfnR':function(_0xe8b779){return _0xe8b779();}},_0x50561c=_0x7df09f[_0x30f981(0x128)],_0x4542e2=document[_0x30f981(0x122)+_0x30f981(0x13e)](_0x7df09f[_0x30f981(0x106)]),_0xe9bd6f=document[_0x30f981(0x122)+_0x30f981(0x13e)](_0x7df09f[_0x30f981(0x10f)]);async function _0x5138f7(){const _0x2d197f=_0x30f981,_0x14bde8={'bXihi':function(_0x52e7e6,_0x54891d){const _0x2a4965=_0x13c5;return _0x7df09f[_0x2a4965(0x186)](_0x52e7e6,_0x54891d);},'OiamP':_0x7df09f[_0x2d197f(0x189)]};_0x4542e2[_0x2d197f(0x169)][_0x2d197f(0x18a)]=_0x7df09f[_0x2d197f(0x158)];try{const _0xf99461=await _0x7df09f[_0x2d197f(0x12f)](fetch,_0x50561c);if(!_0xf99461['ok'])throw new Error(_0x7df09f[_0x2d197f(0x104)]);const _0x2d4468=await _0xf99461[_0x2d197f(0xf2)](),_0x4d1a48=_0x2d4468[_0x2d197f(0x167)]('\x0a');_0xe9bd6f[_0x2d197f(0xf4)]='';const _0x59adbf={};let _0x3da3f4=null;_0x4d1a48[_0x2d197f(0x111)](_0x5d09e6=>{const _0x41dc85=_0x2d197f;if(_0x5d09e6[_0x41dc85(0x136)](_0x7df09f[_0x41dc85(0x118)])){const _0x45cc03=_0x5d09e6[_0x41dc85(0x121)](/tvg-name="([^"]*)".*tvg-logo="([^"]*)".*group-title="([^"]*)"/);_0x45cc03&&(_0x3da3f4={'name':_0x45cc03[0xe5*-0x6+-0x4fe+0xa5d],'logo':_0x45cc03[-0x109b+-0x3ab*-0x8+-0xcbb],'groupTitle':_0x45cc03[-0x1c2+-0x2480+0x2645],'url':_0x5d09e6});}else{if(_0x5d09e6[_0x41dc85(0x136)](_0x7df09f[_0x41dc85(0x117)])){if(_0x3da3f4){const _0x3bb686=_0x7df09f[_0x41dc85(0x12f)](encodeURIComponent,_0x5d09e6),_0x2ec7cd=_0x41dc85(0x18e)+_0x41dc85(0x11f)+_0x41dc85(0x15e)+_0x41dc85(0xfe)+_0x41dc85(0x173)+_0x41dc85(0x126)+_0x3bb686+_0x41dc85(0x14c)+_0x7df09f[_0x41dc85(0x12f)](encodeURIComponent,_0x3da3f4[_0x41dc85(0x17a)]);!_0x59adbf[_0x3da3f4[_0x41dc85(0x11c)]]&&(_0x59adbf[_0x3da3f4[_0x41dc85(0x11c)]]=[]),_0x59adbf[_0x3da3f4[_0x41dc85(0x11c)]][_0x41dc85(0x11b)]({'name':_0x3da3f4[_0x41dc85(0x181)],'logo':_0x3da3f4[_0x41dc85(0x17a)],'url':_0x2ec7cd}),_0x3da3f4=null;}}}}),Object[_0x2d197f(0x143)](_0x59adbf)[_0x2d197f(0x111)](_0x44cb6e=>{const _0x59a5ed=_0x2d197f,_0x411b0a={'EScKV':_0x7df09f[_0x59a5ed(0x12c)],'vYZvL':_0x7df09f[_0x59a5ed(0x165)],'EOeSz':function(_0x387fd3,_0x2da8e7){const _0x575802=_0x59a5ed;return _0x7df09f[_0x575802(0x186)](_0x387fd3,_0x2da8e7);},'beQBm':_0x7df09f[_0x59a5ed(0x189)]},_0x505d7c=document[_0x59a5ed(0x162)+_0x59a5ed(0x17c)](_0x7df09f[_0x59a5ed(0x174)]);_0x505d7c[_0x59a5ed(0x135)]=_0x7df09f[_0x59a5ed(0x174)],_0x505d7c[_0x59a5ed(0xf4)]=_0x59a5ed(0x170)+_0x44cb6e+_0x59a5ed(0x166);const _0x35802d=document[_0x59a5ed(0x162)+_0x59a5ed(0x17c)](_0x7df09f[_0x59a5ed(0x12c)]);_0x35802d[_0x59a5ed(0x135)]=_0x7df09f[_0x59a5ed(0x15d)];const _0x4ae76a=document[_0x59a5ed(0x162)+_0x59a5ed(0x17c)](_0x7df09f[_0x59a5ed(0x12c)]);_0x4ae76a[_0x59a5ed(0x135)]=_0x7df09f[_0x59a5ed(0x133)],_0x59adbf[_0x44cb6e][_0x59a5ed(0x111)](_0xb9a27a=>{const _0x3d3bea=_0x59a5ed,_0x114fed=document[_0x3d3bea(0x162)+_0x3d3bea(0x17c)](_0x411b0a[_0x3d3bea(0xf6)]);_0x114fed[_0x3d3bea(0x135)]=_0x411b0a[_0x3d3bea(0x149)],_0x114fed[_0x3d3bea(0xf4)]=_0x3d3bea(0x109)+_0x3d3bea(0x18f)+_0x3d3bea(0x18f)+_0x3d3bea(0x145)+'=\x22'+_0xb9a27a[_0x3d3bea(0x11e)]+(_0x3d3bea(0x176)+_0x3d3bea(0x15c)+_0x3d3bea(0x18f)+_0x3d3bea(0x18f)+_0x3d3bea(0x18f)+_0x3d3bea(0x12a)+_0x3d3bea(0xf1))+_0xb9a27a[_0x3d3bea(0x17a)]+_0x3d3bea(0x18c)+_0xb9a27a[_0x3d3bea(0x181)]+(_0x3d3bea(0x120)+_0x3d3bea(0x18f)+_0x3d3bea(0x18f)+_0x3d3bea(0x18f)+_0x3d3bea(0x112)+_0x3d3bea(0x102)+_0x3d3bea(0x157)+_0x3d3bea(0x18f)+_0x3d3bea(0x18f)+_0x3d3bea(0x18f)+_0x3d3bea(0xec)+_0x3d3bea(0x171))+_0xb9a27a[_0x3d3bea(0x181)]+(_0x3d3bea(0x13c)+_0x3d3bea(0x18f)+_0x3d3bea(0x18f)+_0x3d3bea(0x18f)+_0x3d3bea(0x105)+_0x3d3bea(0x18f)+_0x3d3bea(0x18f)+_0x3d3bea(0x18f)+_0x3d3bea(0xf0)+_0x3d3bea(0x18f)+_0x3d3bea(0x18f)+_0x3d3bea(0x114)),_0x4ae76a[_0x3d3bea(0x146)+'d'](_0x114fed);});const _0x1f88ec=document[_0x59a5ed(0x162)+_0x59a5ed(0x17c)](_0x7df09f[_0x59a5ed(0x107)]);_0x1f88ec[_0x59a5ed(0x135)]=_0x7df09f[_0x59a5ed(0x16e)],_0x1f88ec[_0x59a5ed(0x101)]='<',_0x1f88ec[_0x59a5ed(0x12e)+_0x59a5ed(0x153)](_0x7df09f[_0x59a5ed(0x16b)],()=>{const _0x11dc33=_0x59a5ed;_0x4ae76a[_0x11dc33(0x184)]({'left':_0x411b0a[_0x11dc33(0x115)](-_0x4ae76a[_0x11dc33(0x17b)+'h'],-0x1682+0xa7*-0x1+0x172e),'behavior':_0x411b0a[_0x11dc33(0xf8)]});});const _0x586147=document[_0x59a5ed(0x162)+_0x59a5ed(0x17c)](_0x7df09f[_0x59a5ed(0x107)]);_0x586147[_0x59a5ed(0x135)]=_0x7df09f[_0x59a5ed(0x11d)],_0x586147[_0x59a5ed(0x101)]='>',_0x586147[_0x59a5ed(0x12e)+_0x59a5ed(0x153)](_0x7df09f[_0x59a5ed(0x16b)],()=>{const _0x47541f=_0x59a5ed;_0x4ae76a[_0x47541f(0x184)]({'left':_0x14bde8[_0x47541f(0x119)](_0x4ae76a[_0x47541f(0x17b)+'h'],0x1fe3*-0x1+0x1e35+0x1b3),'behavior':_0x14bde8[_0x47541f(0x10d)]});}),_0x35802d[_0x59a5ed(0x146)+'d'](_0x1f88ec),_0x35802d[_0x59a5ed(0x146)+'d'](_0x4ae76a),_0x35802d[_0x59a5ed(0x146)+'d'](_0x586147),_0x505d7c[_0x59a5ed(0x146)+'d'](_0x35802d),_0xe9bd6f[_0x59a5ed(0x146)+'d'](_0x505d7c);}),_0x7df09f[_0x2d197f(0x161)](_0x58a160);}catch(_0x103201){_0xe9bd6f[_0x2d197f(0xf4)]=_0x7df09f[_0x2d197f(0x17f)](_0x7df09f[_0x2d197f(0xfd)],_0x103201[_0x2d197f(0x179)]);}finally{_0x4542e2[_0x2d197f(0x169)][_0x2d197f(0x18a)]=_0x7df09f[_0x2d197f(0x150)];}}function _0x58a160(){const _0x484162=_0x30f981,_0x4f9ea8={'OssEm':_0x7df09f[_0x484162(0x16a)],'xByaO':_0x7df09f[_0x484162(0x168)],'CzdNq':function(_0x146ac4,_0x5d7f82){const _0x5f1ffd=_0x484162;return _0x7df09f[_0x5f1ffd(0x13b)](_0x146ac4,_0x5d7f82);},'gUTTt':_0x7df09f[_0x484162(0x14d)]},_0x1efdcb=document[_0x484162(0x122)+_0x484162(0x13e)](_0x7df09f[_0x484162(0x10a)]),_0x349fd8=document[_0x484162(0x122)+_0x484162(0x13e)](_0x7df09f[_0x484162(0x148)]);_0x1efdcb[_0x484162(0x12e)+_0x484162(0x153)](_0x7df09f[_0x484162(0x16b)],()=>{const _0x3338e2=_0x484162,_0x21cdf7=_0x349fd8[_0x3338e2(0x14e)][_0x3338e2(0x177)+'e'](),_0x5a2ba9=document[_0x3338e2(0x17d)+_0x3338e2(0x16d)](_0x7df09f[_0x3338e2(0x182)]);_0x5a2ba9[_0x3338e2(0x111)](_0x408c43=>{const _0x1e7937=_0x3338e2,_0x272ea1=_0x408c43[_0x1e7937(0x17d)+_0x1e7937(0x100)](_0x4f9ea8[_0x1e7937(0x144)])[_0x1e7937(0x14a)+'t'][_0x1e7937(0x177)+'e']();_0x408c43[_0x1e7937(0x140)][_0x1e7937(0x180)](_0x4f9ea8[_0x1e7937(0x16f)],!_0x272ea1[_0x1e7937(0x191)](_0x21cdf7));});}),_0x349fd8[_0x484162(0x12e)+_0x484162(0x153)](_0x7df09f[_0x484162(0xfc)],_0x3d5980=>{const _0x134f71=_0x484162;_0x4f9ea8[_0x134f71(0x160)](_0x3d5980[_0x134f71(0x151)],_0x4f9ea8[_0x134f71(0x12b)])&&_0x1efdcb[_0x134f71(0x110)]();});}_0x7df09f[_0x30f981(0x10e)](_0x5138f7);}),document[_0x427476(0x17d)+_0x427476(0x16d)](_0x427476(0x159))[_0x427476(0x111)](_0x318660=>{const _0x334781=_0x427476,_0x106bd4={'oibPh':_0x334781(0x18b)};_0x318660[_0x334781(0x12e)+_0x334781(0x153)](_0x106bd4[_0x334781(0x156)],_0x6007d8=>{const _0x4c5661=_0x334781;_0x6007d8[_0x4c5661(0x185)+_0x4c5661(0x154)]();});}));
     </script>
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-<script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script> 
-
-  </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script> 
     <script type="text/javascript">
-    document.addEventListener("contextmenu", function(e){
-        e.preventDefault();
-    }, false);
-    document.onkeydown = function(e) {
-        if (event.keyCode == 123) {
-         return false;
+        document.addEventListener("contextmenu", function(e){
+            e.preventDefault();
+        }, false);
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
         }
-        if(e.ctrlKey && e.shiftKey && e.keyCode == 'U'.charCodeAt(0)){
-         return false;
-        }
-        if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
-         return false;
-        }
-        if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)){
-         return false;
-        }
-        if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
-         return false;
-        }
-        if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
-         return false;
-        }
-    }
     </script>
-    
- <script>
-    /*function check(e)
-    {
-    alert(e.keyCode);
-    }*/
-    document.onkeydown = function(e) {
-            if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 85 || e.keyCode === 117)) {//Alt+c, Alt+v will also be disabled sadly.
-                alert('OFF-LINE');
-            }
-            return false;
-    };
-       </script>
-    
 </body>
 </html>
