@@ -20,17 +20,16 @@
             width: 100%;
             background-color: #000;
             color: #fff;
-            padding: 15px 20px;
+            padding: 10px 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #333;
         }
 
         header img {
-            height: 40px;
+            height: 30px;
         }
 
         .banner {
@@ -43,8 +42,8 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 20px;
-            margin-top: 60px; /* Ajuste para não ficar escondido pelo header */
+            padding: 0 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
         }
 
         .banner h1 {
@@ -52,33 +51,36 @@
             margin: 0;
         }
 
+        .banner p {
+            font-size: 1em;
+            margin: 5px 0;
+        }
+
         .search-bar {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
             margin-top: 15px;
         }
 
         .search-bar input {
-            padding: 10px;
-            font-size: 1em;
+            padding: 8px;
+            font-size: 0.9em;
             border: 2px solid #e50914;
             border-radius: 5px;
-            width: 100%;
-            max-width: 400px;
+            width: 250px;
             color: #000;
-            margin-bottom: 10px;
         }
 
         .search-bar button {
-            padding: 10px 20px;
-            font-size: 1em;
+            padding: 8px 15px;
+            font-size: 0.9em;
             background-color: #e50914;
             border: none;
             border-radius: 5px;
             color: #fff;
             cursor: pointer;
             transition: background-color 0.3s;
+            margin-left: 5px;
         }
 
         .search-bar button:hover {
@@ -86,24 +88,24 @@
         }
 
         .section {
-            padding: 20px;
+            padding: 15px;
         }
 
         .section h2 {
-            font-size: 2em;
-            margin: 0 0 20px;
+            font-size: 1.8em;
+            margin: 0 0 15px;
         }
 
         .carousel-wrapper {
             position: relative;
             overflow: hidden;
-            padding: 10px;
+            padding: 5px;
         }
 
         .carousel {
             display: flex;
             overflow-x: auto;
-            gap: 10px;
+            gap: 8px;
             scroll-behavior: smooth;
             scroll-snap-type: x mandatory;
             padding: 0;
@@ -123,7 +125,7 @@
             flex: none;
             scroll-snap-align: start;
             transition: transform 0.3s, box-shadow 0.3s;
-            width: 200px;
+            width: 150px;
             display: flex;
             flex-direction: column;
         }
@@ -135,18 +137,14 @@
         }
 
         .movie-info {
-            padding: 10px;
+            padding: 8px;
             color: #fff;
             background: rgba(0, 0, 0, 0.6);
         }
 
         .movie-info h3 {
             margin: 0;
-            font-size: 1.1em;
-        }
-
-        .movie-card.hidden {
-            display: none;
+            font-size: 1em;
         }
 
         .movie-card:hover {
@@ -162,8 +160,8 @@
             color: #fff;
             border: none;
             cursor: pointer;
-            padding: 10px;
-            font-size: 1.5em;
+            padding: 8px;
+            font-size: 1.2em;
             z-index: 100;
             transition: background-color 0.3s;
         }
@@ -173,11 +171,11 @@
         }
 
         .carousel-button.left {
-            left: 10px;
+            left: 5px;
         }
 
         .carousel-button.right {
-            right: 10px;
+            right: 5px;
         }
 
         .loading {
@@ -191,7 +189,7 @@
             display: none; /* Inicialmente escondido */
             justify-content: center;
             align-items: center;
-            font-size: 1.5em;
+            font-size: 1.2em;
             z-index: 1000;
         }
 
@@ -200,24 +198,40 @@
                 font-size: 2em;
             }
 
-            .search-bar input {
-                width: 90%;
-                max-width: none;
+            .banner p {
+                font-size: 0.9em;
             }
 
             .movie-card {
-                width: 150px;
+                width: 120px;
             }
 
             .movie-info h3 {
-                font-size: 1em;
-            }
-
-            .carousel-button {
-                font-size: 1.2em;
-                padding: 8px;
+                font-size: 0.9em;
             }
         }
+
+        @media (min-width: 769px) {
+            .movie-info h3 {
+                font-size: 1.1em;
+            }
+        }
+
+        .movie-card.hidden {
+            display: none;
+        }
+
+        .movie-card a {
+            display: block;
+            height: 100%;
+            width: 100%;
+            text-decoration: none;
+        }
+
+        .movie-card a .movie-info {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
     </style>
 </head>
 <body>
@@ -243,18 +257,21 @@
             const loadingElement = document.getElementById('loading');
             const carouselsContainer = document.getElementById('carousels');
 
+            let categories = {}; // Usado para armazenar todas as categorias
+
             async function fetchAndProcessContent() {
                 loadingElement.style.display = 'flex';
 
                 try {
                     const response = await fetch(apiUrl);
-                    if (!response.ok) throw new Error('Network response was not ok');
-
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
                     const text = await response.text();
                     const lines = text.split('\n');
                     carouselsContainer.innerHTML = '';
 
-                    const categories = {};
+                    categories = {}; // Reinicia o objeto de categorias
                     let currentItem = null;
 
                     lines.forEach(line => {
@@ -288,62 +305,62 @@
                         }
                     });
 
-                    // Adicionar categorias e carrosséis ao DOM
-                    Object.keys(categories).forEach(category => {
-                        const categorySection = document.createElement('section');
-                        categorySection.className = 'section';
-                        categorySection.innerHTML = `<h2>${category}</h2>`;
-
-                        const carouselWrapper = document.createElement('div');
-                        carouselWrapper.className = 'carousel-wrapper';
-
-                        const carousel = document.createElement('div');
-                        carousel.className = 'carousel';
-
-                        categories[category].forEach(item => {
-                            const card = document.createElement('div');
-                            card.className = 'movie-card';
-                            card.innerHTML = `
-                                <a href="${item.url}" class="movie-card-link">
-                                    <img src="${item.logo}" alt="${item.name} Logo">
-                                    <div class="movie-info">
-                                        <h3>${item.name}</h3>
-                                    </div>
-                                </a>
-                            `;
-                            carousel.appendChild(card);
-                        });
-
-                        const leftButton = document.createElement('button');
-                        leftButton.className = 'carousel-button left';
-                        leftButton.innerText = '<';
-                        leftButton.addEventListener('click', () => {
-                            carousel.scrollBy({ left: -carousel.offsetWidth / 5, behavior: 'smooth' });
-                        });
-
-                        const rightButton = document.createElement('button');
-                        rightButton.className = 'carousel-button right';
-                        rightButton.innerText = '>';
-                        rightButton.addEventListener('click', () => {
-                            carousel.scrollBy({ left: carousel.offsetWidth / 5, behavior: 'smooth' });
-                        });
-
-                        carouselWrapper.appendChild(leftButton);
-                        carouselWrapper.appendChild(carousel);
-                        carouselWrapper.appendChild(rightButton);
-
-                        categorySection.appendChild(carouselWrapper);
-                        carouselsContainer.appendChild(categorySection);
-                    });
-
-                    setupSearchFunctionality();
-                    setupMovieCardClickEvents();
-
+                    renderCategories(); // Renderiza as categorias inicialmente
                 } catch (error) {
                     carouselsContainer.innerHTML = 'Erro ao carregar o conteúdo: ' + error.message;
                 } finally {
                     loadingElement.style.display = 'none';
                 }
+            }
+
+            function renderCategories(filteredCategories = categories) {
+                carouselsContainer.innerHTML = ''; // Limpa o conteúdo existente
+                Object.keys(filteredCategories).forEach(category => {
+                    const categorySection = document.createElement('section');
+                    categorySection.className = 'section';
+                    categorySection.innerHTML = `<h2>${category}</h2>`;
+
+                    const carouselWrapper = document.createElement('div');
+                    carouselWrapper.className = 'carousel-wrapper';
+
+                    const carousel = document.createElement('div');
+                    carousel.className = 'carousel';
+
+                    filteredCategories[category].forEach(item => {
+                        const card = document.createElement('div');
+                        card.className = 'movie-card';
+                        card.innerHTML = `
+                            <a href="${item.url}" class="movie-card-link">
+                                <img src="${item.logo}" alt="${item.name} Logo">
+                                <div class="movie-info">
+                                    <h3>${item.name}</h3>
+                                </div>
+                            </a>
+                        `;
+                        carousel.appendChild(card);
+                    });
+
+                    const leftButton = document.createElement('button');
+                    leftButton.className = 'carousel-button left';
+                    leftButton.innerText = '<';
+                    leftButton.addEventListener('click', () => {
+                        carousel.scrollBy({ left: -carousel.offsetWidth / 5, behavior: 'smooth' });
+                    });
+
+                    const rightButton = document.createElement('button');
+                    rightButton.className = 'carousel-button right';
+                    rightButton.innerText = '>';
+                    rightButton.addEventListener('click', () => {
+                        carousel.scrollBy({ left: carousel.offsetWidth / 5, behavior: 'smooth' });
+                    });
+
+                    carouselWrapper.appendChild(leftButton);
+                    carouselWrapper.appendChild(carousel);
+                    carouselWrapper.appendChild(rightButton);
+
+                    categorySection.appendChild(carouselWrapper);
+                    carouselsContainer.appendChild(categorySection);
+                });
             }
 
             function setupSearchFunctionality() {
@@ -352,83 +369,48 @@
 
                 searchButton.addEventListener('click', () => {
                     const query = searchInput.value.toLowerCase();
+                    const filteredCategories = {};
 
-                    // Criar um novo carrossel para os resultados da pesquisa
-                    const searchResultsCarousel = document.createElement('section');
-                    searchResultsCarousel.className = 'section';
-                    searchResultsCarousel.innerHTML = `<h2>Resultados da Pesquisa</h2>`;
-
-                    const carouselWrapper = document.createElement('div');
-                    carouselWrapper.className = 'carousel-wrapper';
-
-                    const carousel = document.createElement('div');
-                    carousel.className = 'carousel';
-
-                    const sections = document.querySelectorAll('.section');
-                    let hasVisibleCards = false;
-
-                    sections.forEach(section => {
-                        const movieCards = section.querySelectorAll('.movie-card');
-
-                        movieCards.forEach(card => {
-                            const movieInfo = card.querySelector('.movie-info h3').textContent.toLowerCase();
-                            if (movieInfo.includes(query)) {
-                                card.classList.remove('hidden');
-                                carousel.appendChild(card.cloneNode(true)); // Adiciona uma cópia do cartão ao novo carrossel
-                                hasVisibleCards = true;
-                            } else {
-                                card.classList.add('hidden');
-                            }
-                        });
+                    Object.keys(categories).forEach(category => {
+                        const filteredItems = categories[category].filter(item => item.name.toLowerCase().includes(query));
+                        if (filteredItems.length > 0) {
+                            filteredCategories[category] = filteredItems;
+                        }
                     });
 
-                    if (hasVisibleCards) {
-                        const leftButton = document.createElement('button');
-                        leftButton.className = 'carousel-button left';
-                        leftButton.innerText = '<';
-                        leftButton.addEventListener('click', () => {
-                            carousel.scrollBy({ left: -carousel.offsetWidth / 5, behavior: 'smooth' });
-                        });
-
-                        const rightButton = document.createElement('button');
-                        rightButton.className = 'carousel-button right';
-                        rightButton.innerText = '>';
-                        rightButton.addEventListener('click', () => {
-                            carousel.scrollBy({ left: carousel.offsetWidth / 5, behavior: 'smooth' });
-                        });
-
-                        carouselWrapper.appendChild(leftButton);
-                        carouselWrapper.appendChild(carousel);
-                        carouselWrapper.appendChild(rightButton);
-
-                        searchResultsCarousel.appendChild(carouselWrapper);
-                        carouselsContainer.innerHTML = ''; // Limpa a área de carrosséis existentes
-                        carouselsContainer.appendChild(searchResultsCarousel); // Adiciona o novo carrossel de resultados
-                    } else {
-                        carouselsContainer.innerHTML = '<p>Nenhum resultado encontrado.</p>';
-                    }
+                    renderCategories(filteredCategories);
                 });
 
                 searchInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') searchButton.click();
+                    if (e.key === 'Enter') {
+                        searchButton.click();
+                    }
                 });
             }
 
             function setupMovieCardClickEvents() {
                 document.querySelectorAll('.movie-card-link').forEach(link => {
                     link.addEventListener('click', (event) => {
-                        event.preventDefault();
+                        event.preventDefault(); // Previne o comportamento padrão do link
 
                         loadingElement.style.display = 'flex';
 
                         setTimeout(() => {
-                            window.location.href = link.href;
-                        }, 300);
+                            window.location.href = link.href; // Redireciona para o link após o tempo de carregamento
+                        }, 300); // Tempo em milissegundos
                     });
                 });
             }
 
             fetchAndProcessContent();
+            setupSearchFunctionality();
+            setupMovieCardClickEvents();
+        });
+
+        document.querySelectorAll('.carousel').forEach(carousel => {
+            carousel.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+            });
         });
     </script>
 
