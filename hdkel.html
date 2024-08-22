@@ -433,16 +433,18 @@
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
-    <script>
-        document.addEventListener("contextmenu", (e) => {
+    <script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
+    <script type="text/javascript">
+        document.addEventListener("contextmenu", function(e){
             e.preventDefault();
-        });
-
-        document.onkeydown = (e) => {
-            if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && [73, 74, 67, 85].includes(e.keyCode))) {
-                return false;
-            }
+        }, false);
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
         }
     </script>
 </body>
