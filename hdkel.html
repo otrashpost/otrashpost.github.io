@@ -3,14 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Encontre e assista a filmes online com nossa plataforma de streaming. Explore categorias, faça buscas e descubra novos filmes.">
     <title>PLAYER</title>
     <style>
+        :root {
+            --primary-color: #e50914;
+            --secondary-color: #f40612;
+            --background-color: #000;
+            --text-color: #fff;
+            --border-color: #444;
+            --hover-bg-color: #555;
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #000;
-            color: #fff;
+            background-color: var(--background-color);
+            color: var(--text-color);
             overflow-x: hidden;
         }
 
@@ -18,36 +28,35 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: #000;
-            color: #fff;
+            background-color: var(--background-color);
+            color: var(--text-color);
             padding: 10px 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
             z-index: 1000;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
         }
 
         header img {
-            height: 30px;
+            height: 40px;
         }
 
         .banner {
             position: relative;
-            height: 60vh;
+            height: 50vh;
             background: url('https://telaviva.com.br/wp-content/uploads/2022/05/streaming.jpg') no-repeat center center;
             background-size: cover;
-            color: #fff;
+            color: var(--text-color);
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding: 0 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
         }
 
         .banner h1 {
-            font-size: 2.5em;
+            font-size: 2em;
             margin: 0;
         }
 
@@ -58,33 +67,80 @@
 
         .search-bar {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             margin-top: 15px;
         }
 
         .search-bar input {
-            padding: 8px;
-            font-size: 0.9em;
-            border: 2px solid #e50914;
-            border-radius: 5px;
-            width: 250px;
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            width: 100%;
+            max-width: 300px;
             color: #000;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 5px rgba(244, 6, 18, 0.5);
         }
 
         .search-bar button {
-            padding: 8px 15px;
-            font-size: 0.9em;
-            background-color: #e50914;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: var(--primary-color);
             border: none;
-            border-radius: 5px;
-            color: #fff;
+            border-radius: 50px;
+            color: var(--text-color);
             cursor: pointer;
-            transition: background-color 0.3s;
-            margin-left: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 10px;
         }
 
         .search-bar button:hover {
-            background-color: #f40612;
+            background-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        .suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            max-width: 300px;
+            background: #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            display: none;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 5px;
+        }
+
+        .suggestions div {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            color: var(--text-color);
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .suggestions div img {
+            width: 50px;
+            height: 75px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .suggestions div:hover {
+            background: var(--hover-bg-color);
         }
 
         .section {
@@ -99,7 +155,6 @@
         .carousel-wrapper {
             position: relative;
             overflow: hidden;
-            padding: 5px;
         }
 
         .carousel {
@@ -119,7 +174,7 @@
         }
 
         .movie-card {
-            background-color: #000;
+            background-color: var(--background-color);
             border-radius: 6px;
             overflow: hidden;
             flex: none;
@@ -138,7 +193,7 @@
 
         .movie-info {
             padding: 8px;
-            color: #fff;
+            color: var(--text-color);
             background: rgba(0, 0, 0, 0.6);
         }
 
@@ -157,7 +212,7 @@
             top: 50%;
             transform: translateY(-50%);
             background-color: rgba(0, 0, 0, 0.5);
-            color: #fff;
+            color: var(--text-color);
             border: none;
             cursor: pointer;
             padding: 8px;
@@ -185,8 +240,8 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            display: none; /* Inicialmente escondido */
+            color: var(--text-color);
+            display: none;
             justify-content: center;
             align-items: center;
             font-size: 1.2em;
@@ -194,8 +249,12 @@
         }
 
         @media (max-width: 768px) {
+            .banner {
+                height: 40vh;
+            }
+
             .banner h1 {
-                font-size: 2em;
+                font-size: 1.8em;
             }
 
             .banner p {
@@ -208,6 +267,16 @@
 
             .movie-info h3 {
                 font-size: 0.9em;
+            }
+
+            .search-bar {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .search-bar input, .search-bar button {
+                width: 100%;
+                max-width: 90%;
             }
         }
 
@@ -242,7 +311,8 @@
         <h1>Filmes</h1>
         <div class="search-bar">
             <input type="text" id="searchInput" placeholder="Pesquise...">
-            <button id="searchButton">Pesquisar</button>
+            <button id="searchButton">Buscar</button>
+            <div id="suggestions" class="suggestions"></div>
         </div>
     </div>
 
@@ -251,23 +321,182 @@
     <div class="loading" id="loading">Carregando...</div>
 
     <script>
-const _0x3734b1=_0x273b;(function(_0x3c861e,_0x5ebbd7){const _0x76221f=_0x273b,_0xd9c51e=_0x3c861e();while(!![]){try{const _0x11d43f=parseInt(_0x76221f(0x12a))/(0x4cf*0x7+-0x23d4+-0x1*-0x22c)+parseInt(_0x76221f(0x17d))/(-0x7*-0x14b+-0x1180+0x875)*(-parseInt(_0x76221f(0x12d))/(0x4f+0x131a+0x1366*-0x1))+-parseInt(_0x76221f(0xf7))/(-0x1*-0x224+-0x1ad6+0x18b6)*(-parseInt(_0x76221f(0x104))/(-0x174b+0x25cf+-0xe7f))+-parseInt(_0x76221f(0x103))/(-0x2408+-0xe04+-0xd*-0x3da)+-parseInt(_0x76221f(0x192))/(0x2*-0x422+-0x53*0x59+0x2526)*(parseInt(_0x76221f(0x112))/(0x327+-0x2*-0x91f+0x1*-0x155d))+-parseInt(_0x76221f(0x13f))/(0x18*0x27+0x9d1+-0xa*0x158)+-parseInt(_0x76221f(0x16e))/(0x1*-0xc63+-0x186a+-0x1*-0x24d7)*(-parseInt(_0x76221f(0x179))/(-0xab9+-0x5f4*0x4+0x2294));if(_0x11d43f===_0x5ebbd7)break;else _0xd9c51e['push'](_0xd9c51e['shift']());}catch(_0x1f687e){_0xd9c51e['push'](_0xd9c51e['shift']());}}}(_0x4d88,0x7*0x17859+0xa9*-0x104f+0x2beb*0x58),document[_0x3734b1(0x13d)+_0x3734b1(0x13e)](_0x3734b1(0x160)+_0x3734b1(0x195),()=>{const _0x1ed703=_0x3734b1,_0x38446a={'vfgeT':_0x1ed703(0x130),'hUQnn':_0x1ed703(0x188),'VIVKE':function(_0x3f616b,_0x328907){return _0x3f616b(_0x328907);},'XjNNg':function(_0x4b1f8f,_0x59fb6f){return _0x4b1f8f/_0x59fb6f;},'NtjUL':_0x1ed703(0x14d),'VGFVb':_0x1ed703(0x14b),'hIXwD':_0x1ed703(0x196),'ECSWY':_0x1ed703(0x10c)+_0x1ed703(0x14f),'tmxyj':_0x1ed703(0x14c),'wZaMz':_0x1ed703(0x118),'DJxFO':_0x1ed703(0x107)+_0x1ed703(0x14e),'pEIlo':_0x1ed703(0x187),'AfHqZ':_0x1ed703(0x107)+_0x1ed703(0x123)+'t','ulQye':_0x1ed703(0x16a),'xcvhv':function(_0x5351be,_0x2f1ab2){return _0x5351be/_0x2f1ab2;},'vBDKd':_0x1ed703(0x17e),'dySFL':function(_0x3dfe07,_0x42a064){return _0x3dfe07(_0x42a064);},'cBarv':_0x1ed703(0x10a)+_0x1ed703(0x127)+_0x1ed703(0x15c),'srGdf':function(_0x588879){return _0x588879();},'xjzvp':function(_0x3f60bd,_0x50e691){return _0x3f60bd+_0x50e691;},'bEOKG':_0x1ed703(0x191)+_0x1ed703(0x12f)+_0x1ed703(0x11d),'EKWRF':_0x1ed703(0x158),'cOPNo':_0x1ed703(0x19e)+_0x1ed703(0x10d),'ZLCYb':_0x1ed703(0x137),'FIcpf':_0x1ed703(0xf9)+'d','ugrFP':function(_0x846c0e,_0x194f88){return _0x846c0e===_0x194f88;},'fjduU':_0x1ed703(0x180),'KcgoK':_0x1ed703(0x131)+'on','jkzrA':_0x1ed703(0x129)+'t','UPXSC':_0x1ed703(0xf3),'ZZWbn':function(_0x535fdf,_0x56b084,_0x26bf4d){return _0x535fdf(_0x56b084,_0x26bf4d);},'aFBWo':_0x1ed703(0xf9)+_0x1ed703(0x19b),'fTBmK':_0x1ed703(0x159)+_0x1ed703(0x199)+_0x1ed703(0x124)+_0x1ed703(0x141)+_0x1ed703(0x11c)+_0x1ed703(0x189)+_0x1ed703(0x117)+_0x1ed703(0x19d)+_0x1ed703(0x148)+_0x1ed703(0x149)+_0x1ed703(0x18d)+_0x1ed703(0x18c)+'l','iPbpD':_0x1ed703(0x11b),'Uyiuo':_0x1ed703(0x132),'tSlWj':function(_0x4c8470){return _0x4c8470();}},_0x2aae5c=_0x38446a[_0x1ed703(0x172)],_0x25f195=document[_0x1ed703(0x10e)+_0x1ed703(0x138)](_0x38446a[_0x1ed703(0x121)]),_0x109acb=document[_0x1ed703(0x10e)+_0x1ed703(0x138)](_0x38446a[_0x1ed703(0x175)]);async function _0x28f76f(){const _0x16a1a0=_0x1ed703,_0x4cbbef={'FtGtG':_0x38446a[_0x16a1a0(0x156)],'uxGaS':_0x38446a[_0x16a1a0(0x168)],'YBaPs':function(_0x583b7e,_0x268223){const _0x680d05=_0x16a1a0;return _0x38446a[_0x680d05(0x151)](_0x583b7e,_0x268223);},'NefQi':_0x38446a[_0x16a1a0(0x19c)]};_0x25f195[_0x16a1a0(0x182)][_0x16a1a0(0x161)]=_0x38446a[_0x16a1a0(0x16f)];try{const _0x584490=await _0x38446a[_0x16a1a0(0x12e)](fetch,_0x2aae5c);if(!_0x584490['ok'])throw new Error(_0x38446a[_0x16a1a0(0x126)]);const _0x4b755d=await _0x584490[_0x16a1a0(0x147)](),_0x455b52=_0x4b755d[_0x16a1a0(0xfa)]('\x0a');_0x109acb[_0x16a1a0(0x136)]='';const _0x49ba7f={};let _0x1a5ef3=null;_0x455b52[_0x16a1a0(0xf1)](_0x4de327=>{const _0x3334db=_0x16a1a0;if(_0x4de327[_0x3334db(0x125)](_0x38446a[_0x3334db(0x101)])){const _0x417640=_0x4de327[_0x3334db(0x181)](/tvg-name="([^"]*)".*tvg-logo="([^"]*)".*group-title="([^"]*)"/);_0x417640&&(_0x1a5ef3={'name':_0x417640[-0x149*0x8+0x1*0x7ff+0x24a],'logo':_0x417640[-0x2d8+-0x1c2d+0x1f07*0x1],'groupTitle':_0x417640[-0x1b98+-0x1f2e+0x3ac9],'url':_0x4de327});}else{if(_0x4de327[_0x3334db(0x125)](_0x38446a[_0x3334db(0x15a)])){if(_0x1a5ef3){const _0x3383da=_0x38446a[_0x3334db(0x197)](encodeURIComponent,_0x4de327),_0xadbb32=_0x3334db(0x166)+_0x3334db(0x176)+_0x3334db(0x15e)+_0x3334db(0x11e)+_0x3334db(0xf8)+_0x3383da+_0x3334db(0x163)+_0x38446a[_0x3334db(0x197)](encodeURIComponent,_0x1a5ef3[_0x3334db(0x170)]);!_0x49ba7f[_0x1a5ef3[_0x3334db(0x173)]]&&(_0x49ba7f[_0x1a5ef3[_0x3334db(0x173)]]=[]),_0x49ba7f[_0x1a5ef3[_0x3334db(0x173)]][_0x3334db(0x106)]({'name':_0x1a5ef3[_0x3334db(0x13b)],'logo':_0x1a5ef3[_0x3334db(0x170)],'url':_0xadbb32}),_0x1a5ef3=null;}}}}),Object[_0x16a1a0(0x142)](_0x49ba7f)[_0x16a1a0(0xf1)](_0x380b66=>{const _0x1ad1a8=_0x16a1a0,_0x41b245={'UWouC':function(_0x49c6c2,_0x4ac6ba){const _0x25e25b=_0x273b;return _0x38446a[_0x25e25b(0x17a)](_0x49c6c2,_0x4ac6ba);},'UWRDw':_0x38446a[_0x1ad1a8(0x19c)]},_0x477132=document[_0x1ad1a8(0x139)+_0x1ad1a8(0x115)](_0x38446a[_0x1ad1a8(0x15f)]);_0x477132[_0x1ad1a8(0x15b)]=_0x38446a[_0x1ad1a8(0x15f)],_0x477132[_0x1ad1a8(0x136)]=_0x1ad1a8(0x135)+_0x380b66+_0x1ad1a8(0xf4);const _0x4e02e0=document[_0x1ad1a8(0x139)+_0x1ad1a8(0x115)](_0x38446a[_0x1ad1a8(0x156)]);_0x4e02e0[_0x1ad1a8(0x15b)]=_0x38446a[_0x1ad1a8(0x153)];const _0x37bc4e=document[_0x1ad1a8(0x139)+_0x1ad1a8(0x115)](_0x38446a[_0x1ad1a8(0x156)]);_0x37bc4e[_0x1ad1a8(0x15b)]=_0x38446a[_0x1ad1a8(0x162)],_0x49ba7f[_0x380b66][_0x1ad1a8(0xf1)](_0x28f109=>{const _0x2dc533=_0x1ad1a8,_0x8eca67=document[_0x2dc533(0x139)+_0x2dc533(0x115)](_0x4cbbef[_0x2dc533(0x155)]);_0x8eca67[_0x2dc533(0x15b)]=_0x4cbbef[_0x2dc533(0x119)],_0x8eca67[_0x2dc533(0x136)]=_0x2dc533(0x18e)+_0x2dc533(0x110)+_0x2dc533(0x110)+_0x2dc533(0x17b)+'=\x22'+_0x28f109[_0x2dc533(0x146)]+(_0x2dc533(0x150)+_0x2dc533(0x120)+_0x2dc533(0x140)+_0x2dc533(0x110)+_0x2dc533(0x110)+_0x2dc533(0x110)+_0x2dc533(0x18f)+_0x2dc533(0x143))+_0x28f109[_0x2dc533(0x170)]+_0x2dc533(0xfe)+_0x28f109[_0x2dc533(0x13b)]+(_0x2dc533(0x185)+_0x2dc533(0x110)+_0x2dc533(0x110)+_0x2dc533(0x110)+_0x2dc533(0x12b)+_0x2dc533(0x19a)+_0x2dc533(0x12c)+_0x2dc533(0x110)+_0x2dc533(0x110)+_0x2dc533(0x110)+_0x2dc533(0x17f)+_0x2dc533(0x174))+_0x28f109[_0x2dc533(0x13b)]+(_0x2dc533(0xf5)+_0x2dc533(0x110)+_0x2dc533(0x110)+_0x2dc533(0x110)+_0x2dc533(0x100)+_0x2dc533(0x110)+_0x2dc533(0x110)+_0x2dc533(0x110)+_0x2dc533(0x164)+_0x2dc533(0x110)+_0x2dc533(0x110)+_0x2dc533(0x17c)),_0x37bc4e[_0x2dc533(0x171)+'d'](_0x8eca67);});const _0x11e836=document[_0x1ad1a8(0x139)+_0x1ad1a8(0x115)](_0x38446a[_0x1ad1a8(0x15d)]);_0x11e836[_0x1ad1a8(0x15b)]=_0x38446a[_0x1ad1a8(0x167)],_0x11e836[_0x1ad1a8(0x111)]='<',_0x11e836[_0x1ad1a8(0x13d)+_0x1ad1a8(0x13e)](_0x38446a[_0x1ad1a8(0x102)],()=>{const _0x51c3cc=_0x1ad1a8;_0x37bc4e[_0x51c3cc(0x14a)]({'left':_0x4cbbef[_0x51c3cc(0x13a)](-_0x37bc4e[_0x51c3cc(0x144)+'h'],0x551*0x5+-0x23d+-0x1853),'behavior':_0x4cbbef[_0x51c3cc(0x152)]});});const _0x55c6b2=document[_0x1ad1a8(0x139)+_0x1ad1a8(0x115)](_0x38446a[_0x1ad1a8(0x15d)]);_0x55c6b2[_0x1ad1a8(0x15b)]=_0x38446a[_0x1ad1a8(0x177)],_0x55c6b2[_0x1ad1a8(0x111)]='>',_0x55c6b2[_0x1ad1a8(0x13d)+_0x1ad1a8(0x13e)](_0x38446a[_0x1ad1a8(0x102)],()=>{const _0x515355=_0x1ad1a8;_0x37bc4e[_0x515355(0x14a)]({'left':_0x41b245[_0x515355(0x169)](_0x37bc4e[_0x515355(0x144)+'h'],-0x18cc+-0x31*0x39+0x23ba),'behavior':_0x41b245[_0x515355(0x105)]});}),_0x4e02e0[_0x1ad1a8(0x171)+'d'](_0x11e836),_0x4e02e0[_0x1ad1a8(0x171)+'d'](_0x37bc4e),_0x4e02e0[_0x1ad1a8(0x171)+'d'](_0x55c6b2),_0x477132[_0x1ad1a8(0x171)+'d'](_0x4e02e0),_0x109acb[_0x1ad1a8(0x171)+'d'](_0x477132);}),_0x38446a[_0x16a1a0(0x13c)](_0x2e06d0),_0x38446a[_0x16a1a0(0x13c)](_0x1b0d3d);}catch(_0x22ddda){_0x109acb[_0x16a1a0(0x136)]=_0x38446a[_0x16a1a0(0x184)](_0x38446a[_0x16a1a0(0x16c)],_0x22ddda[_0x16a1a0(0x16b)]);}finally{_0x25f195[_0x16a1a0(0x182)][_0x16a1a0(0x161)]=_0x38446a[_0x16a1a0(0xf2)];}}function _0x2e06d0(){const _0x27aeb7=_0x1ed703,_0x1db93c=document[_0x27aeb7(0x10e)+_0x27aeb7(0x138)](_0x38446a[_0x27aeb7(0x178)]),_0x530d5f=document[_0x27aeb7(0x10e)+_0x27aeb7(0x138)](_0x38446a[_0x27aeb7(0x18b)]);_0x1db93c[_0x27aeb7(0x13d)+_0x27aeb7(0x13e)](_0x38446a[_0x27aeb7(0x102)],()=>{const _0x46fd78=_0x27aeb7,_0x2aa2de={'FHZun':_0x38446a[_0x46fd78(0x108)],'oYhJr':_0x38446a[_0x46fd78(0x109)]},_0x26d52c=_0x530d5f[_0x46fd78(0x18a)][_0x46fd78(0x190)+'e'](),_0x2c6ab0=document[_0x46fd78(0x186)+_0x46fd78(0x194)](_0x38446a[_0x46fd78(0xfd)]);_0x2c6ab0[_0x46fd78(0xf1)](_0x4881cc=>{const _0x5bc81e=_0x46fd78,_0x7bf3dd=_0x4881cc[_0x5bc81e(0x186)+_0x5bc81e(0x114)](_0x2aa2de[_0x5bc81e(0x154)])[_0x5bc81e(0x145)+'t'][_0x5bc81e(0x190)+'e']();_0x4881cc[_0x5bc81e(0x183)][_0x5bc81e(0x198)](_0x2aa2de[_0x5bc81e(0x122)],!_0x7bf3dd[_0x5bc81e(0x113)](_0x26d52c));});}),_0x530d5f[_0x27aeb7(0x13d)+_0x27aeb7(0x13e)](_0x38446a[_0x27aeb7(0x157)],_0x3df440=>{const _0x183fb9=_0x27aeb7;_0x38446a[_0x183fb9(0x10b)](_0x3df440[_0x183fb9(0x11a)],_0x38446a[_0x183fb9(0x16d)])&&_0x1db93c[_0x183fb9(0x187)]();});}function _0x1b0d3d(){const _0x14ba8d=_0x1ed703,_0x56df12={'mxCIQ':_0x38446a[_0x14ba8d(0x16f)],'ucBNv':function(_0x6250a6,_0x53d727,_0x1afb38){const _0x152065=_0x14ba8d;return _0x38446a[_0x152065(0x193)](_0x6250a6,_0x53d727,_0x1afb38);}};document[_0x14ba8d(0x186)+_0x14ba8d(0x194)](_0x38446a[_0x14ba8d(0x134)])[_0x14ba8d(0xf1)](_0x27639b=>{const _0x2c8e39=_0x14ba8d;_0x27639b[_0x2c8e39(0x13d)+_0x2c8e39(0x13e)](_0x38446a[_0x2c8e39(0x102)],_0x4c8402=>{const _0x4aeb3f=_0x2c8e39;_0x4c8402[_0x4aeb3f(0x128)+_0x4aeb3f(0xf6)](),_0x25f195[_0x4aeb3f(0x182)][_0x4aeb3f(0x161)]=_0x56df12[_0x4aeb3f(0x116)],_0x56df12[_0x4aeb3f(0xfb)](setTimeout,()=>{const _0x14c317=_0x4aeb3f;window[_0x14c317(0x133)][_0x14c317(0xff)]=_0x27639b[_0x14c317(0xff)];},-0x2378+0x2f*-0x89+0x3dcb);});});}_0x38446a[_0x1ed703(0x165)](_0x28f76f);}),document[_0x3734b1(0x186)+_0x3734b1(0x194)](_0x3734b1(0xfc))[_0x3734b1(0xf1)](_0x3a464e=>{const _0x3ced1f=_0x3734b1,_0x277128={'QSPvf':_0x3ced1f(0x10f)};_0x3a464e[_0x3ced1f(0x13d)+_0x3ced1f(0x13e)](_0x277128[_0x3ced1f(0x11f)],_0x201609=>{const _0x14e1f2=_0x3ced1f;_0x201609[_0x14e1f2(0x128)+_0x14e1f2(0xf6)]();});}));function _0x273b(_0x271d72,_0x1b814e){const _0x29075f=_0x4d88();return _0x273b=function(_0x2b5dbe,_0x53ee6f){_0x2b5dbe=_0x2b5dbe-(-0x2563*0x1+-0x2*-0x737+0x17e6);let _0x2ecc7b=_0x29075f[_0x2b5dbe];return _0x2ecc7b;},_0x273b(_0x271d72,_0x1b814e);}function _0x4d88(){const _0x4483db=['VIVKE','toggle','i.codetabs','lass=\x22movi','d-link','NtjUL','om/aHR0cDo','.movie-inf','forEach','EKWRF','keypress','</h2>','</h3>\x0a\x20\x20\x20\x20','ault','1458012PgUaeF','tml?url=','.movie-car','split','ucBNv','.carousel','FIcpf','\x22\x20alt=\x22','href','\x20\x20</div>\x0a\x20','vfgeT','pEIlo','10386342MDJirj','15HCKVKV','UWRDw','push','carousel-b','cOPNo','ZLCYb','Network\x20re','ugrFP','carousel-w','o\x20h3','getElement','mousedown','\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','innerText','23480yvbAxk','includes','tor','ent','mxCIQ','s.weebly.c','button','uxGaS','key','loading','=http://up','onteúdo:\x20','m/player.h','QSPvf','ovie-card-','iPbpD','oYhJr','utton\x20righ','.com/v1/pr','startsWith','cBarv','sponse\x20was','preventDef','searchInpu','891096TIPmKC','\x20\x20\x20\x20<div\x20c','e-info\x22>\x0a\x20','4525932rcnozc','dySFL','rregar\x20o\x20c','#EXTINF','searchButt','carousels','location','aFBWo','<h2>','innerHTML','hidden','ById','createElem','YBaPs','name','srGdf','addEventLi','stener','14609070eOFNjt','link\x22>\x0a\x20\x20\x20','oxy/?quest','keys','c=\x22','offsetWidt','textConten','url','text','vL3VwbGF5Z','XJmaWxtZXM','scrollBy','section','carousel','smooth','utton\x20left','rapper','\x22\x20class=\x22m','xcvhv','NefQi','ECSWY','FHZun','FtGtG','hIXwD','UPXSC','none','https://ap','hUQnn','className','\x20not\x20ok','wZaMz','.weebly.co','VGFVb','DOMContent','display','tmxyj','&img=','\x20</a>\x0a\x20\x20\x20\x20','tSlWj','http://upl','DJxFO','ulQye','UWouC','movie-card','message','bEOKG','fjduU','10550RepSOz','vBDKd','logo','appendChil','fTBmK','groupTitle','h3>','Uyiuo','ayerfilmes','AfHqZ','KcgoK','53834ccyFbL','XjNNg','\x20\x20\x20<a\x20href','\x20\x20\x20\x20','2PrplXt','flex','\x20\x20\x20\x20\x20\x20\x20\x20\x20<','Enter','match','style','classList','xjzvp','\x20Logo\x22>\x0a\x20\x20','querySelec','click','http','layerfilme','value','jkzrA','mNvbS8.htm','ud2VlYmx5L','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20','\x20\x20\x20<img\x20sr','toLowerCas','Erro\x20ao\x20ca','3164kswVtb','ZZWbn','torAll','Loaded','div'];_0x4d88=function(){return _0x4483db;};return _0x4d88();}
+        document.addEventListener('DOMContentLoaded', () => {
+            const apiUrl = 'https://api.codetabs.com/v1/proxy/?quest=http://uplayerfilmes.weebly.com/aHR0cDovL3VwbGF5ZXJmaWxtZXMud2VlYmx5LmNvbS8.html';
+            const loadingElement = document.getElementById('loading');
+            const carouselsContainer = document.getElementById('carousels');
+            const suggestionsElement = document.getElementById('suggestions');
+            let allMovies = [];
+
+            async function fetchAndProcessContent() {
+                loadingElement.style.display = 'flex';
+
+                try {
+                    const response = await fetch(apiUrl);
+                    if (!response.ok) throw new Error('Network response was not ok');
+
+                    const text = await response.text();
+                    const lines = text.split('\n');
+                    carouselsContainer.innerHTML = '';
+
+                    const categories = {};
+                    let currentItem = null;
+
+                    lines.forEach(line => {
+                        if (line.startsWith('#EXTINF')) {
+                            const metaInfo = line.match(/tvg-name="([^"]*)".*tvg-logo="([^"]*)".*group-title="([^"]*)"/);
+                            if (metaInfo) {
+                                currentItem = {
+                                    name: metaInfo[1],
+                                    logo: metaInfo[2],
+                                    groupTitle: metaInfo[3],
+                                    url: line
+                                };
+                            }
+                        } else if (line.startsWith('http')) {
+                            if (currentItem) {
+                                const encodedUrl = encodeURIComponent(line);
+                                const playerUrl = `http://uplayerfilmes.weebly.com/player.html?url=${encodedUrl}&img=${encodeURIComponent(currentItem.logo)}`;
+
+                                if (!categories[currentItem.groupTitle]) {
+                                    categories[currentItem.groupTitle] = [];
+                                }
+
+                                categories[currentItem.groupTitle].push({
+                                    name: currentItem.name,
+                                    logo: currentItem.logo,
+                                    url: playerUrl
+                                });
+
+                                allMovies.push({
+                                    name: currentItem.name,
+                                    logo: currentItem.logo,
+                                    url: playerUrl
+                                });
+
+                                currentItem = null;
+                            }
+                        }
+                    });
+
+                    Object.keys(categories).forEach(category => {
+                        const categorySection = document.createElement('section');
+                        categorySection.className = 'section';
+                        categorySection.innerHTML = `<h2>${category}</h2>`;
+
+                        const carouselWrapper = document.createElement('div');
+                        carouselWrapper.className = 'carousel-wrapper';
+
+                        const carousel = document.createElement('div');
+                        carousel.className = 'carousel';
+
+                        categories[category].forEach(item => {
+                            const card = document.createElement('div');
+                            card.className = 'movie-card';
+                            card.innerHTML = `
+                                <a href="${item.url}" aria-label="Assistir ${item.name}">
+                                    <img src="${item.logo}" alt="${item.name} Logo">
+                                    <div class="movie-info">
+                                        <h3>${item.name}</h3>
+                                    </div>
+                                </a>
+                            `;
+                            carousel.appendChild(card);
+                        });
+
+                        const leftButton = document.createElement('button');
+                        leftButton.className = 'carousel-button left';
+                        leftButton.innerText = '<';
+                        leftButton.addEventListener('click', () => {
+                            carousel.scrollBy({ left: -carousel.offsetWidth / 5, behavior: 'smooth' });
+                        });
+
+                        const rightButton = document.createElement('button');
+                        rightButton.className = 'carousel-button right';
+                        rightButton.innerText = '>';
+                        rightButton.addEventListener('click', () => {
+                            carousel.scrollBy({ left: carousel.offsetWidth / 5, behavior: 'smooth' });
+                        });
+
+                        carouselWrapper.append(leftButton, carousel, rightButton);
+                        categorySection.appendChild(carouselWrapper);
+                        carouselsContainer.appendChild(categorySection);
+                    });
+
+                    setupSearchFunctionality();
+
+                } catch (error) {
+                    carouselsContainer.innerHTML = `Erro ao carregar o conteúdo: ${error.message}`;
+                } finally {
+                    loadingElement.style.display = 'none';
+                }
+            }
+
+            function setupSearchFunctionality() {
+                const searchButton = document.getElementById('searchButton');
+                const searchInput = document.getElementById('searchInput');
+
+                searchButton.addEventListener('click', () => {
+                    const query = searchInput.value.toLowerCase();
+                    document.querySelectorAll('.movie-card').forEach(card => {
+                        const movieName = card.querySelector('.movie-info h3').textContent.toLowerCase();
+                        card.classList.toggle('hidden', !movieName.includes(query));
+                    });
+                });
+
+                searchInput.addEventListener('input', () => {
+                    const query = searchInput.value.toLowerCase();
+                    suggestionsElement.innerHTML = '';
+
+                    if (query) {
+                        const filteredMovies = allMovies.filter(movie => movie.name.toLowerCase().includes(query));
+
+                        filteredMovies.forEach(movie => {
+                            const suggestionItem = document.createElement('div');
+                            suggestionItem.innerHTML = `
+                                <img src="${movie.logo}" alt="${movie.name} Logo">
+                                <div>${movie.name}</div>
+                            `;
+                            suggestionItem.addEventListener('click', () => {
+                                window.location.href = movie.url;
+                            });
+                            suggestionsElement.appendChild(suggestionItem);
+                        });
+
+                        suggestionsElement.style.display = 'block';
+                    } else {
+                        suggestionsElement.style.display = 'none';
+                    }
+                });
+
+                searchInput.addEventListener('blur', () => {
+                    setTimeout(() => {
+                        suggestionsElement.style.display = 'none';
+                    }, 200);
+                });
+
+                searchInput.addEventListener('focus', () => {
+                    if (suggestionsElement.children.length > 0) {
+                        suggestionsElement.style.display = 'block';
+                    }
+                });
+            }
+
+            fetchAndProcessContent();
+        });
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-    <script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
-    <script type="text/javascript">
-        document.addEventListener("contextmenu", function(e){
-            e.preventDefault();
-        }, false);
-        document.onkeydown = function(e) {
-            if (e.keyCode == 123) return false;
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'U'.charCodeAt(0)) return false;
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
-            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
-        }
+    <script src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
+    <script>
+        document.addEventListener("contextmenu", (e) => e.preventDefault());
+        document.addEventListener("keydown", (e) => {
+            if (e.keyCode === 123 || 
+                (e.ctrlKey && e.shiftKey && ['U', 'I', 'C', 'J'].includes(String.fromCharCode(e.keyCode))) ||
+                (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))) {
+                e.preventDefault();
+            }
+        });
     </script>
 </body>
 </html>
