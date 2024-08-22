@@ -14,6 +14,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow-x: hidden; /* Remove horizontal scrollbar */
         }
         header {
             background-color: #4a90e2;
@@ -24,6 +25,7 @@
             font-size: 2.5em;
             border-bottom: 5px solid #007aff;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-sizing: border-box; /* Ensure padding and border are included in width */
         }
         #search-container {
             margin: 20px;
@@ -41,6 +43,7 @@
             outline: none;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             transition: border-color 0.3s, box-shadow 0.3s;
+            box-sizing: border-box; /* Ensure padding is included in width */
         }
         #search-box:focus {
             border-color: #007aff;
@@ -53,6 +56,7 @@
             padding: 20px;
             width: 100%;
             max-width: 1200px;
+            box-sizing: border-box; /* Ensure padding is included in width */
         }
         .channel {
             background: #fff;
@@ -60,6 +64,7 @@
             box-shadow: 0 6px 12px rgba(0,0,0,0.2);
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
+            box-sizing: border-box; /* Ensure padding is included in width */
         }
         .channel:hover {
             transform: translateY(-5px);
