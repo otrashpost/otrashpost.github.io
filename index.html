@@ -3,65 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineStream - Filmes e Séries</title>
+    <title>Exemplo de Site</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <div class="logo">CineStream</div>
-            <nav>
-                <ul>
-                    <li><a href="#featured">Destaques</a></li>
-                    <li><a href="#genres">Gêneros</a></li>
-                    <li><a href="#latest">Novidades</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Slider -->
+    <div class="slider">
+        <img src="slide1.jpg" alt="Slide 1">
+        <img src="slide2.jpg" alt="Slide 2">
+        <img src="slide3.jpg" alt="Slide 3">
+    </div>
 
-    <main>
-        <section id="featured" class="featured">
-            <h1>Filmes e Séries em Destaque</h1>
-            <div id="featured-slider" class="slider">
-                <div class="slider-inner"></div>
-                <button class="slider-control prev" aria-label="Slide Anterior">‹</button>
-                <button class="slider-control next" aria-label="Próximo Slide">›</button>
-            </div>
-            <div id="featured-spinner" class="spinner">Carregando...</div>
-        </section>
+    <!-- Campo de Pesquisa -->
+    <div class="search-bar">
+        <input type="text" id="search" placeholder="Pesquisar...">
+    </div>
 
-        <section id="genres" class="genres">
-            <h2>Gêneros Populares</h2>
-            <div id="genres-container" class="grid-container"></div>
-        </section>
-
-        <section id="latest" class="latest">
-            <h2>Novidades</h2>
-            <div id="latest-movies" class="recent-category">
-                <h3>Filmes Recentes</h3>
-                <div id="movies-container" class="grid-container"></div>
-                <div id="movies-spinner" class="spinner">Carregando...</div>
-            </div>
-
-            <div id="latest-shows" class="recent-category">
-                <h3>Séries Recentes</h3>
-                <div id="shows-container" class="grid-container"></div>
-                <div id="shows-spinner" class="spinner">Carregando...</div>
-            </div>
-        </section>
-    </main>
-
-    <div id="details" class="modal">
-        <button id="close-details" class="modal-close">✖</button>
-        <div class="modal-content">
-            <img id="details-poster" src="" alt="">
-            <div class="modal-text">
-                <h2 id="details-title"></h2>
-                <p id="details-overview"></p>
-                <p id="details-release-date"></p>
-            </div>
-        </div>
+    <!-- Galeria de Imagens -->
+    <div class="gallery" id="gallery">
+        <!-- As imagens serão carregadas aqui pelo JavaScript -->
     </div>
 
     <script src="script.js"></script>
