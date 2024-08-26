@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capturar Link do JWPlayer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        #link {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Capturar Link do JWPlayer</h1>
+    <div id="link">O link do vídeo será exibido aqui.</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const apiUrl = 'https://api.codetabs.com/v1/proxy/?quest=';
+            
+            fetch(apiUrl)
+                .then(response => response.text())
+                .then(data => {
+                    // Analisar o HTML carregado
+                    document.body.insertAdjacentHTML('beforeend', '<div id="temp-content">' + data + '</div>');
+
+                    // Capturar o link do vídeo
+                    extractVideoLink();
+                })
+                .catch(error => {
+                    document.getElementById('link').textContent = 'Erro ao carregar o conteúdo.';
+                    console.error('Erro:', error);
+                });
+        });
+
+        function extractVideoLink() {
+            // Captura o conteúdo do player da página carregada
+            const tempContent = document.getElementById('temp-content');
+
+            // Encontra todos os elementos de script que podem conter a configuração do jwplayer
+            const scriptTags = tempContent.querySelectorAll('script');
+            scriptTags.forEach(script => {
+                const scriptContent = script.textContent;
+
+                // Verifica se o script contém a configuração do jwplayer
+                if (scriptContent.includes('jwplayer')) {
+                    // Expressão regular para capturar o link do vídeo
+                    const linkMatch = scriptContent.match(/"file"\s*:\s*"([^"]+)"/);
+
+                    if (linkMatch) {
+                        const videoLink = linkMatch[1];
+                        document.getElementById('link').textContent = 'Link do vídeo: ' + videoLink;
+                    } else {
+                        document.getElementById('link').textContent = 'Link do vídeo não encontrado.';
+                    }
+                }
+            });
+
+            // Remove o conteúdo temporário
+            document.getElementById('temp-content').remove();
+        }
+    </script>
+</body>
+</html>
