@@ -1,0 +1,10 @@
+{
+    "images": [
+        { "url": "image1.jpg", "alt": "Descrição da Imagem 1", "link": "https://example.com/page1" },
+        { "url": "image2.jpg", "alt": "Descrição da Imagem 2", "link": "https://example.com/page2" },
+        { "url": "image3.jpg", "alt": "Descrição da Imagem 3", "link": "https://example.com/page3" },
+        { "url": "image4.jpg", "alt": "Descrição da Imagem 4", "link": "https://example.com/page4" },
+        { "url": "image5.jpg", "alt": "Descrição da Imagem 5", "link": "https://example.com/page5" },
+        // Adicione mais imagens conforme necessário
+    ]
+}
