@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            position: relative; 
+        }
+
+        #player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+            border: 0;
+            overflow: hidden;
+        }
+
+        #reload-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000; 
+        }
+
+        #reload-button.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="player"></div>
+    <button id="reload-button">Carregar Canal</button>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
+    <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+    <script>
+        function getQueryParam(param) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(param);
+        }
+
+        const id = getQueryParam('id');
+        if (id) {
+            const videoLink = `https://corsproxy.io/?url=https://embedflix.co/canal/live.php?ch=${id}`;
+            fetch(videoLink)
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('Erro ao carregar o conteúdo.');
+                    }
+                })
+                .then(videoUrl => {
+                    jwplayer('player').setup({
+                        playlist: [{
+                            sources: [{
+                                default: false,
+                                type: 'application/x-mpegURL',
+                                file: videoUrl,
+                                label: '0'
+                            }]
+                        }],
+                        width: '100%',
+                        height: '100%',
+                        aspectratio: '16:9',
+                        autostart: true,
+                        cast: true,
+                        sharing: false
+                    });
+                })
+                .catch(error => {
+                    document.getElementById('player').innerHTML = 'Erro ao carregar o conteúdo.';
+                    console.error('Erro:', error);
+                });
+        } else {
+            document.getElementById('player').innerHTML = 'ID não especificado na URL.';
+        }
+
+        const reloadButton = document.getElementById('reload-button');
+        setTimeout(() => {
+            reloadButton.classList.remove('hidden');
+        }, 1000);
+
+        reloadButton.addEventListener('click', () => {
+            location.reload();
+        });
+    </script>
+</body>
+</html>
