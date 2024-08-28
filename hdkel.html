@@ -128,6 +128,7 @@
             width: 150px;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
         }
 
         .movie-card img {
@@ -232,6 +233,75 @@
             background: rgba(0, 0, 0, 0.6);
         }
 
+        /* Estilos do Modal */
+        .modal {
+            display: none; /* Oculto por padrão */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #333;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .modal-header, .modal-body, .modal-footer {
+            padding: 10px;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid #888;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #888;
+            text-align: center; /* Centraliza o conteúdo do footer */
+        }
+
+        .modal-close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #e50914;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .modal-button:hover {
+            background-color: #f40612;
+        }
     </style>
 </head>
 <body>
@@ -251,11 +321,31 @@
 
     <div class="loading" id="loading">Carregando...</div>
 
+    <!-- Modal -->
+    <div id="movieModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Título do Filme</h2>
+                <span class="modal-close" id="modalClose">&times;</span>
+            </div>
+            <div class="modal-body">
+                <!-- Descrição do filme foi removida -->
+            </div>
+            <div class="modal-footer">
+                <a id="modalLink" class="modal-button" target="_blank">Assistir Agora</a>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const apiUrl = 'https://api.codetabs.com/v1/proxy/?quest=http://uplayerfilmes.weebly.com/aHR0cDovL3VwbGF5ZXJmaWxtZXMud2VlYmx5LmNvbS8.html';
             const loadingElement = document.getElementById('loading');
             const carouselsContainer = document.getElementById('carousels');
+            const modal = document.getElementById('movieModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalLink = document.getElementById('modalLink');
+            const modalClose = document.getElementById('modalClose');
 
             let categories = {}; // Usado para armazenar todas as categorias
 
@@ -329,13 +419,14 @@
                     filteredCategories[category].forEach(item => {
                         const card = document.createElement('div');
                         card.className = 'movie-card';
+                        card.dataset.name = item.name;
+                        card.dataset.logo = item.logo;
+                        card.dataset.url = item.url;
                         card.innerHTML = `
-                            <a href="${item.url}" class="movie-card-link">
-                                <img src="${item.logo}" alt="${item.name} Logo">
-                                <div class="movie-info">
-                                    <h3>${item.name}</h3>
-                                </div>
-                            </a>
+                            <img src="${item.logo}" alt="${item.name} Logo">
+                            <div class="movie-info">
+                                <h3>${item.name}</h3>
+                            </div>
                         `;
                         carousel.appendChild(card);
                     });
@@ -361,6 +452,8 @@
                     categorySection.appendChild(carouselWrapper);
                     carouselsContainer.appendChild(categorySection);
                 });
+
+                setupMovieCardClickEvents(); // Configura os eventos de clique nos cards depois que são renderizados
             }
 
             function setupSearchFunctionality() {
@@ -389,28 +482,33 @@
             }
 
             function setupMovieCardClickEvents() {
-                document.querySelectorAll('.movie-card-link').forEach(link => {
-                    link.addEventListener('click', (event) => {
-                        event.preventDefault(); // Previne o comportamento padrão do link
+                document.querySelectorAll('.movie-card').forEach(card => {
+                    card.addEventListener('click', (event) => {
+                        event.preventDefault(); // Previne o comportamento padrão
 
-                        loadingElement.style.display = 'flex';
+                        const name = card.dataset.name;
+                        const url = card.dataset.url;
 
-                        setTimeout(() => {
-                            window.location.href = link.href; // Redireciona para o link após o tempo de carregamento
-                        }, 300); // Tempo em milissegundos
+                        modalTitle.textContent = name;
+                        modalLink.href = url;
+
+                        modal.style.display = 'flex'; // Abre o modal
                     });
+                });
+
+                modalClose.addEventListener('click', () => {
+                    modal.style.display = 'none'; // Fecha o modal
+                });
+
+                window.addEventListener('click', (event) => {
+                    if (event.target === modal) {
+                        modal.style.display = 'none'; // Fecha o modal se clicar fora
+                    }
                 });
             }
 
             fetchAndProcessContent();
             setupSearchFunctionality();
-            setupMovieCardClickEvents();
-        });
-
-        document.querySelectorAll('.carousel').forEach(carousel => {
-            carousel.addEventListener('mousedown', (e) => {
-                e.preventDefault();
-            });
         });
     </script>
 
