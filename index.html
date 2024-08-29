@@ -5,95 +5,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clone Netflix</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #141414;
-            color: #e5e5e5;
-        }
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #000;
-            color: #e5e5e5;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-            z-index: 1000;
-        }
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .logo {
-            width: 100px;
-        }
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #e5e5e5;
-            font-size: 16px;
-        }
-        .hero {
-            position: relative;
-            height: 60vh;
-            background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
-        .hero h1 {
-            font-size: 3rem;
-            margin: 0;
-        }
-        .hero button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            border: none;
-            background-color: #e50914;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .movie-row {
-            margin: 20px 0;
-            padding: 0 20px;
-        }
-        .movie-row h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .movies {
-            display: flex;
-            overflow-x: scroll;
-            gap: 10px;
-        }
-        .movie {
-            flex: 0 0 auto;
-            width: 150px;
-            height: 225px;
-            background: #333;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-        }
-        .movie img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #141414;
+    color: #e5e5e5;
+}
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #000;
+    color: #e5e5e5;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.logo {
+    width: 100px;
+}
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+.nav-links a {
+    text-decoration: none;
+    color: #e5e5e5;
+    font-size: 16px;
+}
+.hero {
+    position: relative;
+    height: 60vh;
+    background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+.hero h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+.hero button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #e50914;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.movie-row {
+    margin: 20px 0;
+    padding: 0 20px;
+}
+.movie-row h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.movies {
+    display: flex;
+    overflow-x: auto; /* Permite a rolagem horizontal */
+    overflow-y: hidden; /* Garante que não haja rolagem vertical */
+    gap: 10px;
+    scroll-snap-type: x mandatory; /* Melhora a experiência de rolagem */
+}
+
+/* Remove a barra de rolagem padrão */
+.movies::-webkit-scrollbar {
+    display: none; /* Para Webkit (Chrome, Safari) */
+}
+
+.movies {
+    -ms-overflow-style: none; /* Para Internet Explorer e Edge */
+    scrollbar-width: none; /* Para Firefox */
+}
+.movie {
+    flex: 0 0 auto;
+    width: 150px;
+    height: 225px;
+    background: #333;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+.movie img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
     </style>
 </head>
 <body>
@@ -115,13 +128,15 @@
     </div>
 
     <div class="movie-row">
-        <h2>EmAlta</h2>
-        <div class="movies" id="movie-list">
+        <h2>Em Alta</h2>
+        <div class="movies" id="movie-list-1">
             <!-- Filmes serão carregados aqui pelo JavaScript -->
         </div>
+    </div>
+
     <div class="movie-row">
         <h2>Populares na Netflix</h2>
-        <div class="movies" id="movie-list">
+        <div class="movies" id="movie-list-2">
             <!-- Filmes serão carregados aqui pelo JavaScript -->
         </div>
     </div>
