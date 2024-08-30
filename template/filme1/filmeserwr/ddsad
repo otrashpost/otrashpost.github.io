@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Filmes</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1c1c1c;
+            color: #ff9800;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #ff9800;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #424242;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid #616161;
+            border-radius: 5px 0 0 5px;
+            font-size: 16px;
+            background-color: #616161;
+            color: #e0e0e0;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .search-box input:focus {
+            border-color: #ff9800;
+        }
+        .search-box button {
+            padding: 15px;
+            border: 1px solid #ff9800;
+            border-radius: 0 5px 5px 0;
+            background-color: #ff9800;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .search-box button:hover {
+            background-color: #e68900;
+            transform: scale(1.05);
+        }
+        .result-item, .content {
+            background-color: #333;
+            border: 1px solid #444;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .result-item:hover, .content:hover {
+            background-color: #444;
+            transform: translateY(-5px);
+        }
+        .result-item img {
+            max-width: 100%;
+            border-radius: 10px;
+            height: auto;
+        }
+        .result-item .details {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .result-item .details h2 {
+            margin: 10px 0;
+            font-size: 1.5em;
+        }
+        .result-item .details p {
+            font-size: 0.9em;
+            color: #b0bec5;
+        }
+        .no-results, .error {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .no-results {
+            color: #b0bec5;
+        }
+        .error {
+            color: #e57373;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Consulta de Filmes</h1>
+    </header>
+    <div class="container">
+        <div class="search-box">
+            <input type="text" id="query" placeholder="Digite o título do filme">
+            <button onclick="fetchData()">Buscar</button>
+        </div>
+        <div id="results"></div>
+        <div id="items"></div>
+    </div>
+
+    <script>
+        async function fetchData() {
+            const query = document.getElementById('query').value;
+            const proxyUrl = 'https://corsproxy.io/?url=h=';
+            const apiUrl = proxyUrl + encodeURIComponent(query);
+            
+            try {
+                const response = await fetch(apiUrl);
+                const text = await response.text();
+                
+                // Cria um documento DOM a partir do texto retornado
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                
+                // Seleciona o div content.right.csearch
+                const contentDiv = doc.querySelector('div.content.right.csearch');
+                if (contentDiv) {
+                    // Exibe o conteúdo do div content.right.csearch
+                    document.getElementById('results').innerHTML = contentDiv.outerHTML;
+                } else {
+                    document.getElementById('results').innerHTML = '<div class="no-results">Nenhum resultado encontrado.</div>';
+                }
+
+                // Seleciona todos os div result-item
+                const resultItems = doc.querySelectorAll('div.result-item');
+                if (resultItems.length > 0) {
+                    // Exibe todos os div result-item
+                    let itemsHtml = '';
+                    resultItems.forEach(item => {
+                        itemsHtml += item.outerHTML;
+                    });
+                    document.getElementById('items').innerHTML = itemsHtml;
+                } else {
+                    document.getElementById('items').innerHTML = '<div class="no-results">Nenhum item encontrado.</div>';
+                }
+                
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+                document.getElementById('results').innerHTML = '<div class="error">Erro ao buscar dados.</div>';
+                document.getElementById('items').innerHTML = '<div class="error">Erro ao buscar dados.</div>';
+            }
+        }
+    </script>
+</body>
+</html>
