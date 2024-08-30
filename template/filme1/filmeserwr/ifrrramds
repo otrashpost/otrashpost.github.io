@@ -5,27 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Captura de Iframe</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Impede a rolagem da página */
         }
         #iframe-container {
-            margin-top: 20px;
+            width: 100%;
+            height: 100%;
+            position: relative;
         }
         iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 500px;
+            height: 100%;
             border: none;
         }
     </style>
 </head>
 <body>
-    <h1>Captura do Iframe</h1>
     <div id="iframe-container"></div>
 
     <script>
         async function fetchIframeData() {
-            const proxyUrl = 'https://corsproxy.io/?url=';
+            const proxyUrl = 'https://corsproxy.io/?url=https://c/o-lado-escuro-da-lua/';
             
             try {
                 const response = await fetch(proxyUrl);
@@ -45,7 +51,124 @@
                     // Exibir o iframe no elemento da página
                     const iframeContainer = document.getElementById('iframe-container');
                     iframeContainer.innerHTML = `
-                        <iframe src="${iframe.src}" frameborder="0" scrolling="no" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <iframe src="${iframe.src}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    `;
+                } else {
+                    document.getElementById('iframe-container').textContent = 'Iframe não encontrado.';
+                }
+            } catch (error) {
+                console.error('Houve um problema com a requisição Fetch:', error);
+                document.getElementById('iframe-container').textContent = 'Erro ao buscar dados. Veja o console para mais detalhes.';
+            }
+        }
+
+        // Executar a função automaticamente quando a página carrega
+        window.addEventListener('load', fetchIframeData);
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captura de Iframe</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Impede a rolagem da página */
+        }
+        #iframe-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="iframe-container"></div>
+
+    <script>
+        // Função para obter o valor de um parâmetro da URL
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
+                  results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        async function fetchIframeData() {
+            // Obter o valor do parâmetro 'id' da URL
+            const id = getParameterByName('id');
+            if (!id) {
+                document.getElementById('iframe-container').textContent = 'Parâmetro "id" não fornecido na URL.';
+                return;
+            }
+
+            // Construir a URL usando o valor do parâmetro
+            const baseUrl = 'https://cirailer-m/';
+            const fullUrl = `${baseUrl}${id}/`;
+
+            // Adicionar proxy CORS
+            const proxyUrl = `https://corsproxy.io/?url=${encodeURIComponent(fullUrl)}`;
+            
+            try {
+                const response = await fetch(proxyUrl);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const text = await response.text();
+                
+                // Criar um elemento temporário para analisar o HTML
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                
+                // Encontrar o iframe dentro da div com a classe 'pframe'
+                const iframe = doc.querySelector('div.pframe iframe');
+                
+                if (iframe) {
+                    // Exibir o iframe no elemento da página
+                    const iframeContainer = document.getElementById('iframe-container');
+                    iframeContainer.innerHTML = `
+                        <iframe src="${iframe.src}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     `;
                 } else {
                     document.getElementById('iframe-container').textContent = 'Iframe não encontrado.';
