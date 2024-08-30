@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const proxyUrl = 'https://corsproxy.io/?url=';
-    const targetUrl = 'https://hyper.dicasdigital.com/trailer-s/';
+    const targetUrl = '/';
     const fullUrl = proxyUrl + encodeURIComponent(targetUrl);
 
     fetch(fullUrl)
