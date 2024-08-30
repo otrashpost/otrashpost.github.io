@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captura de Iframe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #iframe-container {
+            margin-top: 20px;
+        }
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Captura do Iframe</h1>
+    <div id="iframe-container"></div>
+
+    <script>
+        async function fetchIframeData() {
+            const proxyUrl = 'https://corsproxy.io/?url=';
+            
+            try {
+                const response = await fetch(proxyUrl);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const text = await response.text();
+                
+                // Criar um elemento temporário para analisar o HTML
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                
+                // Encontrar o iframe dentro da div com a classe 'pframe'
+                const iframe = doc.querySelector('div.pframe iframe');
+                
+                if (iframe) {
+                    // Exibir o iframe no elemento da página
+                    const iframeContainer = document.getElementById('iframe-container');
+                    iframeContainer.innerHTML = `
+                        <iframe src="${iframe.src}" frameborder="0" scrolling="no" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    `;
+                } else {
+                    document.getElementById('iframe-container').textContent = 'Iframe não encontrado.';
+                }
+            } catch (error) {
+                console.error('Houve um problema com a requisição Fetch:', error);
+                document.getElementById('iframe-container').textContent = 'Erro ao buscar dados. Veja o console para mais detalhes.';
+            }
+        }
+
+        // Executar a função automaticamente quando a página carrega
+        window.addEventListener('load', fetchIframeData);
+    </script>
+</body>
+</html>
