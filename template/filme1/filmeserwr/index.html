@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conteúdo Via Proxy</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Arquivo CSS externo -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Ícones FontAwesome -->
+</head>
+<body>
+    <header>
+        <h1>Conteúdo Via Proxy</h1>
+    </header>
+    <div class="headitems">
+        <div id="advc-menu" class="search">
+            <form method="get" id="searchform" action="https://hyper.dicasdigital.com">
+                <input type="text" placeholder="Pesquisar..." name="s" id="s" value="" autocomplete="off">
+                <button class="search-button" type="submit">
+                    <span class="fas fa-search" aria-hidden="true"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div id="item-container" class="item-container">Carregando...</div>
+    <div id="pagination" class="pagination">
+        <a href="#" class="previous">Anterior</a>
+        <a href="#" class="inactive">1</a>
+        <a href="#" class="current">2</a>
+        <a href="#" class="inactive">3</a>
+        <a href="#" class="next">Próximo</a>
+    </div>
+    <footer>
+        &copy; 2024 Conteúdo Via Proxy
+    </footer>
+    
+    <script src="script.js"></script> <!-- Arquivo JS externo -->
+</body>
+</html>
