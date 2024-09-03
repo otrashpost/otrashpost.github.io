@@ -1,12 +1,18 @@
 {
     "novidades": [
         {
-            "titulo": "Filme 1",
-            "imagem": "https://via.placeholder.com/300x450",
-            "descricao": "Descrição breve do filme.",
-            "url": "https://example.com/filme1"
+            "titulo": "Por um Punhado de Dólares",
+            "imagem": "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/jaF2Pr2JucNk0pALCBDDPOGU9lQ.jpg",
+            "descricao": "Joe (Clint Eastwood) é um pistoleiro barra pesada que chega a uma cidade que está em guerra. Quando percebem o potencial de Joe, ambas as partes se interessam por contratá-lo; é quando ele percebe que pode ganhar um dinheiro com a situação aceitando a proposta dos dois lados. Um pistoleiro misterioso (Clint Eastwood) chega em San Miguel, uma cidade muito rude onde dois grupos rivais de contrabandistas aterrorizavam os.",
+            "url": "https://dhysuw8vrebv2yhy12aaghnwcshcza0dhvk.blogspot.com/?m=12370"
         },
         {
+            "titulo": "Filme 2",
+            "imagem": "https://via.placeholder.com/300x450",
+            "descricao": "Descrição breve do filme.",
+            "url": "https://example.com/filme2"
+        },
+                {
             "titulo": "Filme 2",
             "imagem": "https://via.placeholder.com/300x450",
             "descricao": "Descrição breve do filme.",
