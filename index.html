@@ -1,146 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clone Netflix</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="SuperFlix - Assista a filmes e séries online em Full HD, legendado e dublado. Confira os lançamentos mais recentes!" />
+    <meta property="og:title" content="SuperFlix - Assistir Filmes Online - Legendado e Full HD" />
+    <meta property="og:description" content="Assistir Filmes Online no SuperFlix é nota 10. Site completo com Filmes Lançamentos 2024, Tudo em Full HD, Legendado e Dublado." />
+    <meta property="og:url" content="https://superflix.dev/" />
+    <meta property="og:site_name" content="SuperFlix" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://superflix.dev/" />
+    <link rel="icon" href="https://superflix.dev/wp-content/uploads/2024/01/favicon.png" sizes="32x32" />
+    <title>SuperFlix - Assistir Filmes Online - Legendado e Full HD</title>
     <style>
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #141414;
-    color: #e5e5e5;
-}
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #000;
-    color: #e5e5e5;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-    z-index: 1000;
-}
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-.logo {
-    width: 100px;
-}
-.nav-links {
-    display: flex;
-    gap: 20px;
-}
-.nav-links a {
-    text-decoration: none;
-    color: #e5e5e5;
-    font-size: 16px;
-}
-.hero {
-    position: relative;
-    height: 60vh;
-    background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-}
-.hero h1 {
-    font-size: 3rem;
-    margin: 0;
-}
-.hero button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    background-color: #e50914;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-.movie-row {
-    margin: 20px 0;
-    padding: 0 20px;
-}
-.movie-row h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-.movies {
-    display: flex;
-    overflow-x: auto; /* Permite a rolagem horizontal */
-    overflow-y: hidden; /* Garante que não haja rolagem vertical */
-    gap: 10px;
-    scroll-snap-type: x mandatory; /* Melhora a experiência de rolagem */
-}
-
-/* Remove a barra de rolagem padrão */
-.movies::-webkit-scrollbar {
-    display: none; /* Para Webkit (Chrome, Safari) */
-}
-
-.movies {
-    -ms-overflow-style: none; /* Para Internet Explorer e Edge */
-    scrollbar-width: none; /* Para Firefox */
-}
-.movie {
-    flex: 0 0 auto;
-    width: 150px;
-    height: 225px;
-    background: #333;
-    border-radius: 8px;
-    position: relative;
-    overflow: hidden;
-}
-.movie img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
+        body {
+            font-family: Arial, sans-serif;
+            color: #fff;
+            background-color: #00022b;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1a1c41;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo img {
+            height: 50px;
+        }
+        nav {
+            display: flex;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        nav ul li a:hover {
+            color: #03c1ef;
+        }
+        .search-form {
+            display: flex;
+            align-items: center;
+        }
+        .search-form input {
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        .search-form button {
+            background-color: #03c1ef;
+            border: none;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .widget {
+            margin-bottom: 20px;
+        }
+        .widget h3 {
+            margin: 0 0 10px;
+        }
+        .widget p {
+            margin: 0 0 10px;
+        }
+        .widget .btn {
+            background-color: #03c1ef;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .widget .btn:hover {
+            background-color: #0294c9;
+        }
+        .widget ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .widget ul li {
+            margin-bottom: 10px;
+            background-color: #1a1c41;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .widget ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .widget ul li a:hover {
+            color: #03c1ef;
+        }
+        footer {
+            background-color: #1a1c41;
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
+        }
     </style>
 </head>
 <body>
     <header>
-        <div class="header-content">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Netflix_2015_logo.svg" alt="Netflix Logo" class="logo">
-            <nav class="nav-links">
-                <a href="#">Início</a>
-                <a href="#">Séries</a>
-                <a href="#">Filmes</a>
-                <a href="#">Minha Lista</a>
-            </nav>
+        <div class="logo">
+            <img src="https://superflix.dev/wp-content/uploads/2024/01/superflix.svg" alt="SuperFlix Logo">
         </div>
+        <nav>
+            <ul>
+                <li><a href="https://superflix.dev/">Home</a></li>
+                <li><a href="https://superflix.dev/filmes/">Filmes</a></li>
+                <li><a href="https://superflix.dev/series/">Séries</a></li>
+                <li><a href="https://superflix.dev/categoria/animes/">Animes</a></li>
+                <li><a href="https://superflix.dev/categoria/lancamentos/">Lançamentos</a></li>
+            </ul>
+            <form class="search-form" method="get" action="https://superflix.dev">
+                <input type="text" name="s" placeholder="Pesquisar">
+                <button type="submit">Buscar</button>
+            </form>
+        </nav>
     </header>
+    <main class="main-content">
+        <section class="widget">
+            <h3>Notícias</h3>
+            <p>Fala, galera!</p>
+            <p>Estamos enfrentando um problema em alguns conteúdos, mas já estamos trabalhando na solução. Agradecemos a sua paciência.</p>
+            <p>Abraço!</p>
+        </section>
+        <section class="widget">
+            <header>
+                <h3>Últimos Lançamentos</h3>
+                <a href="https://superflix.dev/categoria/lancamentos/" class="btn">Ver mais</a>
+            </header>
+            <ul id="launch-list">
+                <!-- Lista de lançamentos será adicionada aqui -->
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 SuperFlix. Todos os direitos reservados.</p>
+    </footer>
 
-    <div class="hero">
-        <h1>Bem-vindo ao Netflix</h1>
-        <button>Assista Agora</button>
-    </div>
+    <script>
+        // Função para carregar os lançamentos do JSON
+        async function loadLaunches() {
+            try {
+                const response = await fetch('https://otrashpost.github.io/movies.json');
+                const launches = await response.json();
+                const launchList = document.getElementById('launch-list');
 
-    <div class="movie-row">
-        <h2>Em Alta</h2>
-        <div class="movies" id="movie-list-1">
-            <!-- Filmes serão carregados aqui pelo JavaScript -->
-        </div>
-    </div>
+                // Limpar a lista existente
+                launchList.innerHTML = '';
 
-    <div class="movie-row">
-        <h2>Populares na Netflix</h2>
-        <div class="movies" id="movie-list-2">
-            <!-- Filmes serão carregados aqui pelo JavaScript -->
-        </div>
-    </div>
+                // Adicionar os lançamentos ao DOM
+                launches.forEach(launch => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `
+                        <a href="${launch.link}">
+                            <strong>${launch.title}</strong> - ${launch.description}
+                            <br>
+                            <small>${new Date(launch.releaseDate).toLocaleDateString()}</small>
+                        </a>
+                    `;
+                    launchList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar os lançamentos:', error);
+            }
+        }
 
-    <script src="script.js"></script>
+        // Carregar lançamentos ao carregar a página
+        window.onload = loadLaunches;
+    </script>
 </body>
 </html>
