@@ -1,15 +1,42 @@
-[
-    {
-        "title": "Lançamento 1",
-        "description": "Descrição do lançamento 1",
-        "releaseDate": "2024-09-01",
-        "link": "https://example.com/lancamento1"
-    },
-    {
-        "title": "Lançamento 2",
-        "description": "Descrição do lançamento 2",
-        "releaseDate": "2024-09-02",
-        "link": "https://example.com/lancamento2"
-    }
-    // Adicione mais lançamentos conforme necessário
-]
+{
+    "novidades": [
+        {
+            "titulo": "Filme 1",
+            "imagem": "https://via.placeholder.com/300x450",
+            "descricao": "Descrição breve do filme.",
+            "url": "https://example.com/filme1"
+        },
+        {
+            "titulo": "Filme 2",
+            "imagem": "https://via.placeholder.com/300x450",
+            "descricao": "Descrição breve do filme.",
+            "url": "https://example.com/filme2"
+        },
+        {
+            "titulo": "Filme 3",
+            "imagem": "https://via.placeholder.com/300x450",
+            "descricao": "Descrição breve do filme.",
+            "url": "https://example.com/filme3"
+        }
+    ],
+    "emAlta": [
+        {
+            "titulo": "Filme 4",
+            "imagem": "https://via.placeholder.com/300x450",
+            "descricao": "Descrição breve do filme.",
+            "url": "https://example.com/filme4"
+        },
+        {
+            "titulo": "Filme 5",
+            "imagem": "https://via.placeholder.com/300x450",
+            "descricao": "Descrição breve do filme.",
+            "url": "https://example.com/filme5"
+        },
+        {
+            "titulo": "Filme 6",
+            "imagem": "https://via.placeholder.com/300x450",
+            "descricao": "Descrição breve do filme.",
+            "url": "https://example.com/filme6"
+        }
+    ]
+}
