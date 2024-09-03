@@ -1,22 +1,15 @@
 [
     {
-        "title": "Filme 1",
-        "image": "https://via.placeholder.com/150x225"
+        "title": "Lançamento 1",
+        "description": "Descrição do lançamento 1",
+        "releaseDate": "2024-09-01",
+        "link": "https://example.com/lancamento1"
     },
     {
-        "title": "Filme 2",
-        "image": "https://via.placeholder.com/150x225"
-    },
-    {
-        "title": "Filme 3",
-        "image": "https://via.placeholder.com/150x225"
-    },
-    {
-        "title": "Filme 4",
-        "image": "https://via.placeholder.com/150x225"
-    },
-    {
-        "title": "Filme 5",
-        "image": "https://via.placeholder.com/150x225"
+        "title": "Lançamento 2",
+        "description": "Descrição do lançamento 2",
+        "releaseDate": "2024-09-02",
+        "link": "https://example.com/lancamento2"
     }
+    // Adicione mais lançamentos conforme necessário
 ]
