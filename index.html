@@ -1,192 +1,133 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="robots" content="index, follow">
-    <meta name="description" content="SuperFlix - Assista a filmes e séries online em Full HD, legendado e dublado. Confira os lançamentos mais recentes!" />
-    <meta property="og:title" content="SuperFlix - Assistir Filmes Online - Legendado e Full HD" />
-    <meta property="og:description" content="Assistir Filmes Online no SuperFlix é nota 10. Site completo com Filmes Lançamentos 2024, Tudo em Full HD, Legendado e Dublado." />
-    <meta property="og:url" content="https://superflix.dev/" />
-    <meta property="og:site_name" content="SuperFlix" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="canonical" href="https://superflix.dev/" />
-    <link rel="icon" href="https://superflix.dev/wp-content/uploads/2024/01/favicon.png" sizes="32x32" />
-    <title>SuperFlix - Assistir Filmes Online - Legendado e Full HD</title>
+    <title>Meu Site de Streaming</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            color: #fff;
-            background-color: #00022b;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
         }
-        header {
-            background-color: #1a1c41;
-            padding: 10px 20px;
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .navbar {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px;
         }
-        header .logo img {
-            height: 50px;
-        }
-        nav {
-            display: flex;
-        }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-        nav ul li {
-            margin-right: 20px;
-        }
-        nav ul li a {
-            color: #fff;
+        .navbar a {
+            color: white;
             text-decoration: none;
-            font-size: 16px;
+            font-weight: bold;
         }
-        nav ul li a:hover {
-            color: #03c1ef;
-        }
-        .search-form {
+        .hero {
+            background: url('https://via.placeholder.com/1200x400') no-repeat center center;
+            background-size: cover;
+            height: 400px;
             display: flex;
             align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
         }
-        .search-form input {
-            padding: 8px;
-            border: none;
-            border-radius: 4px;
-            margin-right: 10px;
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0;
         }
-        .search-form button {
-            background-color: #03c1ef;
-            border: none;
-            color: #fff;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .main-content {
+        .container {
             padding: 20px;
         }
-        .widget {
+        .category {
             margin-bottom: 20px;
         }
-        .widget h3 {
-            margin: 0 0 10px;
-        }
-        .widget p {
-            margin: 0 0 10px;
-        }
-        .widget .btn {
-            background-color: #03c1ef;
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-        .widget .btn:hover {
-            background-color: #0294c9;
-        }
-        .widget ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .widget ul li {
+        .category h2 {
             margin-bottom: 10px;
-            background-color: #1a1c41;
-            padding: 10px;
-            border-radius: 4px;
         }
-        .widget ul li a {
-            color: #fff;
-            text-decoration: none;
+        .movies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
         }
-        .widget ul li a:hover {
-            color: #03c1ef;
-        }
-        footer {
-            background-color: #1a1c41;
-            color: #fff;
+        .movie {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            width: calc(33.333% - 20px);
             text-align: center;
-            padding: 10px 20px;
+            text-decoration: none;
+            color: black;
+        }
+        .movie img {
+            width: 100%;
+            display: block;
+        }
+        .movie-info {
+            padding: 10px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="https://superflix.dev/wp-content/uploads/2024/01/superflix.svg" alt="SuperFlix Logo">
+    <header class="header">
+        <div class="navbar">
+            <a href="#">Home</a>
+            <a href="#">Categorias</a>
+            <a href="#">Sobre</a>
+            <a href="#">Contato</a>
         </div>
-        <nav>
-            <ul>
-                <li><a href="https://superflix.dev/">Home</a></li>
-                <li><a href="https://superflix.dev/filmes/">Filmes</a></li>
-                <li><a href="https://superflix.dev/series/">Séries</a></li>
-                <li><a href="https://superflix.dev/categoria/animes/">Animes</a></li>
-                <li><a href="https://superflix.dev/categoria/lancamentos/">Lançamentos</a></li>
-            </ul>
-            <form class="search-form" method="get" action="https://superflix.dev">
-                <input type="text" name="s" placeholder="Pesquisar">
-                <button type="submit">Buscar</button>
-            </form>
-        </nav>
     </header>
-    <main class="main-content">
-        <section class="widget">
-            <h3>Notícias</h3>
-            <p>Fala, galera!</p>
-            <p>Estamos enfrentando um problema em alguns conteúdos, mas já estamos trabalhando na solução. Agradecemos a sua paciência.</p>
-            <p>Abraço!</p>
+    <section class="hero">
+        <h1>Bem-vindo ao Meu Site de Streaming</h1>
+    </section>
+    <div class="container">
+        <section class="category" id="novidades">
+            <h2>Novidades</h2>
+            <div class="movies" id="novidades-movies"></div>
         </section>
-        <section class="widget">
-            <header>
-                <h3>Últimos Lançamentos</h3>
-                <a href="https://superflix.dev/categoria/lancamentos/" class="btn">Ver mais</a>
-            </header>
-            <ul id="launch-list">
-                <!-- Lista de lançamentos será adicionada aqui -->
-            </ul>
+        <section class="category" id="emAlta">
+            <h2>Em Alta</h2>
+            <div class="movies" id="emAlta-movies"></div>
         </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 SuperFlix. Todos os direitos reservados.</p>
-    </footer>
+    </div>
 
     <script>
-        // Função para carregar os lançamentos do JSON
-        async function loadLaunches() {
-            try {
-                const response = await fetch('https://otrashpost.github.io/movies.json');
-                const launches = await response.json();
-                const launchList = document.getElementById('launch-list');
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('movies.json')
+                .then(response => response.json())
+                .then(data => {
+                    const novidadesContainer = document.getElementById('novidades-movies');
+                    const emAltaContainer = document.getElementById('emAlta-movies');
 
-                // Limpar a lista existente
-                launchList.innerHTML = '';
+                    // Função para criar o HTML para os filmes
+                    function createMovieHTML(movie) {
+                        return `
+                            <a href="${movie.url}" class="movie">
+                                <img src="${movie.imagem}" alt="${movie.titulo}">
+                                <div class="movie-info">
+                                    <h3>${movie.titulo}</h3>
+                                    <p>${movie.descricao}</p>
+                                </div>
+                            </a>
+                        `;
+                    }
 
-                // Adicionar os lançamentos ao DOM
-                launches.forEach(launch => {
-                    const listItem = document.createElement('li');
-                    listItem.innerHTML = `
-                        <a href="${launch.link}">
-                            <strong>${launch.title}</strong> - ${launch.description}
-                            <br>
-                            <small>${new Date(launch.releaseDate).toLocaleDateString()}</small>
-                        </a>
-                    `;
-                    launchList.appendChild(listItem);
-                });
-            } catch (error) {
-                console.error('Erro ao carregar os lançamentos:', error);
-            }
-        }
-
-        // Carregar lançamentos ao carregar a página
-        window.onload = loadLaunches;
+                    // Preencher as categorias com filmes
+                    data.novidades.forEach(movie => {
+                        novidadesContainer.innerHTML += createMovieHTML(movie);
+                    });
+                    data.emAlta.forEach(movie => {
+                        emAltaContainer.innerHTML += createMovieHTML(movie);
+                    });
+                })
+                .catch(error => console.error('Erro ao carregar o arquivo JSON:', error));
+        });
     </script>
 </body>
 </html>
