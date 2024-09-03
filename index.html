@@ -99,11 +99,11 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('movies.json')
+            fetch('https://otrashpost.github.io/movies.json')
                 .then(response => response.json())
                 .then(data => {
-                    const novidadesContainer = document.getElementById('novidades-movies');
-                    const emAltaContainer = document.getElementById('emAlta-movies');
+                    const novidadesContainer = document.getElementById('emAlta-movies');
+                    const emAltaContainer = document.getElementById('novidades-movies');
 
                     // Função para criar o HTML para os filmes
                     function createMovieHTML(movie) {
@@ -112,7 +112,6 @@
                                 <img src="${movie.imagem}" alt="${movie.titulo}">
                                 <div class="movie-info">
                                     <h3>${movie.titulo}</h3>
-                                    <p>${movie.descricao}</p>
                                 </div>
                             </a>
                         `;
