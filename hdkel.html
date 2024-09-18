@@ -3,334 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PLAYER</title>
+    <title>Filmes em Cartaz</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #101010;
+            color: #e0e0e0;
             margin: 0;
-            padding: 0;
-            background-color: #000;
-            color: #fff;
             overflow-x: hidden;
         }
 
         header {
+            background-color: #1c1c1c;
+            padding: 15px;
+            text-align: center;
             position: fixed;
-            top: 0;
             width: 100%;
-            background-color: #000;
-            color: #fff;
-            padding: 10px 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+            top: 0;
             z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         header img {
-            height: 30px;
+            max-width: 200px; /* Ajuste o tamanho conforme necessário */
+            height: auto;
         }
 
-        .banner {
-            position: relative;
-            height: 60vh;
-            background: url('https://telaviva.com.br/wp-content/uploads/2022/05/streaming.jpg') no-repeat center center;
-            background-size: cover;
-            color: #fff;
-            text-align: center;
+        .carousel-container {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 0 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-        }
-
-        .banner h1 {
-            font-size: 2.5em;
-            margin: 0;
-        }
-
-        .banner p {
-            font-size: 1em;
-            margin: 5px 0;
+            align-items: center;
+            margin: 20px 0;
+            padding-top: 70px; /* Espaço para o header fixo */
         }
 
         .search-bar {
-            display: flex;
-            justify-content: center;
-            margin-top: 15px;
+            margin: 20px auto;
+            text-align: center;
         }
 
         .search-bar input {
-            padding: 8px;
-            font-size: 0.9em;
-            border: 2px solid #e50914;
+            padding: 10px;
+            border: none;
             border-radius: 5px;
             width: 250px;
-            color: #000;
+            margin-right: 5px;
         }
 
         .search-bar button {
-            padding: 8px 15px;
-            font-size: 0.9em;
+            padding: 10px;
             background-color: #e50914;
             border: none;
             border-radius: 5px;
-            color: #fff;
+            color: white;
             cursor: pointer;
-            transition: background-color 0.3s;
-            margin-left: 5px;
         }
 
         .search-bar button:hover {
             background-color: #f40612;
         }
 
-        .section {
-            padding: 15px;
-        }
-
-        .section h2 {
-            font-size: 1.8em;
-            margin: 0 0 15px;
-        }
-
-        .carousel-wrapper {
-            position: relative;
-            overflow: hidden;
-            padding: 5px;
-        }
-
         .carousel {
-            display: flex;
-            overflow-x: auto;
-            gap: 8px;
-            scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
-            padding: 0;
-            margin: 0;
-            align-items: flex-start;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .carousel::-webkit-scrollbar {
-            display: none;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px; /* Aumenta o espaço entre os cards */
+            padding: 10px 0;
         }
 
         .movie-card {
-            background-color: #000;
-            border-radius: 6px;
-            overflow: hidden;
-            flex: none;
-            scroll-snap-align: start;
-            transition: transform 0.3s, box-shadow 0.3s;
-            width: 150px;
-            display: flex;
-            flex-direction: column;
+            background-color: #2c2c2c;
+            border-radius: 8px;
+            transition: transform 0.3s;
             cursor: pointer;
+            width: 100%; /* Ocupa toda a largura disponível */
+            max-width: 150px; /* Largura máxima dos cards */
         }
 
         .movie-card img {
+            border-radius: 8px 8px 0 0;
             width: 100%;
-            height: auto;
-            object-fit: cover;
+            height: auto; /* Mantém a proporção da imagem */
         }
 
         .movie-info {
-            padding: 8px;
-            color: #fff;
-            background: rgba(0, 0, 0, 0.6);
-        }
-
-        .movie-info h3 {
-            margin: 0;
-            font-size: 1em;
+            padding: 10px;
+            text-align: center;
         }
 
         .movie-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
         }
 
-        .carousel-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            font-size: 1.2em;
-            z-index: 100;
-            transition: background-color 0.3s;
-        }
-
-        .carousel-button:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .carousel-button.left {
-            left: 5px;
-        }
-
-        .carousel-button.right {
-            right: 5px;
-        }
-
-        .loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            display: none; /* Inicialmente escondido */
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2em;
-            z-index: 1000;
-        }
-
-        @media (max-width: 768px) {
-            .banner h1 {
-                font-size: 2em;
-            }
-
-            .banner p {
-                font-size: 0.9em;
-            }
-
-            .movie-card {
-                width: 120px;
-            }
-
-            .movie-info h3 {
-                font-size: 0.9em;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .movie-info h3 {
-                font-size: 1.1em;
-            }
-        }
-
-        .movie-card.hidden {
-            display: none;
-        }
-
-        .movie-card a {
-            display: block;
-            height: 100%;
-            width: 100%;
-            text-decoration: none;
-        }
-
-        .movie-card a .movie-info {
-            background: rgba(0, 0, 0, 0.6);
-        }
-
-        /* Estilos do Modal */
         .modal {
-            display: none; /* Oculto por padrão */
+            display: none;
             position: fixed;
             z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.8);
             justify-content: center;
             align-items: center;
         }
 
         .modal-content {
             background-color: #333;
-            margin: 15% auto;
             padding: 20px;
-            border: 1px solid #888;
+            border-radius: 8px;
             width: 80%;
-            max-width: 600px;
-        }
-
-        .modal-header, .modal-body, .modal-footer {
-            padding: 10px;
-        }
-
-        .modal-header {
-            border-bottom: 1px solid #888;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-footer {
-            border-top: 1px solid #888;
-            text-align: center; /* Centraliza o conteúdo do footer */
+            max-width: 500px;
         }
 
         .modal-close {
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
             cursor: pointer;
+            color: #aaa;
+            float: right;
         }
 
-        .modal-close:hover,
-        .modal-close:focus {
+        .modal-close:hover {
             color: #fff;
-            text-decoration: none;
-            cursor: pointer;
         }
 
         .modal-button {
-            padding: 10px 20px;
-            font-size: 1em;
+            padding: 10px;
             background-color: #e50914;
             border: none;
             border-radius: 5px;
-            color: #fff;
+            color: white;
             cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s;
         }
 
         .modal-button:hover {
             background-color: #f40612;
         }
+
+        @media (max-width: 768px) {
+            .carousel {
+                grid-template-columns: repeat(2, 1fr); /* Reduzir para 2 colunas */
+            }
+
+            .movie-card {
+                max-width: 120px; /* Ajuste o tamanho dos cards */
+            }
+
+            .search-bar input {
+                width: 200px; /* Ajuste a largura da barra de busca */
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <img src="https://armfotosfutwebom.weebly.com/uploads/1/4/8/8/148851003/futwebomlogu_orig.png" alt="Logo do CineHub">
+        <img src="https://armfotosfutwebom.weebly.com/uploads/1/4/8/8/148851003/futwebomlogu_orig.png" alt="Logo do FUTWEBOM">
     </header>
-    
-    <div class="banner">
-        <h1>Filmes</h1>
+
+    <div class="carousel-container">
+        <h2>Filmes em Cartaz</h2>
         <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Pesquise...">
+            <input type="text" id="searchInput" placeholder="Pesquise..." aria-label="Pesquisar filmes">
             <button id="searchButton">Pesquisar</button>
         </div>
+        <div class="carousel" id="movieCarousel"></div>
     </div>
 
-    <main id="carousels"></main>
-
-    <div class="loading" id="loading">Carregando...</div>
-
     <!-- Modal -->
-    <div id="movieModal" class="modal">
+    <div id="movieModal" class="modal" aria-hidden="true">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitle">Título do Filme</h2>
-                <span class="modal-close" id="modalClose">&times;</span>
-            </div>
-            <div class="modal-body">
-                <!-- Descrição do filme foi removida -->
-            </div>
+            <span class="modal-close" id="modalClose" aria-label="Fechar modal">&times;</span>
+            <h2 id="modalTitle">Título do Filme</h2>
             <div class="modal-footer">
                 <a id="modalLink" class="modal-button" target="_blank">Assistir Agora</a>
             </div>
@@ -340,39 +181,34 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const apiUrl = 'https://api.codetabs.com/v1/proxy/?quest=http://uplayerfilmes.weebly.com/aHR0cDovL3VwbGF5ZXJmaWxtZXMud2VlYmx5LmNvbS8.html';
-            const loadingElement = document.getElementById('loading');
-            const carouselsContainer = document.getElementById('carousels');
+            const movieCarousel = document.getElementById('movieCarousel');
             const modal = document.getElementById('movieModal');
             const modalTitle = document.getElementById('modalTitle');
             const modalLink = document.getElementById('modalLink');
             const modalClose = document.getElementById('modalClose');
 
-            let categories = {}; // Usado para armazenar todas as categorias
+            let movies = [];
 
-            async function fetchAndProcessContent() {
-                loadingElement.style.display = 'flex';
-
+            async function fetchMovies() {
                 try {
                     const response = await fetch(apiUrl);
                     if (!response.ok) {
-                        throw new Error('Network response was not ok');
+                        throw new Error('Erro na rede');
                     }
                     const text = await response.text();
                     const lines = text.split('\n');
-                    carouselsContainer.innerHTML = '';
+                    movies = [];
 
-                    categories = {}; // Reinicia o objeto de categorias
                     let currentItem = null;
 
                     lines.forEach(line => {
                         if (line.startsWith('#EXTINF')) {
-                            const metaInfo = line.match(/tvg-name="([^"]*)".*tvg-logo="([^"]*)".*group-title="([^"]*)"/);
+                            const metaInfo = line.match(/tvg-name="([^"]*)".*tvg-logo="([^"]*)"/);
                             if (metaInfo) {
                                 currentItem = {
                                     name: metaInfo[1],
                                     logo: metaInfo[2],
-                                    groupTitle: metaInfo[3],
-                                    url: line
+                                    url: ''
                                 };
                             }
                         } else if (line.startsWith('http')) {
@@ -380,11 +216,7 @@
                                 const encodedUrl = encodeURIComponent(line);
                                 const playerUrl = `http://uplayerfilmes.weebly.com/player.html?url=${encodedUrl}&img=${encodeURIComponent(currentItem.logo)}`;
 
-                                if (!categories[currentItem.groupTitle]) {
-                                    categories[currentItem.groupTitle] = [];
-                                }
-
-                                categories[currentItem.groupTitle].push({
+                                movies.push({
                                     name: currentItem.name,
                                     logo: currentItem.logo,
                                     url: playerUrl
@@ -395,123 +227,61 @@
                         }
                     });
 
-                    renderCategories(); // Renderiza as categorias inicialmente
+                    renderMovies(movies);
                 } catch (error) {
-                    carouselsContainer.innerHTML = 'Erro ao carregar o conteúdo: ' + error.message;
-                } finally {
-                    loadingElement.style.display = 'none';
+                    movieCarousel.innerHTML = 'Erro ao carregar: ' + error.message;
                 }
             }
 
-            function renderCategories(filteredCategories = categories) {
-                carouselsContainer.innerHTML = ''; // Limpa o conteúdo existente
-                Object.keys(filteredCategories).forEach(category => {
-                    const categorySection = document.createElement('section');
-                    categorySection.className = 'section';
-                    categorySection.innerHTML = `<h2>${category}</h2>`;
+            function renderMovies(filteredMovies) {
+                movieCarousel.innerHTML = '';
 
-                    const carouselWrapper = document.createElement('div');
-                    carouselWrapper.className = 'carousel-wrapper';
-
-                    const carousel = document.createElement('div');
-                    carousel.className = 'carousel';
-
-                    filteredCategories[category].forEach(item => {
-                        const card = document.createElement('div');
-                        card.className = 'movie-card';
-                        card.dataset.name = item.name;
-                        card.dataset.logo = item.logo;
-                        card.dataset.url = item.url;
-                        card.innerHTML = `
-                            <img src="${item.logo}" alt="${item.name} Logo">
-                            <div class="movie-info">
-                                <h3>${item.name}</h3>
-                            </div>
-                        `;
-                        carousel.appendChild(card);
-                    });
-
-                    const leftButton = document.createElement('button');
-                    leftButton.className = 'carousel-button left';
-                    leftButton.innerText = '<';
-                    leftButton.addEventListener('click', () => {
-                        carousel.scrollBy({ left: -carousel.offsetWidth / 5, behavior: 'smooth' });
-                    });
-
-                    const rightButton = document.createElement('button');
-                    rightButton.className = 'carousel-button right';
-                    rightButton.innerText = '>';
-                    rightButton.addEventListener('click', () => {
-                        carousel.scrollBy({ left: carousel.offsetWidth / 5, behavior: 'smooth' });
-                    });
-
-                    carouselWrapper.appendChild(leftButton);
-                    carouselWrapper.appendChild(carousel);
-                    carouselWrapper.appendChild(rightButton);
-
-                    categorySection.appendChild(carouselWrapper);
-                    carouselsContainer.appendChild(categorySection);
-                });
-
-                setupMovieCardClickEvents(); // Configura os eventos de clique nos cards depois que são renderizados
-            }
-
-            function setupSearchFunctionality() {
-                const searchButton = document.getElementById('searchButton');
-                const searchInput = document.getElementById('searchInput');
-
-                searchButton.addEventListener('click', () => {
-                    const query = searchInput.value.toLowerCase();
-                    const filteredCategories = {};
-
-                    Object.keys(categories).forEach(category => {
-                        const filteredItems = categories[category].filter(item => item.name.toLowerCase().includes(query));
-                        if (filteredItems.length > 0) {
-                            filteredCategories[category] = filteredItems;
-                        }
-                    });
-
-                    renderCategories(filteredCategories);
-                });
-
-                searchInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        searchButton.click();
-                    }
+                filteredMovies.forEach(item => {
+                    const card = createMovieCard(item);
+                    movieCarousel.appendChild(card);
                 });
             }
 
-            function setupMovieCardClickEvents() {
-                document.querySelectorAll('.movie-card').forEach(card => {
-                    card.addEventListener('click', (event) => {
-                        event.preventDefault(); // Previne o comportamento padrão
-
-                        const name = card.dataset.name;
-                        const url = card.dataset.url;
-
-                        modalTitle.textContent = name;
-                        modalLink.href = url;
-
-                        modal.style.display = 'flex'; // Abre o modal
-                    });
+            function createMovieCard(item) {
+                const card = document.createElement('div');
+                card.className = 'movie-card';
+                card.innerHTML = `
+                    <img src="${item.logo}" alt="Capa do filme ${item.name}">
+                    <div class="movie-info">
+                        <h3>${item.name}</h3>
+                    </div>
+                `;
+                card.addEventListener('click', () => {
+                    modalTitle.textContent = item.name;
+                    modalLink.href = item.url;
+                    modal.style.display = 'flex';
+                    modal.setAttribute('aria-hidden', 'false');
                 });
-
-                modalClose.addEventListener('click', () => {
-                    modal.style.display = 'none'; // Fecha o modal
-                });
-
-                window.addEventListener('click', (event) => {
-                    if (event.target === modal) {
-                        modal.style.display = 'none'; // Fecha o modal se clicar fora
-                    }
-                });
+                return card;
             }
 
-            fetchAndProcessContent();
-            setupSearchFunctionality();
+            document.getElementById('searchInput').addEventListener('input', () => {
+                const query = document.getElementById('searchInput').value.toLowerCase();
+                const filteredMovies = movies.filter(movie => movie.name.toLowerCase().includes(query));
+                renderMovies(filteredMovies);
+            });
+
+            modalClose.addEventListener('click', () => {
+                modal.style.display = 'none';
+                modal.setAttribute('aria-hidden', 'true');
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    modal.setAttribute('aria-hidden', 'true');
+                }
+            });
+
+            fetchMovies();
         });
     </script>
-
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
     <script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
     <script type="text/javascript">
