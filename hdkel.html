@@ -225,7 +225,7 @@
                         } else if (line.startsWith('http')) {
                             if (currentItem) {
                                 const encodedUrl = encodeURIComponent(line);
-                                const playerUrl = `http://uplayerfilmes.weebly.com/player.html?url=${encodedUrl}&img=${encodeURIComponent(currentItem.logo)}`;
+                                const playerUrl = `http://uplayfilmes.blogspot.com/?m=${encodedUrl}&img=${encodeURIComponent(currentItem.logo)}`;
 
                                 movies.push({
                                     name: currentItem.name,
