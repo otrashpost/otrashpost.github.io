@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmes em Cartaz</title>
+    <title>PLAYER</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -76,6 +76,7 @@
             cursor: pointer;
             width: 100%; /* Ocupa toda a largura disponível */
             max-width: 150px; /* Largura máxima dos cards */
+            margin: auto; /* Centraliza o card */
         }
 
         .movie-card img {
@@ -151,6 +152,16 @@
                 width: 200px; /* Ajuste a largura da barra de busca */
             }
         }
+
+        @media (max-width: 480px) {
+            .carousel {
+                grid-template-columns: 1fr; /* Reduzir para 1 coluna em telas menores */
+            }
+
+            .search-bar input {
+                width: 150px; /* Ajuste a largura da barra de busca para telas menores */
+            }
+        }
     </style>
 </head>
 <body>
@@ -159,7 +170,7 @@
     </header>
 
     <div class="carousel-container">
-        <h2>Filmes em Cartaz</h2>
+        <h2>Seus Filmes</h2>
         <div class="search-bar">
             <input type="text" id="searchInput" placeholder="Pesquise..." aria-label="Pesquisar filmes">
             <button id="searchButton">Pesquisar</button>
