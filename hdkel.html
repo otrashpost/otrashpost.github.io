@@ -162,6 +162,7 @@
                 width: 150px; /* Ajuste a largura da barra de busca para telas menores */
             }
         }
+     
     </style>
 </head>
 <body>
@@ -258,7 +259,7 @@
                 card.className = 'movie-card';
                 card.innerHTML = `
                     <img src="${item.logo}" alt="Capa do filme ${item.name}">
-                    <div class="movie-info">
+                    <div class="movie-info" style="display: none;"> <!-- Oculta as informações do filme -->
                         <h3>${item.name}</h3>
                     </div>
                 `;
