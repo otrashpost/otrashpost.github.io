@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Nomes e Números</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #444;
+        }
+        h1, h2 {
+            color: #34495e;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        }
+        textarea, input[type="text"] {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: 2px solid #e67e22;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #e67e22;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #d35400;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+        }
+        li {
+            background-color: #ecf0f1;
+            margin: 5px 0;
+            padding: 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        li:hover {
+            background-color: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Nomes e Números</h1>
+        <textarea id="entrada" rows="5" placeholder="Exemplo: Maria, 2"></textarea>
+        <button onclick="adicionarItens()">Adicionar</button>
+
+        <h2>Buscar Número</h2>
+        <input type="text" id="pesquisa" placeholder="Digite o número para buscar" onkeyup="filtrarLista()" />
+
+        <h2>Lista de Itens</h2>
+        <ul id="lista"></ul>
+    </div>
+
+    <script>
+        let ultimoNumero = 0;
+
+        function adicionarItens() {
+            const entrada = document.getElementById('entrada').value.trim();
+            const lista = document.getElementById('lista');
+
+            if (entrada) {
+                const linhas = entrada.split('\n');
+
+                linhas.forEach(linha => {
+                    const [nome, quantidadeStr] = linha.split(',').map(item => item.trim());
+                    const quantidade = parseInt(quantidadeStr);
+
+                    if (nome && quantidade > 0) {
+                        for (let i = 0; i < quantidade; i++) {
+                            ultimoNumero++;
+                            const item = document.createElement('li');
+                            item.textContent = `${nome} ${ultimoNumero}`;
+                            item.classList.add('item');
+                            lista.appendChild(item);
+                        }
+                    } else {
+                        alert(`Linha inválida: "${linha}". Use o formato "Nome, Quantidade".`);
+                    }
+                });
+
+                document.getElementById('entrada').value = '';
+            } else {
+                alert('Por favor, preencha o campo de entrada.');
+            }
+        }
+
+        function filtrarLista() {
+            const pesquisa = document.getElementById('pesquisa').value.trim();
+            const lista = document.getElementById('lista');
+            const itens = lista.getElementsByClassName('item');
+
+            Array.from(itens).forEach(item => item.style.display = 'list-item');
+
+            if (pesquisa) {
+                Array.from(itens).forEach(item => {
+                    if (!item.textContent.includes(pesquisa)) {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
