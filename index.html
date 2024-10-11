@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Nomes e Quantidades</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #444;
+        }
+        h1, h2 {
+            color: #34495e;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        }
+        textarea, input[type="text"] {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: 2px solid #e67e22;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #e67e22;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #d35400;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+        }
+        li {
+            background-color: #ecf0f1;
+            margin: 5px 0;
+            padding: 12px;
+            border-radius: 4px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RIFA SKINS CSGO</h1>
+        <textarea id="entrada" rows="15" placeholder="Exemplo: Nome, 150"></textarea>
+        <button onclick="adicionarItens()">Adicionar</button>
+
+        <h2>Resultado NúmeroS</h2>
+        <input type="text" id="pesquisa" placeholder="Digite o número." onkeyup="filtrarLista()" />
+
+        <h2>Lista dos Participantes</h2>
+        <ul id="lista"></ul>
+    </div>
+
+    <script>
+        let itens = [];
+
+        function adicionarItens() {
+            const entrada = document.getElementById('entrada').value.trim();
+            const lista = document.getElementById('lista');
+
+            if (entrada) {
+                const linhas = entrada.split('\n');
+                const itensParaAdicionar = [];
+
+                linhas.forEach(linha => {
+                    const [nome, quantidadeStr] = linha.split(',').map(item => item.trim());
+                    const quantidade = parseInt(quantidadeStr);
+
+                    if (nome && quantidade > 0) {
+                        for (let i = 0; i < quantidade; i++) {
+                            itensParaAdicionar.push(nome);
+                        }
+                    } else {
+                        alert(`Linha inválida: "${linha}". Use o formato "Nome, Quantidade".`);
+                    }
+                });
+
+                // Embaralhar os itens
+                itens = embaralharArray(itensParaAdicionar);
+
+                // Adicionar os itens à lista com numeração e evitar repetições consecutivas
+                let ultimoNome = '';
+                lista.innerHTML = ''; // Limpa a lista antes de adicionar novos itens
+                itens.forEach((itemText, index) => {
+                    // Se o nome atual for igual ao último, tentar encontrar um diferente
+                    while (itemText === ultimoNome && index < itens.length - 1) {
+                        index++;
+                        itemText = itens[index];
+                    }
+                    const item = document.createElement('li');
+                    item.textContent = `${index + 1}. ${itemText}`;
+                    lista.appendChild(item);
+                    ultimoNome = itemText;
+                });
+
+                document.getElementById('entrada').value = '';
+            } else {
+                alert('Por favor, preencha o campo de entrada.');
+            }
+        }
+
+        function filtrarLista() {
+            const pesquisa = document.getElementById('pesquisa').value.trim();
+            const lista = document.getElementById('lista');
+            const itensLista = lista.getElementsByTagName('li');
+
+            Array.from(itensLista).forEach(item => {
+                const itemIndex = item.textContent.split('.')[0].trim(); // Pega o número do item
+                item.style.display = itemIndex.includes(pesquisa) ? 'list-item' : 'none';
+            });
+        }
+
+        function embaralharArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+    </script>
+</body>
+</html>
