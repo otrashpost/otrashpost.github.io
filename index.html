@@ -66,10 +66,10 @@
 <body>
     <div class="container">
         <h1>RIFA SKINS CSGO</h1>
-        <textarea id="entrada" rows="15" placeholder="Exemplo: Nome, 150"></textarea>
+        <textarea id="entrada" rows="15" placeholder="Exemplo: Nome, Quantidade De Números"></textarea>
         <button onclick="adicionarItens()">Adicionar</button>
 
-        <h2>Resultado NúmeroS</h2>
+        <h2>Resultado Números</h2>
         <input type="text" id="pesquisa" placeholder="Digite o número." onkeyup="filtrarLista()" />
 
         <h2>Lista dos Participantes</h2>
@@ -96,18 +96,15 @@
                             itensParaAdicionar.push(nome);
                         }
                     } else {
-                        alert(`Linha inválida: "${linha}". Use o formato "Nome, Quantidade".`);
+                        alert(`Linha inválida: "${linha}". Use o formato "Nome, Quantidade De Números".`);
                     }
                 });
 
-                // Embaralhar os itens
                 itens = embaralharArray(itensParaAdicionar);
 
-                // Adicionar os itens à lista com numeração e evitar repetições consecutivas
                 let ultimoNome = '';
-                lista.innerHTML = ''; // Limpa a lista antes de adicionar novos itens
+                lista.innerHTML = ''; 
                 itens.forEach((itemText, index) => {
-                    // Se o nome atual for igual ao último, tentar encontrar um diferente
                     while (itemText === ultimoNome && index < itens.length - 1) {
                         index++;
                         itemText = itens[index];
@@ -130,7 +127,7 @@
             const itensLista = lista.getElementsByTagName('li');
 
             Array.from(itensLista).forEach(item => {
-                const itemIndex = item.textContent.split('.')[0].trim(); // Pega o número do item
+                const itemIndex = item.textContent.split('.')[0].trim();
                 item.style.display = itemIndex.includes(pesquisa) ? 'list-item' : 'none';
             });
         }
