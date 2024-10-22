@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="none">
+    <meta name="referrer" content="no-referrer">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PROIBIDO</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/netflix.css">
+    <style>
+        #player {
+            position: absolute;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        .jwplayer .jw-rightclick .jw-rightclick-list {
+            border-radius: 1px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/jwplayer/jwplayer.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/jwplayer/DooPlayLicenkey.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="player"></div>
+
+    <script>
+(async () => {
+  function getQueryParameter(param, url = window.location.href) {
+    param = param.replace(/[\[\]]/g, "\\$&");
+    const regex = new RegExp("[?&]" + param + "(=([^&#]*)|&|#|$)");
+    const matches = regex.exec(url);
+    if (!matches) {
+      return null;
+    }
+    if (!matches[2]) {
+      return '';
+    }
+    return decodeURIComponent(matches[2].replace(/\+/g, " "));
+  }
+
+  const movieId = getQueryParameter('m');
+  if (!movieId) {
+    console.error("Parâmetro \"id\" não encontrado na URL");
+    return;
+  }
+
+  const apiUrl = `https://api.codetabs.com/v1/proxy/?quest=http://www./m/${movieId}`;
+  
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    
+    const text = await response.text();
+    const playerMatch = text.match(/initializePlayer\(['"]([^'"]+)['"]/);
+    
+    if (playerMatch && playerMatch[1]) {
+      const videoUrl = playerMatch[1];
+      
+      jwplayer("player").setup({
+        controls: true,
+        sharing: false,
+        displaytitle: false,
+        displaydescription: false,
+        abouttext: "Buy Me a Coffee",
+        aboutlink: "@W88movie",
+        skin: { name: "netflix" },
+        captions: {
+          color: "#FFF",
+          fontSize: 14,
+          backgroundOpacity: 0,
+          edgeStyle: "raised"
+        },
+        playlist: [{
+          sources: [{
+            file: videoUrl,
+            label: "720p",
+            default: true
+          }]
+        }],
+        advertising: {
+          client: "vast",
+          schedule: [{ offset: "pre" }]
+        },
+        autostart: false,
+        mute: false
+      });
+
+      jwplayer("player").on("ready", function () {
+        jwplayer("player").addButton(
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTMgMTloMTh2Mkgzdi0yem0xMC01LjgyOEwxOS4wNzEgNy4xbDEuNDE0IDEuNDE0TDEyIDE3IDMuNTE1IDguNTE1IDQuOTI5IDcuMSAxMSAxMy4xN1YyaDJ2MTEuMTcyeiIgZmlsbD0icmdiYSgyNDcsMjQ3LDI0NywxKSIvPjwvc3ZnPg==", 
+          "Download Video", downloadVideo, "download-video-button");
+
+        function downloadVideo() {
+          const currentItem = jwplayer("player").getPlaylistItem();
+          const link = document.createElement('a');
+          const videoFile = currentItem.file;
+          
+          link.setAttribute("href", videoFile);
+          link.setAttribute("download", videoFile.split('/').pop());
+          link.style.display = "none";
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
+
+        const playerContainer = jwplayer("player").getContainer();
+        const buttonContainer = playerContainer.querySelector(".jw-button-container");
+        const spacer = buttonContainer.querySelector(".jw-spacer");
+        const sliderTime = playerContainer.querySelector(".jw-slider-time");
+        
+        buttonContainer.replaceChild(sliderTime, spacer);
+        
+        jwplayer("player").on("adBlock", () => {
+          const modal = document.querySelector("div.modal");
+          if (modal) {
+            modal.style.display = "flex";
+            document.getElementById("close").addEventListener("click", () => location.reload());
+          }
+        });
+
+        const rewindIcon = playerContainer.querySelector(".jw-display-icon-rewind");
+        if (rewindIcon) {
+          const rewindButton = rewindIcon.cloneNode(true);
+          const rewindSvg = rewindButton.querySelector(".jw-icon-rewind");
+          rewindSvg.style.transform = "scaleX(-1)";
+          rewindSvg.ariaLabel = "Forward 10 Seconds";
+          
+          const nextButton = playerContainer.querySelector(".jw-display-icon-next");
+          if (nextButton) {
+            nextButton.parentNode.insertBefore(rewindButton, nextButton);
+          }
+          
+          playerContainer.querySelector(".jw-display-icon-next").style.display = "none";
+          
+          const rewindButtonContainer = buttonContainer.querySelector(".jw-icon-rewind");
+          const reverseRewindButton = rewindButtonContainer.cloneNode(true);
+          reverseRewindButton.style.transform = "scaleX(-1)";
+          reverseRewindButton.ariaLabel = "Forward 10 Seconds";
+          rewindButtonContainer.parentNode.insertBefore(reverseRewindButton, rewindButtonContainer.nextElementSibling);
+          
+          [rewindSvg, reverseRewindButton].forEach(button => {
+            button.onclick = () => {
+              jwplayer("player").seek(jwplayer("player").getPosition() + 10);
+            };
+          });
+        }
+      });
+    } else {
+      console.error("Link não encontrado");
+    }
+  } catch (error) {
+    console.error("Erro: " + error.message);
+  }
+})();
+    </script>
+</body>
+</html>
