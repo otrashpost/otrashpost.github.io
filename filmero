@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAY</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header h1 {
+            font-size: 2.5em;
+            color: #ff5722;
+            margin: 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .item {
+            background: #333;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            color: #fff;
+            text-decoration: none;
+        }
+        .item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-bottom: 4px solid #ff5722;
+        }
+        .item-info {
+            padding: 15px;
+        }
+        .item-info h3 {
+            margin: 0;
+            font-size: 1.2em;
+            color: #f0f0f0;
+        }
+        .item-info p {
+            margin: 5px 0;
+            color: #bbb;
+            font-size: 0.9em;
+        }
+        .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #ccc;
+            background: #222;
+            border-top: 1px solid #444;
+        }
+        .open-url-button {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            padding: 10px 20px;
+            background-color: #ff5722;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            text-align: center;
+        }
+        .open-url-button:hover {
+            background-color: #e64a19;
+        }
+        .section-title {
+            text-align: left;
+            margin: 20px 0;
+            font-size: 1.8em;
+            color: #f0f0f0;
+            font-weight: bold;
+        }
+        #search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #query {
+            padding: 10px;
+            width: 70%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #search-button {
+            padding: 10px 15px;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px; /* Space between input and button */
+        }
+        #search-button:hover {
+            background-color: #e64a19;
+        }
+        .no-results, .error {
+            text-align: center;
+            color: #ff5722;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FILMES E SÉRIES</h1>
+        </header>
+
+        <div id="search-container">
+            <input type="text" id="query" placeholder="Pesquisar filmes ou séries...">
+            <button id="search-button" onclick="fetchData()">Pesquisar</button>
+        </div>
+
+        <div class="section-title" id="movies-title">NOVOS FILMES ADICIONADOS</div>
+        <div id="archive-content" class="grid"></div>
+
+        <div class="section-title" id="series-title">NOVAS SÉRIES ADICIONADAS</div>
+        <div id="additional-content" class="grid"></div>
+
+        <div id="results" class="grid" style="display: none;">
+            <!-- Resultados da pesquisa serão inseridos aqui -->
+        </div>
+    </div>
+
+    <script>
+        async function fetchData() {
+            const query = document.getElementById("query").value;
+            const url = "https://corsproxy.io/?url=https://aaabbcc3424324/?s=" + encodeURIComponent(query);
+
+            // Esconde as seções de filmes e séries
+            document.getElementById("movies-title").style.display = "none";
+            document.getElementById("archive-content").style.display = "none";
+            document.getElementById("series-title").style.display = "none";
+            document.getElementById("additional-content").style.display = "none";
+            document.getElementById("results").style.display = "grid";
+
+            try {
+                const response = await fetch(url);
+                const htmlText = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, "text/html");
+
+                const articles = doc.querySelectorAll("article");
+                let resultsHtml = '';
+
+                if (articles.length > 0) {
+                    articles.forEach(article => {
+                        const imageLink = article.querySelector("div.image div.thumbnail a");
+                        const titleLink = article.querySelector("div.details div.title a");
+                        const image = imageLink ? imageLink.querySelector("img") : null;
+                        const yearMeta = article.querySelector("div.details div.meta");
+                        const description = article.querySelector("div.details div.contenido p");
+
+                        const imgSrc = image ? image.src : '';
+                        const imgAlt = image ? image.alt : '';
+                        const title = titleLink ? titleLink.textContent : '';
+                        const href = titleLink ? titleLink.href : '';
+                        const year = yearMeta ? yearMeta.querySelector("span.year")?.textContent : '';
+                        const descText = description ? description.textContent : '';
+
+                        // Ajustando URLs para trailers
+                        if (href.startsWith("https://aaabbcc3424324/trailer-s/")) {
+                            const trailerId = href.split('/').slice(-2, -1)[0];
+                            titleLink.setAttribute("href", "https://hkuswaod.blogspot.com/?m=" + trailerId);
+                        } else if (href.startsWith("https://aaabbcc3424324/trailer-m/")) {
+                            const trailerId = href.split('/').slice(-2, -1)[0];
+                            titleLink.setAttribute("href", "https://gaccfes.blogspot.com/?m=" + trailerId);
+                        }
+
+                        resultsHtml += `
+                            <a href="${titleLink.href}" class="item">
+                                <img src="${imgSrc}" alt="${imgAlt}">
+                                <div class="item-info">
+                                    <h3>${title}</h3>
+                                    ${year ? `<p><strong>Ano:</strong> ${year}</p>` : ''}
+                                    ${descText ? `<p>${descText}</p>` : ''}
+                                </div>
+                            </a>`;
+                    });
+                    document.getElementById("results").innerHTML = resultsHtml;
+                } else {
+                    document.getElementById("results").innerHTML = "<div class=\"no-results\">Nenhum item encontrado.</div>";
+                }
+            } catch (error) {
+                console.error("Erro ao buscar dados:", error);
+                document.getElementById("results").innerHTML = "<div class=\"error\">Erro ao buscar dados.</div>";
+            }
+        }
+
+        function loadContent(url) {
+            fetch(url)
+                .then(response => response.text())
+                .then(htmlText => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(htmlText, "text/html");
+                    const articles = doc.querySelectorAll("article.item");
+
+                    const items = Array.from(articles)
+                        .slice(3)
+                        .map(article => {
+                            const imgSrc = article.querySelector(".poster img")?.src || '';
+                            const title = article.querySelector(".data h3 a")?.textContent || '';
+                            const linkElement = article.querySelector(".data h3 a");
+                            const href = linkElement?.href || '#';
+                            const additionalInfo = article.querySelector(".data span")?.textContent || '';
+                            const parts = href.split('/');
+                            const identifier = parts[parts.length - 2];
+
+                            if (href.startsWith("https://aaabbcc3424324/trailer-s/")) {
+                                linkElement.setAttribute("href", "https://hkuswaod.blogspot.com/?m=" + identifier);
+                            } else if (href.startsWith("https://aaabbcc3424324/trailer-m/")) {
+                                linkElement.setAttribute("href", "https://gaccfes.blogspot.com/?m=" + identifier);
+                            }
+
+                            return `
+                                <a href="${linkElement.href}" class="item">
+                                    <img src="${imgSrc}" alt="${title}">
+                                    <div class="item-info">
+                                        <h3>${title}</h3>
+                                        <p>${additionalInfo}</p>
+                                    </div>
+                                </a>
+                            `;
+                        })
+                        .join('');
+
+                    document.querySelector("#archive-content").innerHTML = items;
+                })
+                .catch(error => {
+                    console.error("Erro ao carregar o conteúdo:", error);
+                    document.querySelector("#archive-content").innerHTML = "Erro ao carregar o conteúdo.";
+                });
+        }
+
+        function loadAdditionalContent(url) {
+            fetch(url)
+                .then(response => response.text())
+                .then(htmlText => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(htmlText, "text/html");
+                    const articles = doc.querySelectorAll("article.item");
+
+                    const items = Array.from(articles)
+                        .slice(3)
+                        .map(article => {
+                            const imgSrc = article.querySelector(".poster img")?.src || '';
+                            const title = article.querySelector(".data h3 a")?.textContent || '';
+                            const linkElement = article.querySelector(".data h3 a");
+                            const href = linkElement?.href || '#';
+                            const additionalInfo = article.querySelector(".data span")?.textContent || '';
+                            const parts = href.split('/');
+                            const identifier = parts[parts.length - 2];
+
+                            if (href.startsWith("https://aaabbcc3424324/trailer-s/")) {
+                                linkElement.setAttribute("href", "https://hkuswaod.blogspot.com/?m=" + identifier);
+                            } else if (href.startsWith("https://aaabbcc3424324/trailer-m/")) {
+                                linkElement.setAttribute("href", "https://gaccfes.blogspot.com/?m=" + identifier);
+                            }
+
+                            return `
+                                <a href="${linkElement.href}" class="item">
+                                    <img src="${imgSrc}" alt="${title}">
+                                    <div class="item-info">
+                                        <h3>${title}</h3>
+                                        <p>${additionalInfo}</p>
+                                    </div>
+                                </a>
+                            `;
+                        })
+                        .join('');
+
+                    document.querySelector("#additional-content").innerHTML = items;
+                })
+                .catch(error => {
+                    console.error("Erro ao carregar o conteúdo adicional:", error);
+                    document.querySelector("#additional-content").innerHTML = "Erro ao carregar o conteúdo adicional.";
+                });
+        }
+
+        // Carregando o conteúdo da primeira URL
+        loadContent("https://corsproxy.io/?url=https://aaabbcc3424324/trailer-m/");
+        // Carregando o conteúdo da nova URL
+        loadAdditionalContent("https://corsproxy.io/?url=https://aaabbcc3424324/trailer-s/");
+    </script>
+</body>
+</html>
