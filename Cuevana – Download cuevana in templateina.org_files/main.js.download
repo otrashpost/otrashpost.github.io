@@ -1,0 +1,852 @@
+!function(h){h.fn.idTabs=function(){for(var e={},t=0;t<arguments.length;++t){var s=arguments[t];switch(s.constructor){case Object:h.extend(e,s);break;case Boolean:e.change=s;break;case Number:e.start=s;break;case Function:e.click=s;break;case String:"."==s.charAt(0)?e.selected=s:"!"==s.charAt(0)?e.event=s:e.start=s}}return"function"==typeof e.return&&(e.change=e.return),this.each(function(){h.idTabs(this,e)})},h.idTabs=function(n,e){var t=h.metadata?h(n).metadata():{},r=h.extend({},h.idTabs.settings,t,e);"."==r.selected.charAt(0)&&(r.selected=r.selected.substr(1)),"!"==r.event.charAt(0)&&(r.event=r.event.substr(1)),null==r.start&&(r.start=-1);var s=function(){if(h(this).is("."+r.selected))return r.change;var e="#"+this.href.split("#")[1],t=[],s=[];if(h("a",n).each(function(){this.href.match(/#/)&&(t.push(this),s.push("#"+this.href.split("#")[1]))}),r.click&&!r.click.apply(this,[e,s,n,r]))return r.change;for(i in t)h(t[i]).removeClass(r.selected);for(i in s)h(s[i]).hide();return h(this).addClass(r.selected),h(e).show(),r.change},a=h("a[href*='#']",n).unbind(r.event,s).bind(r.event,s);a.each(function(){h("#"+this.href.split("#")[1]).hide()});var c=!1;return(c=a.filter("."+r.selected)).length||"number"==typeof r.start&&(c=a.eq(r.start)).length||"string"==typeof r.start&&(c=a.filter("[href*='#"+r.start+"']")).length,c&&(c.removeClass(r.selected),c.trigger(r.event)),r},h.idTabs.settings={start:0,change:!1,click:null,selected:".selected",event:"!click"},h.idTabs.version="2.2",h(function(){h(".idTabs").idTabs()})}(jQuery);
+var lazyLoadInstance;
+let bodyNotloaded = false;
+const bodyCanShow = e =>{
+    if(bodyNotloaded){
+        return false;
+    }
+    bodyNotloaded = !0;
+    document.body.style.opacity = "1";
+}
+var callback_loaded = e => bodyCanShow(e);
+jQuery(document).ready(function($) {
+    lazyLoadInstance = new LazyLoad({
+        callback_loaded: callback_loaded
+    });
+    /*Modal*/
+    $(document).on('click', '.aa-mdl', function(){
+        var shwhddb = $(this).attr('data-mdl');
+        console.log(shwhddb + "--");
+        $('#'+shwhddb).toggleClass('on');
+        $('body').toggleClass('mdl-on');
+        $(this).toggleClass('on');
+    });
+    
+
+    $(document).on('click', '.button-close-help', function( event ){
+        $('#mdl-help, .more-options').remove();
+    });
+
+    $(document).on('click', '.show-options', function(){
+        $('.open_submenu:nth-child(1)').click();
+    });
+     /*Dropdown*/
+    $('.aa-drp').each(function() {
+        var $AADrpdwn = $(this);
+        $('.aa-lnk', $AADrpdwn).click(function(e){
+            console.log('as');
+          e.preventDefault();
+          var $AADrpdDv = $('.aa-cnt', $AADrpdwn);
+          $AADrpdDv.parent('.aa-drp').toggleClass('on');
+          $('.aa-cnt').not($AADrpdDv).parent('.aa-drp').removeClass('on');
+          return false;
+        });
+    });
+    $(document).on('click', function(e){
+        if ($(e.target).closest('.aa-cnt').length === 0) {
+            $('.aa-cnt').parent('.aa-drp').removeClass('on');
+        }
+    });
+
+	$(window).bind('ajaxStart', function(){
+		$("body").css({opacity:'.5',pointerEvents:'none'});
+	}).bind('ajaxStop', function(){
+		$("body").css({opacity:'1',pointerEvents:'all'});
+	});
+
+    var templateUrl = object_name.templateUrl;
+
+    /*GESTORES DE COOKIES*/
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) === 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    /*TAB DE COMENTARIOS*/
+    $('.subcommentnav a').on('click', function(event) {
+        event.preventDefault();
+        var $this = $(this);
+        $('.subcommentnav li').removeClass('on');
+        $this.parent().addClass('on');
+
+        var ide = $(this).data('tab');
+
+        $('.atre').addClass('hide');
+        $('#' + ide).removeClass('hide');
+
+    });
+
+    /*LOAD MORE AUTHOR ACTORES*/
+    $('.loadactor').loadMoreResults({
+        displayedItems: 4,
+        showItems: 10,
+        button: {
+            'text': 'Ver mas actores',
+            'class': 'abt'
+        },
+        tag: {
+            'name': 'a',
+            'class': 'tt-at'
+        }
+    });
+
+
+    /*LOAD MORE AUTHOR ACCIONES*/
+    $('.loadMore').loadMoreResults({
+        displayedItems: 10,
+        button: {
+            'text': 'Mostrar mas actividad'
+        },
+        tag: {
+            'name': 'li',
+            'class': 'tt-list'
+        }
+    });
+
+    /*LOAD MORE AUTHOR ACCIONES*/
+    $('.loadMorecommnew').loadMoreResults({
+        displayedItems: 10,
+        button: {
+            'text': 'Cargar 10 comentarios mas',
+            'class': 'Button loadmore full-width'
+        },
+        tag: {
+            'name': 'li',
+            'class': 'tt-list'
+        }
+    });
+
+    /*LOAD MORE AUTHOR ACCIONES*/
+    $('.loadMorecommold').loadMoreResults({
+        displayedItems: 10,
+        button: {
+            'text': 'Cargar 10 comentarios mas',
+            'class': 'Button loadmore full-width'
+        },
+        tag: {
+            'name': 'li',
+            'class': 'tt-list'
+        }
+    });
+
+    /*BORRAR COMENTARIO*/
+    $('body').on('click', '.delete-com-peli', function(event) {
+        event.preventDefault();
+        var $this = $(this);
+        var com = $(this).data('comentario');
+
+        $.ajax({
+            url: peliPublic.url,
+            method: 'POST',
+            data: {
+                action: 'action_delete_comentario',
+                com: com
+            },
+            success: function(data) {
+                console.log(data);
+                $this.parent().parent().remove();
+            }
+        });
+    });
+    /*ADD TO FAVORITE*/
+    $('body').on('click', '#add-to-favorito', function(event) {
+        event.preventDefault();
+        var $this = $(this);
+        var post_id = $(this).data('id'),
+            status = $(this).attr('data-status');
+
+        $.ajax({
+            url: peliPublic.url,
+            method: 'POST',
+            data: {
+                action: 'add_to_favs',
+                post_id: post_id,
+                status: status
+            },
+            success: function(data) {
+                if (data == 0) {
+                    alert('Se elimino a tu lista correctamente');
+                } else {
+                    alert('Se añadio a tu lista correctamente');
+                }
+            }
+        });
+    });
+    /*Seleccionar Temporada*/
+    $('#select-season').on('change', function(event) {
+        event.preventDefault();
+        var option = $(this).val();
+        $('.all-episodes').addClass('hide');
+        $('#season-' + option).removeClass('hide');
+    });
+    /**
+     * VIDEO PLAYER
+     * Ready init
+     */
+    $('.open_submenu').on('click', function(event) {
+        event.preventDefault();
+        var $this = $(this);
+        if ($this.find('.sub-tab-lang').is(':visible')) {
+            $this.find('.sub-tab-lang').addClass('hide');
+        } else {
+            $('.open_submenu').removeClass('actives');
+            $('.sub-tab-lang').addClass('hide');
+            $this.addClass('actives');
+            $this.find('.sub-tab-lang').removeClass('hide');
+        }
+        //$(this).find('.clili').eq(0).click();
+    });
+
+    $('.traileropt').on('click', function(event) {
+        event.preventDefault();
+        var $this = $(this);
+        $('.open_submenu').removeClass('actives');
+        $('.sub-tab-lang').addClass('hide');
+        $this.addClass('actives');
+        $this.find('.sub-tab-lang').removeClass('hide');
+
+        $('.TPlayerTb').removeClass('Current');
+        $('.TPlayerTb iframe').removeAttr('src');
+        $('#OptY').addClass('Current')
+        var $t = $('.Current');
+        var $source = $('.Current iframe');
+        $source.attr({
+            src: $source.attr('data-src')
+
+        });
+    });
+
+    $('.embed_div > div:first-child').find('iframe').attr('src', $('.embed_div > div:first-child').find('iframe').attr('data-src'));
+    $('.TPlayer > div:first-child').addClass('Current');
+    $('.TPlayerNv li:first-child').addClass('actives');
+
+    $('body').on('click', '.clili', function(event) {
+        event.preventDefault();
+        $('.clili').removeClass('actives');
+        $(this).addClass('actives');
+        $(this).parent().addClass('hide');
+        $('ul._1EGcQ_0 > li').removeClass('actives');
+        $(this).parent().parent().parent().addClass('actives');
+        var player_id = $(this).data('tplayernv');
+        var player_text = $('#' + player_id).text();
+        if (player_text != '') {
+            $('#' + player_id).html(player_text);
+        }
+        var tab_id = $(this).attr('data-TPlayerNv');
+        $('.TPlayerTb').removeClass('Current');
+        $(this).addClass('Current');
+        $("#" + tab_id).addClass('Current');
+        $('.TPlayerTb iframe').removeAttr('src');
+        var $t = $('.Current');
+        var $source = $('.Current iframe');
+        $source.attr({
+            src: $source.attr('data-src')
+        });
+    });
+
+
+    $('.clili').on('click', function(event) {
+        event.preventDefault();
+        /* Act on the event */
+        if ($(this).find('.parpax').length) {
+            $('.message_d').hide();
+            $('.message_k').show();
+        } else {
+            $('.message_d').show();
+            $('.message_k').hide();
+        }
+
+    });
+
+    if ($('.clili').first().find('.parpax').length) {
+        $('.message_d').hide();
+        $('.message_k').show();
+    } else {
+        $('.message_d').show();
+        $('.message_k').hide();
+
+    }
+
+
+    //Close banner yellow anounce
+    $('.close-message').on('click', function(event) {
+        event.preventDefault();
+        $(this).parent().remove();
+        /*$('.more-options').hide();*/
+    });
+
+    //Apagar luces en el player
+    $('.lgtbx-lnk').on('click', function(event) {
+        event.preventDefault();
+        if ($('body').hasClass('lights-off')) {
+            $('body').removeClass('lights-off');
+        } else {
+            $('body').addClass('lights-off');
+        }
+    });
+
+    $('.TPlayerCn iframe').on('click', function(event) {
+        event.preventDefault();
+        /* $('.more-options').hide();*/
+    });
+
+    $(document).on('click', '.home-movies .btnstp a', function(event) {
+        event.preventDefault();
+        var id = $(this).data('tab');
+        var $this = $(this);
+        console.log($('#' + id).length);
+        if ($('#' + id).length) {
+            $('.home-movies .btnstp a').removeClass('Current').addClass('ho-naranja');
+            $this.addClass('Current').removeClass('ho-naranja');
+
+            $('.apt').addClass('hide');
+            $('#' + id).removeClass('hide');
+        } else {
+            $.ajax({
+                url: peliPublic.url,
+                method: 'POST',
+                data: {
+                    action: 'action_home_movies',
+                    id: id,
+                },
+                success: function(data) {
+                    $('.home-movies').append(data);
+                    $('.home-movies .btnstp a').removeClass('Current').addClass('ho-naranja');
+                    $this.addClass('Current').removeClass('ho-naranja');
+
+                    $('.apt').addClass('hide');
+                    $('#' + id).removeClass('hide');
+                    lazyLoadInstance.update();
+                },
+                error: function(data) {
+                    //OcurriÃ³ un error
+                    console.log('error 500');
+                },
+            });
+        }
+    });
+
+    /**
+     * HOME MAIN
+     * Tab series: Ãºltimas, estrenos, ranking, mas vistos
+     */
+    $(document).on('click', '.home-series .btnstp a', function(event) {
+        event.preventDefault();
+        var id = $(this).data('tab');
+        var $this = $(this);
+        if ($('#' + id).length) {
+            $('.home-series .btnstp a').removeClass('Current').addClass('ho-naranja');
+            $this.addClass('Current').removeClass('ho-naranja');
+
+            $('.series_listado').addClass('hide');
+            $('#' + id).removeClass('hide');
+        } else {
+            $.ajax({
+                url: peliPublic.url,
+                method: 'POST',
+                data: {
+                    action: 'action_home_series',
+                    id: id,
+                },
+                success: function(data) {
+                    $('.home-series').append(data);
+                    $('.home-series .btnstp a').removeClass('Current').addClass('ho-naranja');
+                    $this.addClass('Current').removeClass('ho-naranja');
+
+                    $('.series_listado').addClass('hide');
+                    $('#' + id).removeClass('hide');
+                    $('#' + id).owlCarousel({
+                        loop: false,
+                        margin: 0,
+                        nav: false,
+                        responsiveClass: true,
+                        responsive: {
+                            0: {
+                                items: 1
+                            },
+                            425: {
+                                items: 2
+                            },
+                            576: {
+                                items: 3
+                            },
+                            768: {
+                                items: 2
+                            },
+                            992: {
+                                items: 3
+                            },
+                            1200: {
+                                items: 4
+                            }
+                        }
+                    });
+                    lazyLoadInstance.update();
+                },
+                error: function(data) {
+                    //OcurriÃ³ un error
+                    console.log('error 500');
+                },
+            });
+        }
+
+    });
+
+    /**
+     * Formulario Login Header
+     * @since 1.0.0
+     */
+    $('#form-login-user').on('submit', function(event) {
+        event.preventDefault();
+
+        var name = $('#form-login-name').val(),
+            pass = $('#form-login-pass').val();
+        $.ajax({
+            url: peliPublic.url,
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'dooplay_login',
+                log: name,
+                pwd: pass
+            },
+            success: function(data) {
+            	if(data.response){
+                    location.reload();
+            	}else{
+            		alert(data.message)
+            	}
+            },
+            error: function(data) {
+                console.log('error 500');
+            },
+        });
+
+    });
+
+    $('#form-register-user').on('submit', function(event) {
+        event.preventDefault();
+
+        var name = $('#form-register-names').val(),
+        firstname = $('#form-register-firstname').val(),
+        lastname = $('#form-register-lastname').val(),
+            pass = $('#form-register-passs').val(),
+            email = $('#form-register-emails').val();
+
+        $.ajax({
+            url: peliPublic.url,
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'dooplay_register',
+                username: name,
+                spassword: pass,
+                firstname: firstname,
+                lastname: lastname,
+                email: email
+            },
+            success: function(data) {
+                if (! data.response) {
+                	
+			        $.ajax({
+			            url: peliPublic.url,
+			            method: 'POST',
+			            dataType: 'json',
+			            data: {
+			                action: 'dooplay_login',
+			                log: name,
+			                pwd: pass
+			            },
+			            success: function(data) {
+			            	if(data.response){
+			                    location.reload();
+			            	}else{
+			            		alert(data.message)
+			            	}
+			            },
+			            error: function(data) {
+			                console.log('error 500');
+			            },
+			        });
+                }else{
+                    window.location.href = data.redirect
+                }
+
+            },
+            error: function(data) {
+                console.log('error 500');
+            },
+        });
+
+    });
+
+    /*Accordion*/
+    $('.aa-crd').find('.aa-crd-lnk').click(function() {
+        $(this).toggleClass('on');
+        $('.aa-crd-lnk').not($(this)).removeClass('on');
+    });
+
+    /*Tabs*/
+    $('.aa-nv a').click(function(e) {
+        e.preventDefault();
+        var $this = $(this),
+            tabgroup = '#' + $this.parents('.aa-nv').data('tbs'),
+            others = $this.closest('li').siblings().children('a'),
+            target = $this.attr('href');
+        others.removeClass('on');
+        $this.addClass('on');
+        $(tabgroup).children().removeClass('on');
+        $(target).addClass('on');
+    });
+
+
+
+    /*slide*/
+    $('.Rxod').owlCarousel({
+        loop: true,
+        nav: false,
+        lazyLoad: true,
+        items: 1,
+        autoplay: true,
+        autoplayTimeout: 4000,
+    });
+    $('.category-list').owlCarousel({
+        loop: true,
+        nav: false,
+        loop: true,
+        margin: 0,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            425: {
+                items: 2
+            },
+            576: {
+                items: 3
+            },
+            768: {
+                items: 4
+            },
+            992: {
+                items: 5
+            }
+        }
+    });
+    $('.tvshows-owl').owlCarousel({
+        loop: false,
+        margin: 0,
+        nav: false,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            425: {
+                items: 2
+            },
+            576: {
+                items: 3
+            },
+            768: {
+                items: 2
+            },
+            992: {
+                items: 3
+            },
+            1200: {
+                items: 4
+            }
+        }
+    });
+
+
+    $('.episodes-owl').owlCarousel({
+        loop: false,
+        margin: 0,
+        nav: false,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            425: {
+                items: 2
+            },
+            576: {
+                items: 3
+            },
+            768: {
+                items: 2
+            },
+            992: {
+                items: 3
+            },
+            1200: {
+                items: 4
+            }
+        }
+    });
+
+
+
+    $('.sagas-owl').owlCarousel({
+        loop: false,
+        margin: 0,
+        nav: false,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            425: {
+                items: 2
+            },
+            576: {
+                items: 3
+            },
+            992: {
+                items: 4
+            },
+            1200: {
+                items: 5
+            }
+        }
+    });
+    var owl = $('.premiere-owl');
+
+    /*if($('.premiere-owl > div').length > 7){*/
+    owl.owlCarousel({
+        onInitialized: counter,
+        onTranslated: counter,
+        loop: false,
+        margin: 0,
+        nav: false,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            425: {
+                items: 2
+            },
+            576: {
+                items: 3
+            },
+            768: {
+                items: 4
+            },
+            992: {
+                items: 5
+            },
+            1200: {
+                items: 6
+            },
+            1600: {
+                items: 7
+            }
+        }
+    });
+    /*}*/
+    function counter(event) {
+        var element = event.target;
+        var items = event.item.count;
+        var item = event.item.index + 1;
+        if (item > items) {
+            item = item - items
+        }
+        $('#numsld').html("<span>" + item + "</span>/" + items)
+    };
+
+    /*hd*/
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 150) {
+            $('.Header').addClass('fx');
+        } else {
+            $('.Header').removeClass('fx');
+        }
+    });
+
+    /*votes*/
+    ! function(a) {
+        a.fn.percircle = function(t) {
+            var e = {
+                animate: !0
+            };
+            t || (t = {}), a.extend(t, e);
+            var r = 3.6;
+            return this.each(function() {
+                var e = a(this);
+                e.hasClass("percircle") || e.addClass("percircle"), "undefined" != typeof e.attr("data-animate") && (t.animate = "true" == e.attr("data-animate")), t.animate && e.addClass("animate");
+                var s = e.attr("data-percent") || t.percent || 0,
+                    o = e.attr("data-perclock") || t.perclock || 0;
+                if (o) {
+                    e.hasClass("perclock") || e.addClass("perclock");
+                    var d = function(a) {
+                        return 10 > a ? "0" + a : a
+                    };
+                    setInterval(function() {
+                        var t = new Date,
+                            r = d(t.getHours()) + ":" + d(t.getMinutes()) + ":" + d(t.getSeconds());
+                        e.html("<span>" + r + "</span>"), a('<div class="slice"><div class="bar"></div><div class="fill"></div></div>').appendTo(e);
+                        var s = t.getSeconds();
+                        0 === s && e.removeClass("gt50"), s > 30 && (e.addClass("gt50"), a(".bar", e).css({
+                            "-webkit-transform": "rotate(180deg)",
+                            "-moz-transform": "rotate(180deg)",
+                            "-ms-transform": "rotate(180deg)",
+                            "-o-transform": "rotate(180deg)",
+                            transform: "rotate(180deg)"
+                        }));
+                        var o = 6 * s;
+                        a(".bar", e).css({
+                            "-webkit-transform": "rotate(" + o + "deg)",
+                            "-moz-transform": "rotate(" + o + "deg)",
+                            "-ms-transform": "rotate(" + o + "deg)",
+                            "-o-transform": "rotate(" + o + "deg)",
+                            transform: "rotate(" + o + "deg)"
+                        })
+                    }, 1e3)
+                } else {
+                    s > 50 && e.addClass("gt50");
+                    var l = e.attr("data-text") || t.text || s + "";
+                    a("<span>" + l + "</span>").appendTo(e), a('<div class="slice"><div class="bar"></div><div class="fill"></div></div>').appendTo(e), s > 50 && a(".bar", e).css({
+                        "-webkit-transform": "rotate(180deg)",
+                        "-moz-transform": "rotate(180deg)",
+                        "-ms-transform": "rotate(180deg)",
+                        "-o-transform": "rotate(180deg)",
+                        transform: "rotate(180deg)"
+                    });
+                    var n = r * s;
+                    setTimeout(function() {
+                        a(".bar", e).css({
+                            "-webkit-transform": "rotate(" + n + "deg)",
+                            "-moz-transform": "rotate(" + n + "deg)",
+                            "-ms-transform": "rotate(" + n + "deg)",
+                            "-o-transform": "rotate(" + n + "deg)",
+                            transform: "rotate(" + n + "deg)"
+                        })
+                    }, 0)
+                }
+            })
+        }
+    }(jQuery), $("#TPVotes").percircle();
+    /*votes*/
+    ! function(a) {
+        a.fn.percircle = function(t) {
+            var e = {
+                animate: !0
+            };
+            t || (t = {}), a.extend(t, e);
+            var r = 3.6;
+            return this.each(function() {
+                var e = a(this);
+                e.hasClass("percircle") || e.addClass("percircle"), "undefined" != typeof e.attr("data-animate") && (t.animate = "true" == e.attr("data-animate")), t.animate && e.addClass("animate");
+                var s = e.attr("data-percent") || t.percent || 0,
+                    o = e.attr("data-perclock") || t.perclock || 0;
+                if (o) {
+                    e.hasClass("perclock") || e.addClass("perclock");
+                    var d = function(a) {
+                        return 10 > a ? "0" + a : a
+                    };
+                    setInterval(function() {
+                        var t = new Date,
+                            r = d(t.getHours()) + ":" + d(t.getMinutes()) + ":" + d(t.getSeconds());
+                        e.html("<span>" + r + "</span>"), a('<div class="slice"><div class="bar"></div><div class="fill"></div></div>').appendTo(e);
+                        var s = t.getSeconds();
+                        0 === s && e.removeClass("gt50"), s > 30 && (e.addClass("gt50"), a(".bar", e).css({
+                            "-webkit-transform": "rotate(180deg)",
+                            "-moz-transform": "rotate(180deg)",
+                            "-ms-transform": "rotate(180deg)",
+                            "-o-transform": "rotate(180deg)",
+                            transform: "rotate(180deg)"
+                        }));
+                        var o = 6 * s;
+                        a(".bar", e).css({
+                            "-webkit-transform": "rotate(" + o + "deg)",
+                            "-moz-transform": "rotate(" + o + "deg)",
+                            "-ms-transform": "rotate(" + o + "deg)",
+                            "-o-transform": "rotate(" + o + "deg)",
+                            transform: "rotate(" + o + "deg)"
+                        })
+                    }, 1e3)
+                } else {
+                    s > 50 && e.addClass("gt50");
+                    var l = e.attr("data-text") || t.text || s + "";
+                    a("<span>" + l + "</span>").appendTo(e), a('<div class="slice"><div class="bar"></div><div class="fill"></div></div>').appendTo(e), s > 50 && a(".bar", e).css({
+                        "-webkit-transform": "rotate(180deg)",
+                        "-moz-transform": "rotate(180deg)",
+                        "-ms-transform": "rotate(180deg)",
+                        "-o-transform": "rotate(180deg)",
+                        transform: "rotate(180deg)"
+                    });
+                    var n = r * s;
+                    setTimeout(function() {
+                        a(".bar", e).css({
+                            "-webkit-transform": "rotate(" + n + "deg)",
+                            "-moz-transform": "rotate(" + n + "deg)",
+                            "-ms-transform": "rotate(" + n + "deg)",
+                            "-o-transform": "rotate(" + n + "deg)",
+                            transform: "rotate(" + n + "deg)"
+                        })
+                    }, 0)
+                }
+            })
+        }
+    }(jQuery), $("#TPVotes").percircle();
+
+        window.onload = function(){
+    document.getElementById('close').onclick = function(){
+        this.parentNode.parentNode.parentNode
+        .removeChild(this.parentNode.parentNode);
+        return false;
+    };
+};
+    
+    /*luz del repro*/
+    $('.lgtbx').on('click', function(event) {
+        event.preventDefault();
+        /* Act on the event */
+        $('body').removeClass('lights-off')
+    });
+
+
+    /*Toggle*/
+    $('.aa-tgl').on('click', function() {
+        var shwhdd = $(this).attr('data-tgl');
+        $('#' + shwhdd).toggleClass('on');
+        $(this).toggleClass('on');
+    });
+
+    /*Accordion*/
+    $('.aa-crd').find('.aa-crd-lnk').click(function() {
+        $(this).toggleClass('on');
+        $('.aa-crd-lnk').not($(this)).removeClass('on');
+    });
+
+
+    var lista = $('#ltuser').data('lista');
+
+    if (lista == 'on') {
+        $('#apre').click();
+    }
+
+});
