@@ -1,4 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="none">
+    <meta name="referrer" content="no-referrer">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/netflix.css">
+    <style>
+        #player {
+            position: absolute;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        .jwplayer .jw-rightclick .jw-rightclick-list {
+            border-radius: 1px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/jwplayer/jwplayer.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/jwplayer/DooPlayLicenkey.js" type="text/javascript"></script>
+</head>
+<body>
+
+<div id="player"></div>
+
 <script>
-<!-- code by proibido -->
-document.write(unescape('%3C%21DOCTYPE%20html%3E%0A%3Chtml%20lang%3D%22pt-br%22%3E%0A%3C/head%3E%3Cbody%3E%0A%20%20%20%20%3Cmeta%20charset%3D%22UTF-8%22%3E%0A%20%20%20%20%3Cmeta%20name%3D%22robots%22%20content%3D%22none%22%3E%0A%20%20%20%20%3Cmeta%20name%3D%22referrer%22%20content%3D%22no-referrer%22%3E%0A%20%20%20%20%3Cmeta%20name%3D%22theme-color%22%20content%3D%22%23000000%22%3E%0A%20%20%20%20%3Cmeta%20name%3D%22apple-mobile-web-app-status-bar-style%22%20content%3D%22black%22%3E%0A%20%20%20%20%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%20initial-scale%3D1%22%3E%0A%20%20%20%20%3Ctitle%3ERAFAELVISIONCINE%3C/title%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/netflix.css%22%3E%0A%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20%20%20%23player%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20position%3A%20absolute%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20width%3A%20100%25%20%21important%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20height%3A%20100%25%20%21important%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20.jwplayer%20.jw-rightclick%20.jw-rightclick-list%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20border-radius%3A%201px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20list-style%3A%20none%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20margin%3A%200%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20padding%3A%200%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20display%3A%20none%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%3C/style%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/jwplayer/jwplayer.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/jwplayer/DooPlayLicenkey.js%22%20type%3D%22text/javascript%22%3E%3C/script%3E%0A%0A%20%20%20%20%3Cdiv%20id%3D%22player%22%3E%3C/div%3E%0A%0A%20%20%20%20%3Cscript%3E%0A%28async%20%28%29%20%3D%3E%20%7B%0A%20%20function%20getQueryParameter%28param%2C%20url%20%3D%20window.location.href%29%20%7B%0A%20%20%20%20param%20%3D%20param.replace%28/%5B%5C%5B%5C%5D%5D/g%2C%20%22%5C%5C%24%26%22%29%3B%0A%20%20%20%20const%20regex%20%3D%20new%20RegExp%28%22%5B%3F%26%5D%22%20+%20param%20+%20%22%28%3D%28%5B%5E%26%23%5D*%29%7C%26%7C%23%7C%24%29%22%29%3B%0A%20%20%20%20const%20matches%20%3D%20regex.exec%28url%29%3B%0A%20%20%20%20if%20%28%21matches%29%20%7B%0A%20%20%20%20%20%20return%20null%3B%0A%20%20%20%20%7D%0A%20%20%20%20if%20%28%21matches%5B2%5D%29%20%7B%0A%20%20%20%20%20%20return%20%27%27%3B%0A%20%20%20%20%7D%0A%20%20%20%20return%20decodeURIComponent%28matches%5B2%5D.replace%28/%5C+/g%2C%20%22%20%22%29%29%3B%0A%20%20%7D%0A%0A%20%20const%20movieId%20%3D%20getQueryParameter%28%27m%27%29%3B%0A%20%20if%20%28%21movieId%29%20%7B%0A%20%20%20%20console.error%28%22Par%E2metro%20%5C%22id%5C%22%20n%E3o%20encontrado%20na%20URL%22%29%3B%0A%20%20%20%20return%3B%0A%20%20%7D%0A%0A%20%20const%20apiUrl%20%3D%20%60https%3A//corsproxy.io/%3Furl%3Dhttps%3A//filmrfplay.vercel.app/%24%7BmovieId%7D%60%3B%0A%20%20%0A%20%20try%20%7B%0A%20%20%20%20const%20response%20%3D%20await%20fetch%28apiUrl%29%3B%0A%20%20%20%20if%20%28%21response.ok%29%20%7B%0A%20%20%20%20%20%20throw%20new%20Error%28%22Network%20response%20was%20not%20ok%22%29%3B%0A%20%20%20%20%7D%0A%20%20%20%20%0A%20%20%20%20const%20text%20%3D%20await%20response.text%28%29%3B%0A%20%20%20%20const%20playerMatch%20%3D%20text.match%28/initializePlayer%5C%28%5B%27%22%5D%28%5B%5E%27%22%5D+%29%5B%27%22%5D/%29%3B%0A%20%20%20%20%0A%20%20%20%20if%20%28playerMatch%20%26%26%20playerMatch%5B1%5D%29%20%7B%0A%20%20%20%20%20%20const%20videoUrl%20%3D%20playerMatch%5B1%5D%3B%0A%20%20%20%20%20%20%0A%20%20%20%20%20%20jwplayer%28%22player%22%29.setup%28%7B%0A%20%20%20%20%20%20%20%20controls%3A%20true%2C%0A%20%20%20%20%20%20%20%20sharing%3A%20false%2C%0A%20%20%20%20%20%20%20%20displaytitle%3A%20false%2C%0A%20%20%20%20%20%20%20%20displaydescription%3A%20false%2C%0A%20%20%20%20%20%20%20%20abouttext%3A%20%22Buy%20Me%20a%20Coffee%22%2C%0A%20%20%20%20%20%20%20%20aboutlink%3A%20%22@W88movie%22%2C%0A%20%20%20%20%20%20%20%20skin%3A%20%7B%20name%3A%20%22netflix%22%20%7D%2C%0A%20%20%20%20%20%20%20%20captions%3A%20%7B%0A%20%20%20%20%20%20%20%20%20%20color%3A%20%22%23FFF%22%2C%0A%20%20%20%20%20%20%20%20%20%20fontSize%3A%2014%2C%0A%20%20%20%20%20%20%20%20%20%20backgroundOpacity%3A%200%2C%0A%20%20%20%20%20%20%20%20%20%20edgeStyle%3A%20%22raised%22%0A%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20playlist%3A%20%5B%7B%0A%20%20%20%20%20%20%20%20%20%20sources%3A%20%5B%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20file%3A%20videoUrl%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20label%3A%20%22720p%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20default%3A%20true%0A%20%20%20%20%20%20%20%20%20%20%7D%5D%0A%20%20%20%20%20%20%20%20%7D%5D%2C%0A%20%20%20%20%20%20%20%20advertising%3A%20%7B%0A%20%20%20%20%20%20%20%20%20%20client%3A%20%22vast%22%2C%0A%20%20%20%20%20%20%20%20%20%20schedule%3A%20%5B%7B%20offset%3A%20%22pre%22%20%7D%5D%0A%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20autostart%3A%20false%2C%0A%20%20%20%20%20%20%20%20mute%3A%20false%0A%20%20%20%20%20%20%7D%29%3B%0A%0A%20%20%20%20%20%20jwplayer%28%22player%22%29.on%28%22ready%22%2C%20function%20%28%29%20%7B%0A%20%20%20%20%20%20%20%20jwplayer%28%22player%22%29.addButton%28%0A%20%20%20%20%20%20%20%20%20%20%22data%3Aimage/svg+xml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTMgMTloMTh2Mkgzdi0yem0xMC01LjgyOEwxOS4wNzEgNy4xbDEuNDE0IDEuNDE0TDEyIDE3IDMuNTE1IDguNTE1IDQuOTI5IDcuMSAxMSAxMy4xN1YyaDJ2MTEuMTcyeiIgZmlsbD0icmdiYSgyNDcsMjQ3LDI0NywxKSIvPjwvc3ZnPg%3D%3D%22%2C%20%0A%20%20%20%20%20%20%20%20%20%20%22Download%20Video%22%2C%20downloadVideo%2C%20%22download-video-button%22%29%3B%0A%0A%20%20%20%20%20%20%20%20function%20downloadVideo%28%29%20%7B%0A%20%20%20%20%20%20%20%20%20%20const%20currentItem%20%3D%20jwplayer%28%22player%22%29.getPlaylistItem%28%29%3B%0A%20%20%20%20%20%20%20%20%20%20const%20link%20%3D%20document.createElement%28%27a%27%29%3B%0A%20%20%20%20%20%20%20%20%20%20const%20videoFile%20%3D%20currentItem.file%3B%0A%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20link.setAttribute%28%22href%22%2C%20videoFile%29%3B%0A%20%20%20%20%20%20%20%20%20%20link.setAttribute%28%22download%22%2C%20videoFile.split%28%27/%27%29.pop%28%29%29%3B%0A%20%20%20%20%20%20%20%20%20%20link.style.display%20%3D%20%22none%22%3B%0A%20%20%20%20%20%20%20%20%20%20document.body.appendChild%28link%29%3B%0A%20%20%20%20%20%20%20%20%20%20link.click%28%29%3B%0A%20%20%20%20%20%20%20%20%20%20document.body.removeChild%28link%29%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%29%3B%0A%20%20%20%20%7D%20else%20%7B%0A%20%20%20%20%20%20console.error%28%22Link%20n%E3o%20encontrado%22%29%3B%0A%20%20%20%20%7D%0A%20%20%7D%20catch%20%28error%29%20%7B%0A%20%20%20%20console.error%28%22Erro%3A%20%22%20+%20error.message%29%3B%0A%20%20%7D%0A%7D%29%28%29%3B%0A%3C/script%3E%0A%20%20%3Cscript%3E%0A%20%20%20%20document.addEventListener%28%22contextmenu%22%2C%20function%28e%29%7B%0A%20%20%20%20%20%20%20%20e.preventDefault%28%29%3B%0A%20%20%20%20%7D%2C%20false%29%3B%0A%20%20%20%20document.onkeydown%20%3D%20function%28e%29%20%7B%0A%20%20%20%20%20%20%20%20if%20%28event.keyCode%20%3D%3D%20123%29%20%7B%0A%20%20%20%20%20%20%20%20%20return%20false%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20if%28e.ctrlKey%20%26%26%20e.shiftKey%20%26%26%20e.keyCode%20%3D%3D%20%27U%27.charCodeAt%280%29%29%7B%0A%20%20%20%20%20%20%20%20%20return%20false%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20if%28e.ctrlKey%20%26%26%20e.shiftKey%20%26%26%20e.keyCode%20%3D%3D%20%27I%27.charCodeAt%280%29%29%7B%0A%20%20%20%20%20%20%20%20%20return%20false%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20if%28e.ctrlKey%20%26%26%20e.shiftKey%20%26%26%20e.keyCode%20%3D%3D%20%27C%27.charCodeAt%280%29%29%7B%0A%20%20%20%20%20%20%20%20%20return%20false%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20if%28e.ctrlKey%20%26%26%20e.shiftKey%20%26%26%20e.keyCode%20%3D%3D%20%27J%27.charCodeAt%280%29%29%7B%0A%20%20%20%20%20%20%20%20%20return%20false%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20if%28e.ctrlKey%20%26%26%20e.keyCode%20%3D%3D%20%27U%27.charCodeAt%280%29%29%7B%0A%20%20%20%20%20%20%20%20%20return%20false%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%20%20/*function%20check%28e%29%0A%20%20%20%20%7B%0A%20%20%20%20alert%28e.keyCode%29%3B%0A%20%20%20%20%7D*/%0A%20%20%20%20document.onkeydown%20%3D%20function%28e%29%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20%28e.ctrlKey%20%26%26%20%28e.keyCode%20%3D%3D%3D%2067%20%7C%7C%20e.keyCode%20%3D%3D%3D%2086%20%7C%7C%20e.keyCode%20%3D%3D%3D%2085%20%7C%7C%20e.keyCode%20%3D%3D%3D%20117%29%29%20%7B//Alt+c%2C%20Alt+v%20will%20also%20be%20disabled%20sadly.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20alert%28%27DESABILITADO%27%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20false%3B%0A%20%20%20%20%7D%3B%0A%3C/script%3E%0A%3Cdiv%20style%3D%22display%3Anone%3B%22%3E%3Cimg%20src%3D%22https%3A//whos.amung.us/cwidget/246rupxe1l/000000ffffff.png%22%3E%3C/div%3E%20%0A%3C/body%3E%0A%3C/html%3E'));
+(async () => {
+  function getQueryParameter(param, url = window.location.href) {
+    param = param.replace(/[\[\]]/g, "\\$&");
+    const regex = new RegExp("[?&]" + param + "(=([^&#]*)|&|#|$)");
+    const matches = regex.exec(url);
+    if (!matches) {
+      return null;
+    }
+    if (!matches[2]) {
+      return '';
+    }
+    return decodeURIComponent(matches[2].replace(/\+/g, " "));
+  }
+
+  // Obtendo o movieId da URL
+  const movieId = getQueryParameter('m');
+  if (!movieId) {
+    console.error("Parâmetro 'm' não encontrado na URL");
+    return;
+  }
+
+  // URL da API com o parâmetro movieId
+  const apiUrl = `https://corsproxy.io/?url=https://filmrfplay.vercel.app/${movieId}`;
+  
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error("Resposta da rede não foi ok");
+    }
+    
+    const text = await response.text();
+    
+    // Tentando extrair o link do vídeo da resposta
+    const playerMatch = text.match(/initializePlayer\(['"]([^'"]+)['"]/);
+    
+    if (playerMatch && playerMatch[1]) {
+      const videoUrl = playerMatch[1]; // O link do vídeo é extraído aqui
+
+      // Configuração do JWPlayer
+      const playerInstance = jwplayer("player").setup({
+        controls: true,
+        sharing: false,
+        displaytitle: false,
+        displaydescription: false,
+        abouttext: "Buy Me a Coffee",
+        aboutlink: "@W88movie",
+        skin: { name: "netflix" },
+        captions: {
+          color: "#FFF",
+          fontSize: 14,
+          backgroundOpacity: 0,
+          edgeStyle: "raised"
+        },
+        playlist: [{
+          sources: [{
+            file: videoUrl,
+            label: "720p",
+            default: true
+          }]
+        }],
+        advertising: {
+          client: "vast",
+          schedule: [{ offset: "pre" }]
+        },
+        autostart: false,
+        mute: false
+      });
+
+      // Adicionando o botão de download ao JWPlayer
+      playerInstance.on("ready", function () {
+        const buttonId = "download-video-button";
+        const iconPath = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTMgMTloMTh2Mkgzdi0yem0xMC01LjgyOEwxOS4wNzEgNy4xbDEuNDE0IDEuNDE0TDEyIDE3IDMuNTE1IDguNTE1IDQuOTI5IDcuMSAxMSAxMy4xN1YyaDJ2MTEuMTcyeiIgZmlsbD0icmdiYSgyNDcsMjQ3LDI0NywxKSIvPjwvc3ZnPg==";
+        const tooltipText = "Download Video";
+
+        // Chama o método `addButton` para adicionar o botão de download
+        playerInstance.addButton(iconPath, tooltipText, buttonClickAction, buttonId);
+
+        // Função que é chamada quando o botão de download é clicado
+        function buttonClickAction() {
+          const playlistItem = playerInstance.getPlaylistItem();
+          const anchor = document.createElement("a");
+          const fileUrl = playlistItem.file;
+          anchor.setAttribute("href", fileUrl);
+          const downloadName = playlistItem.file.split("/").pop();
+          anchor.setAttribute("download", downloadName);
+          anchor.style.display = "none";
+          document.body.appendChild(anchor);
+          anchor.click();
+          document.body.removeChild(anchor);
+        }
+
+        // Movendo o controle de tempo do player para alinhar com os outros controles
+        const playerContainer = playerInstance.getContainer();
+        const buttonContainer = playerContainer.querySelector(".jw-button-container");
+        const spacer = buttonContainer.querySelector(".jw-spacer");
+        const timeSlider = playerContainer.querySelector(".jw-slider-time");
+        buttonContainer.replaceChild(timeSlider, spacer);
+
+        // Detecção de bloqueio de anúncios
+        playerInstance.on("adBlock", () => {
+          const modal = document.querySelector("div.modal");
+          if (modal) {
+            modal.style.display = "flex";
+            document
+              .getElementById("close")
+              .addEventListener("click", () => location.reload());
+          }
+        });
+
+        // Adicionando o controle para avançar 10 segundos
+        const rewindContainer = playerContainer.querySelector(".jw-display-icon-rewind");
+        if (rewindContainer) {
+          const forwardContainer = rewindContainer.cloneNode(true);
+          const forwardDisplayButton = forwardContainer.querySelector(".jw-icon-rewind");
+          forwardDisplayButton.style.transform = "scaleX(-1)";
+          forwardDisplayButton.ariaLabel = "Forward 10 Seconds";
+          const nextContainer = playerContainer.querySelector(".jw-display-icon-next");
+          if (nextContainer) {
+            nextContainer.parentNode.insertBefore(forwardContainer, nextContainer);
+          }
+
+          // Ocultando o botão de próximo
+          playerContainer.querySelector(".jw-display-icon-next").style.display = "none";
+
+          // Adicionando o controle de avançar na barra de controles
+          const rewindControlBarButton = buttonContainer.querySelector(".jw-icon-rewind");
+          const forwardControlBarButton = rewindControlBarButton.cloneNode(true);
+          forwardControlBarButton.style.transform = "scaleX(-1)";
+          forwardControlBarButton.ariaLabel = "Forward 10 Seconds";
+          rewindControlBarButton.parentNode.insertBefore(forwardControlBarButton, rewindControlBarButton.nextElementSibling);
+
+          // Função para avançar 10 segundos
+          [forwardDisplayButton, forwardControlBarButton].forEach((button) => {
+            button.onclick = () => {
+              playerInstance.seek(playerInstance.getPosition() + 10);
+            };
+          });
+        }
+      });
+
+    } else {
+      console.error("Link do vídeo não encontrado na resposta.");
+    }
+  } catch (error) {
+    console.error("Erro: " + error.message);
+  }
+})();
 </script>
+
+</body>
+</html>
