@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const proxyUrl = 'https://corsproxy.io/?url=';
-    const targetUrl = '/';
+    const targetUrl = 'https://c2luywxwdwjsawnv.weebly.com/sdasddsfwebfd.html';
     const fullUrl = proxyUrl + encodeURIComponent(targetUrl);
 
     fetch(fullUrl)
